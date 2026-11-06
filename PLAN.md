@@ -1,5 +1,14 @@
 # Clothing Website — Development Plan
 
+## Locked decisions (06 Nov 2026)
+
+- **Brand:** FEELINGS — men’s unstitched shalwar kameez fabric  
+- **Visual system:** Final design language PDF (`docs/feelings-design-language.pdf`) — Stone `#D8D1C6`  
+- **Implementation:** Next.js storefront matching the PDF (not a stock Shopify theme). Catalogue data is isolated for later commerce/platform connection.  
+- **Content rule:** No invented products, prices, policies or reviews.
+
+---
+
 Research-backed blueprint for a modern fashion brand storefront (trends as of 2025–2026).
 
 Open the interactive version: ask the agent for the **Clothing Website Development Plan** canvas, or continue from this document.

@@ -1,26 +1,46 @@
-# Clothing brand website
+# FEELINGS
 
-Planning workspace for a modern clothing ecommerce storefront.
+Premium **men’s unstitched shalwar kameez fabric** storefront — traditional Pakistani luxury, Stone-led visual system.
 
-## What’s here
+Design source of truth: [`docs/feelings-design-language.pdf`](./docs/feelings-design-language.pdf)
 
-- [`PLAN.md`](./PLAN.md) — full development plan: 2025–2026 design trends, must-have sections, tech stack, and phased build path.
+## Stack
 
-## Status
+- **Next.js** (App Router) + TypeScript + Tailwind CSS  
+- Structured catalogue in `src/data/catalog.ts` (ready for later Shopify / commerce backend)  
+- Local cart (browser storage); checkout UI prepared but **not** connected to payment
 
-**Planning complete.** Implementation has not started yet.
+## Run locally
 
-## Recommended stack (summary)
+```bash
+npm install
+npm run dev
+```
 
-- **Frontend:** Next.js + TypeScript + Tailwind + shadcn/ui  
-- **Commerce:** Shopify (Storefront API + Checkout)  
-- **Motion:** Framer Motion + selective GSAP  
-- **Hosting:** Vercel  
+Dev server defaults to port **3847**.
 
-See `PLAN.md` for the full stack and alternatives (Shopify theme-only path).
+```bash
+npm run build && npm run start
+```
 
-## Next
+## What’s built
 
-1. Confirm client brand assets and catalog readiness.  
-2. Choose theme Shopify vs headless Next.js.  
-3. Scaffold the MVP storefront in this repo.
+- Homepage sections per design brief (empty states where content is pending)
+- Navigation: Shop All, New Arrivals, Collections, About, Contact, Search, Cart
+- Collection listing + detail templates
+- Product detail template for **unstitched fabric** (colour / cut selectors, no garment sizes)
+- Cart + checkout structure (explicitly does not place real orders yet)
+- About, Contact, FAQ, Shipping, Exchanges, Privacy, Terms placeholders
+
+## Adding the real catalogue
+
+See [`docs/CATALOGUE.md`](./docs/CATALOGUE.md). Do not invent products, prices or policies.
+
+## Brand colours
+
+| Token | Hex |
+| --- | --- |
+| Stone | `#D8D1C6` |
+| Soft Black | `#171717` |
+| Warm Ivory | `#F5F1E9` |
+| Deep Wine | `#6B2638` |
