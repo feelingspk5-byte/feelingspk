@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { IconChevronDown } from "@/components/ui/icons";
 import { cn } from "@/lib/cn";
 
 export function Disclosure({
@@ -24,7 +24,7 @@ export function Disclosure({
         onClick={() => setOpen((v) => !v)}
       >
         {title}
-        <ChevronDown
+        <IconChevronDown
           className={cn(
             "h-4 w-4 transition-transform duration-feel",
             open && "rotate-180",

@@ -3,9 +3,14 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
-import { Menu, Search, ShoppingBag, X } from "lucide-react";
 import { Container } from "@/components/layout/container";
 import { Input } from "@/components/ui/input";
+import {
+  IconBag,
+  IconClose,
+  IconMenu,
+  IconSearch,
+} from "@/components/ui/icons";
 import { cn } from "@/lib/cn";
 import { useCart } from "@/lib/cart-context";
 import type { Collection } from "@/lib/types";
@@ -44,7 +49,7 @@ export function Header({ collections }: { collections: Collection[] }) {
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
         >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          {open ? <IconClose /> : <IconMenu />}
         </button>
 
         <Link
@@ -78,14 +83,14 @@ export function Header({ collections }: { collections: Collection[] }) {
             aria-expanded={searchOpen}
             onClick={() => setSearchOpen((v) => !v)}
           >
-            <Search className="h-5 w-5" />
+            <IconSearch />
           </button>
           <Link
             href="/cart"
             className="relative inline-flex h-10 w-10 items-center justify-center rounded-sm text-ink"
             aria-label={`Cart${itemCount ? `, ${itemCount} items` : ""}`}
           >
-            <ShoppingBag className="h-5 w-5" />
+            <IconBag />
             {itemCount > 0 ? (
               <span className="absolute right-1 top-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-wine px-1 text-[10px] font-medium text-ivory">
                 {itemCount > 99 ? "99+" : itemCount}
