@@ -30,6 +30,18 @@ export const metadata: Metadata = {
     description:
       "Men's unstitched shalwar kameez fabric. Traditional Pakistani luxury.",
     type: "website",
+    images: [
+      {
+        url: "/brand/feelings-logo.png",
+        width: 1536,
+        height: 1024,
+        alt: "FEELINGS — Men's Unstitched Fabrics",
+      },
+    ],
+  },
+  icons: {
+    icon: [{ url: "/brand/favicon.png", type: "image/png" }],
+    apple: [{ url: "/brand/favicon.png" }],
   },
 };
 

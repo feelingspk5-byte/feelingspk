@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
+import { BrandLogo } from "@/components/brand/logo";
 import { Container } from "@/components/layout/container";
 import { Input } from "@/components/ui/input";
 import {
@@ -41,7 +42,7 @@ export function Header({ collections }: { collections: Collection[] }) {
 
   return (
     <header className="sticky top-0 z-40 border-b border-ink/10 bg-stone/95 backdrop-blur-sm">
-      <Container className="flex h-16 items-center justify-between gap-4 lg:h-[4.25rem]">
+      <Container className="flex h-[4.5rem] items-center justify-between gap-4 lg:h-20">
         <button
           type="button"
           className="inline-flex h-10 w-10 items-center justify-center rounded-sm text-ink lg:hidden"
@@ -54,10 +55,11 @@ export function Header({ collections }: { collections: Collection[] }) {
 
         <Link
           href="/"
-          className="font-display text-2xl tracking-[0.08em] text-ink md:text-[1.7rem]"
+          className="inline-flex items-center"
           onClick={() => setOpen(false)}
+          aria-label="FEELINGS home"
         >
-          FEELINGS
+          <BrandLogo variant="header" priority />
         </Link>
 
         <nav className="hidden items-center gap-6 lg:flex" aria-label="Primary">

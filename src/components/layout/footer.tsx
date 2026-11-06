@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BrandLogo } from "@/components/brand/logo";
 import { Container } from "@/components/layout/container";
 import { getSiteConfig } from "@/lib/catalog";
 
@@ -27,10 +28,12 @@ export function Footer() {
     <footer className="mt-auto border-t border-ink/15 bg-ink text-ivory">
       <Container className="grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-4">
         <div className="lg:col-span-1">
-          <p className="font-display text-2xl tracking-[0.08em]">FEELINGS</p>
-          <p className="mt-3 max-w-xs text-sm leading-relaxed text-ivory/70">
-            {config.tagline}. Traditional Pakistani luxury fabric house —
-            unstitched cloth for men&apos;s shalwar kameez.
+          <Link href="/" aria-label="FEELINGS home" className="inline-block">
+            <BrandLogo variant="footer" />
+          </Link>
+          <p className="mt-4 max-w-xs text-sm leading-relaxed text-ivory/70">
+            Traditional Pakistani luxury fabric house — unstitched cloth for
+            men&apos;s shalwar kameez.
           </p>
         </div>
 
