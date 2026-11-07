@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { cn } from "@/lib/cn";
 
-type LogoVariant = "header" | "footer" | "hero";
+type LogoVariant = "header" | "footer" | "hero" | "heroDark";
 
 const assets: Record<
   LogoVariant,
@@ -9,21 +9,27 @@ const assets: Record<
 > = {
   header: {
     src: "/brand/feelings-logo-ink.png",
-    width: 220,
-    height: 147,
-    className: "h-11 w-auto md:h-12",
+    width: 180,
+    height: 120,
+    className: "h-9 w-auto md:h-10",
   },
   footer: {
     src: "/brand/feelings-logo-transparent.png",
     width: 280,
     height: 187,
-    className: "h-24 w-auto sm:h-28",
+    className: "h-20 w-auto sm:h-24",
   },
   hero: {
     src: "/brand/feelings-logo-ink.png",
-    width: 520,
-    height: 347,
-    className: "h-auto w-full max-w-md md:max-w-lg",
+    width: 420,
+    height: 280,
+    className: "h-auto w-full max-w-xs md:max-w-sm",
+  },
+  heroDark: {
+    src: "/brand/feelings-logo-transparent.png",
+    width: 480,
+    height: 320,
+    className: "h-auto w-full max-w-[16rem] sm:max-w-xs md:max-w-sm",
   },
 };
 

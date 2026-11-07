@@ -1,11 +1,10 @@
 import { HomeHero } from "@/components/home/hero";
 import { NewsletterSignup } from "@/components/home/newsletter";
 import {
-  EditorialPending,
-  FeedbackPending,
+  AboutTeaser,
+  CatalogueTeaser,
   ProductRail,
   ShopByCollection,
-  WhyFeelings,
 } from "@/components/home/sections";
 import {
   getBestSellers,
@@ -19,6 +18,11 @@ export default function HomePage() {
   const newArrivals = getNewArrivals();
   const featured = getFeaturedProducts();
   const bestSellers = getBestSellers();
+  const hasCatalogue =
+    collections.length > 0 ||
+    newArrivals.length > 0 ||
+    featured.length > 0 ||
+    bestSellers.length > 0;
 
   return (
     <>
@@ -27,30 +31,26 @@ export default function HomePage() {
       <ProductRail
         eyebrow="Just in"
         title="New arrivals"
-        description="Newest FEELINGS fabrics once the owner marks them in the catalogue."
+        description="Newest FEELINGS fabrics."
         products={newArrivals}
         href="/shop?filter=new"
-        emptyTitle="New arrivals pending catalogue"
       />
       <ProductRail
         eyebrow="Curated"
         title="Featured collection"
-        description="A curated fabric edit with premium presentation — populated from confirmed featured products."
+        description="A curated fabric edit from the house."
         products={featured}
         href="/shop"
-        emptyTitle="Featured fabrics pending"
       />
-      <WhyFeelings />
       <ProductRail
         eyebrow="Favourites"
         title="Best sellers"
-        description="Shown only when FEELINGS confirms sales data or approved featured products."
+        description="Confirmed favourites from FEELINGS."
         products={bestSellers}
         href="/shop"
-        emptyTitle="Best sellers pending confirmation"
       />
-      <FeedbackPending />
-      <EditorialPending />
+      {!hasCatalogue ? <CatalogueTeaser /> : null}
+      <AboutTeaser />
       <NewsletterSignup />
     </>
   );
