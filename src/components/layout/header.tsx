@@ -44,6 +44,7 @@ const houseLinks = [
 
 const primaryLinks = [
   { href: "/shop", label: "Shop" },
+  { href: "/", label: "Home" },
   { href: "/collections", label: "Collections" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
@@ -142,7 +143,10 @@ export function Header({ collections }: { collections: Collection[] }) {
               href={link.href}
               className={cn(
                 "px-3 py-2 text-[12px] uppercase tracking-[0.16em] text-ink/75 transition-colors duration-feel hover:text-ink",
-                pathname === link.href && "text-wine",
+                (link.href === "/"
+                  ? pathname === "/"
+                  : pathname === link.href || pathname.startsWith(`${link.href}/`)) &&
+                  "text-wine",
               )}
             >
               {link.label}
@@ -268,6 +272,14 @@ export function Header({ collections }: { collections: Collection[] }) {
       {open ? (
         <div className="border-t border-ink/10 bg-ivory lg:hidden">
           <Container className="space-y-1 py-4">
+            <Link
+              href="/"
+              className="block py-2.5 text-sm uppercase tracking-[0.12em] text-ink"
+              onClick={() => setOpen(false)}
+            >
+              Home
+            </Link>
+            <div className="my-2 border-t border-ink/10" />
             <p className="pb-1 text-[11px] uppercase tracking-[0.18em] text-ink/45">
               Shop
             </p>
@@ -281,6 +293,13 @@ export function Header({ collections }: { collections: Collection[] }) {
                 {item.label}
               </Link>
             ))}
+            <Link
+              href="/collections"
+              className="block py-2.5 text-sm uppercase tracking-[0.12em] text-ink"
+              onClick={() => setOpen(false)}
+            >
+              Collections
+            </Link>
             <div className="my-2 border-t border-ink/10" />
             <p className="pb-1 text-[11px] uppercase tracking-[0.18em] text-ink/45">
               The house
