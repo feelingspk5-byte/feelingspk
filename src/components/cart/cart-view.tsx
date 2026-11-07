@@ -14,7 +14,7 @@ export function CartView() {
     return (
       <EmptyState
         title="Your cart is empty"
-        description="Browse the FEELINGS fabric catalogue when products are uploaded, then add unstitched cloth here."
+        description="Browse the FEELINGS Elite Men's Collection when products are uploaded, then add items here."
         className="py-16"
       />
     );
@@ -52,6 +52,9 @@ export function CartView() {
                   ) : null}
                   {line.cutLabel ? (
                     <p className="text-sm text-ink/60">Cut: {line.cutLabel}</p>
+                  ) : null}
+                  {line.sizeLabel ? (
+                    <p className="text-sm text-ink/60">Size: {line.sizeLabel}</p>
                   ) : null}
                 </div>
                 <p className="text-sm text-ink">

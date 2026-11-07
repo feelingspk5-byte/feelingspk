@@ -1,18 +1,19 @@
-import type { Collection, FabricProduct, SiteConfig } from "@/lib/types";
+import type { Collection, Product, SiteConfig } from "@/lib/types";
 
 /**
  * FEELINGS catalogue source of truth (temporary structured store).
  *
- * Until the owner supplies fabric PDFs, images, names, prices and policies:
- * - Keep `products` and `collections` empty.
- * - Do not invent categories, prices, fabric claims or reviews.
+ * Categories:
+ * - Unstitched fabric
+ * - Stitched shalwar kameez (size-based)
+ * - Dress shirts (size-based)
  *
- * Later: map each uploaded asset/SKU into these arrays (or replace this
- * module with Shopify / another commerce backend).
+ * Keep arrays empty until the owner supplies real products.
+ * Demo homepage imagery lives separately in `demo-home.ts`.
  */
 export const siteConfig: SiteConfig = {
   brandName: "FEELINGS",
-  tagline: "Men's unstitched shalwar kameez fabric",
+  tagline: "Elite Men's Collection",
   announcement: null,
   contactEmail: null,
   contactPhone: null,
@@ -30,36 +31,39 @@ export const siteConfig: SiteConfig = {
 /** Confirmed FEELINGS collections only — empty until catalogue arrives */
 export const collections: Collection[] = [];
 
-/** Confirmed FEELINGS fabric products only — empty until catalogue arrives */
-export const products: FabricProduct[] = [];
+/** Confirmed FEELINGS products only — empty until catalogue arrives */
+export const products: Product[] = [];
 
 /**
- * Example shape for when the owner uploads catalogue data.
- * Not exported into the live shop — documentation only.
+ * Example shapes for later catalogue upload — not live inventory.
  */
-export const PRODUCT_DATA_SHAPE_EXAMPLE = {
-  id: "sku-example",
-  slug: "example-fabric-slug",
-  name: "Product name from catalogue",
-  sku: "SKU-001",
-  description: "Factual description supplied by FEELINGS",
-  price: undefined,
-  currency: "PKR",
-  collectionSlugs: ["confirmed-collection-slug"],
-  fabricType: undefined,
-  composition: undefined,
-  weave: undefined,
-  finish: undefined,
-  season: undefined,
-  care: undefined,
-  width: undefined,
-  sellingMethod: "unconfirmed",
-  cutOptions: [],
-  colourVariants: [],
-  images: [],
-  availability: "unconfirmed",
-  featured: false,
-  newArrival: false,
-  bestSeller: false,
-  includesNote: undefined,
+export const PRODUCT_DATA_SHAPE_EXAMPLES = {
+  unstitched_fabric: {
+    category: "unstitched_fabric",
+    sellingMethod: "unconfirmed",
+    cutOptions: [],
+    sizeOptions: undefined,
+  },
+  stitched_shalwar_kameez: {
+    category: "stitched_shalwar_kameez",
+    sellingMethod: "fixed_price",
+    sizeOptions: [
+      { id: "s", label: "S" },
+      { id: "m", label: "M" },
+      { id: "l", label: "L" },
+      { id: "xl", label: "XL" },
+      { id: "xxl", label: "XXL" },
+    ],
+  },
+  dress_shirt: {
+    category: "dress_shirt",
+    sellingMethod: "fixed_price",
+    sizeOptions: [
+      { id: "15", label: "15" },
+      { id: "15.5", label: "15.5" },
+      { id: "16", label: "16" },
+      { id: "16.5", label: "16.5" },
+      { id: "17", label: "17" },
+    ],
+  },
 } as const;

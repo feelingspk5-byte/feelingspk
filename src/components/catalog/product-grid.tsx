@@ -5,7 +5,7 @@ import type { FabricProduct } from "@/lib/types";
 export function ProductGrid({
   products,
   emptyTitle = "Catalogue pending upload",
-  emptyDescription = "FEELINGS fabric products will appear here once the owner supplies catalogue PDFs, images, names and prices.",
+  emptyDescription = "FEELINGS products will appear here once the owner supplies catalogue PDFs, images, names and prices for fabric, stitched suits and shirts.",
 }: {
   products: FabricProduct[];
   emptyTitle?: string;

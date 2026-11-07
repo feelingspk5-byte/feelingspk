@@ -6,21 +6,52 @@ import { Button } from "@/components/ui/button";
 import { useCart } from "@/lib/cart-context";
 import { formatPrice } from "@/lib/catalog";
 import { cn } from "@/lib/cn";
-import type { FabricProduct } from "@/lib/types";
+import {
+  DEFAULT_DRESS_SHIRT_SIZES,
+  DEFAULT_SHALWAR_KAMEEZ_SIZES,
+  PRODUCT_CATEGORY_LABELS,
+  type Product,
+} from "@/lib/types";
 
-export function ProductPurchase({ product }: { product: FabricProduct }) {
+function categoryHint(product: Product) {
+  switch (product.category) {
+    case "unstitched_fabric":
+      return "Unstitched fabric — stitching is arranged separately unless included in the listing.";
+    case "stitched_shalwar_kameez":
+      return "Stitched shalwar kameez — select your size before adding to cart.";
+    case "dress_shirt":
+      return "Dress shirt — select collar / shirt size before adding to cart.";
+    default:
+      return "Elite Men's Collection";
+  }
+}
+
+export function ProductPurchase({ product }: { product: Product }) {
   const { addLine } = useCart();
   const router = useRouter();
   const colours = product.colourVariants ?? [];
   const cuts = product.cutOptions ?? [];
+  const isGarment =
+    product.category === "stitched_shalwar_kameez" ||
+    product.category === "dress_shirt";
+  const sizes =
+    product.sizeOptions && product.sizeOptions.length > 0
+      ? product.sizeOptions
+      : product.category === "stitched_shalwar_kameez"
+        ? DEFAULT_SHALWAR_KAMEEZ_SIZES
+        : product.category === "dress_shirt"
+          ? DEFAULT_DRESS_SHIRT_SIZES
+          : [];
 
   const [colourId, setColourId] = useState(colours[0]?.id);
   const [cutId, setCutId] = useState(cuts[0]?.id);
+  const [sizeId, setSizeId] = useState(sizes[0]?.id);
   const [quantity, setQuantity] = useState(1);
   const [message, setMessage] = useState<string | null>(null);
 
   const selectedColour = colours.find((c) => c.id === colourId);
   const selectedCut = cuts.find((c) => c.id === cutId);
+  const selectedSize = sizes.find((s) => s.id === sizeId);
 
   const unitPrice = useMemo(() => {
     if (selectedCut?.price !== undefined) return selectedCut.price;
@@ -30,7 +61,9 @@ export function ProductPurchase({ product }: { product: FabricProduct }) {
   const canPurchase =
     product.availability !== "out_of_stock" &&
     (colours.length === 0 || Boolean(colourId)) &&
-    (cuts.length === 0 ||
+    (!isGarment || Boolean(sizeId)) &&
+    (product.category !== "unstitched_fabric" ||
+      cuts.length === 0 ||
       product.sellingMethod === "unconfirmed" ||
       Boolean(cutId));
 
@@ -39,15 +72,22 @@ export function ProductPurchase({ product }: { product: FabricProduct }) {
       setMessage("Select the available options before adding to cart.");
       return;
     }
+    if (isGarment && !selectedSize) {
+      setMessage("Please select a size.");
+      return;
+    }
 
     addLine({
       productId: product.id,
       productSlug: product.slug,
       productName: product.name,
+      category: product.category,
       colourVariantId: selectedColour?.id,
       colourName: selectedColour?.name,
       cutOptionId: selectedCut?.id,
       cutLabel: selectedCut?.label,
+      sizeOptionId: selectedSize?.id,
+      sizeLabel: selectedSize?.label,
       quantity,
       unitLabel: selectedCut?.unit,
       unitPrice,
@@ -63,12 +103,13 @@ export function ProductPurchase({ product }: { product: FabricProduct }) {
   return (
     <div className="space-y-6">
       <div>
-        <p className="text-2xl text-ink">
+        <p className="text-[11px] uppercase tracking-[0.16em] text-wine">
+          {PRODUCT_CATEGORY_LABELS[product.category]}
+        </p>
+        <p className="mt-2 text-2xl text-ink">
           {formatPrice(unitPrice, product.currency)}
         </p>
-        <p className="mt-1 text-sm text-ink/60">
-          Unstitched fabric — stitching is not included.
-        </p>
+        <p className="mt-1 text-sm text-ink/60">{categoryHint(product)}</p>
       </div>
 
       {colours.length > 0 ? (
@@ -102,14 +143,46 @@ export function ProductPurchase({ product }: { product: FabricProduct }) {
         </p>
       )}
 
-      {product.sellingMethod === "unconfirmed" && cuts.length === 0 ? (
+      {isGarment ? (
+        <fieldset>
+          <legend className="mb-2 text-[11px] uppercase tracking-[0.16em] text-ink/60">
+            Size
+          </legend>
+          <div className="flex flex-wrap gap-2">
+            {sizes.map((size) => (
+              <button
+                key={size.id}
+                type="button"
+                disabled={size.available === false}
+                onClick={() => setSizeId(size.id)}
+                className={cn(
+                  "min-w-12 rounded-sm border px-3 py-2 text-sm",
+                  sizeId === size.id
+                    ? "border-wine bg-wine text-ivory"
+                    : "border-ink/20 bg-ivory text-ink",
+                  size.available === false && "opacity-40",
+                )}
+              >
+                {size.label}
+              </button>
+            ))}
+          </div>
+          <p className="mt-2 text-xs text-ink/50">
+            Size chart details will appear when FEELINGS supplies measurements.
+          </p>
+        </fieldset>
+      ) : null}
+
+      {product.category === "unstitched_fabric" &&
+      product.sellingMethod === "unconfirmed" &&
+      cuts.length === 0 ? (
         <p className="rounded-sm border border-dashed border-ink/20 bg-ivory px-3 py-2 text-sm text-ink/65">
-          Cut length / quantity rules are pending owner confirmation (fixed
-          suit cut, per metre, or another method).
+          Cut length / quantity rules are pending owner confirmation (fixed suit
+          cut, per metre, or another method).
         </p>
       ) : null}
 
-      {cuts.length > 0 ? (
+      {product.category === "unstitched_fabric" && cuts.length > 0 ? (
         <fieldset>
           <legend className="mb-2 text-[11px] uppercase tracking-[0.16em] text-ink/60">
             Cut / quantity option

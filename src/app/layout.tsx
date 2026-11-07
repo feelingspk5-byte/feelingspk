@@ -19,23 +19,23 @@ const sans = DM_Sans({
 
 export const metadata: Metadata = {
   title: {
-    default: "FEELINGS | Men's Unstitched Shalwar Kameez Fabric",
+    default: "FEELINGS | Elite Men's Collection",
     template: "%s | FEELINGS",
   },
   description:
-    "FEELINGS — premium men's unstitched shalwar kameez fabric. Traditional Pakistani luxury, Stone-led design.",
+    "FEELINGS — Elite Men's Collection. Unstitched fabric, stitched shalwar kameez, and dress shirts. Traditional Pakistani luxury.",
   metadataBase: new URL("https://feelings.local"),
   openGraph: {
-    title: "FEELINGS",
+    title: "FEELINGS | Elite Men's Collection",
     description:
-      "Men's unstitched shalwar kameez fabric. Traditional Pakistani luxury.",
+      "Unstitched fabric, stitched shalwar kameez, and dress shirts. Traditional Pakistani luxury.",
     type: "website",
     images: [
       {
         url: "/brand/feelings-logo.png",
-        width: 1536,
-        height: 1024,
-        alt: "FEELINGS — Men's Unstitched Fabrics",
+        width: 1200,
+        height: 800,
+        alt: "FEELINGS — Elite Men's Collection",
       },
     ],
   },

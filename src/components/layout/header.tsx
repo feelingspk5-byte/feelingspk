@@ -20,18 +20,33 @@ import type { Collection } from "@/lib/types";
 const shopPanel = [
   {
     href: "/shop",
-    label: "Shop All Fabrics",
-    note: "Full unstitched catalogue",
+    label: "Shop All",
+    note: "Full elite men's catalogue",
+  },
+  {
+    href: "/shop?category=unstitched_fabric",
+    label: "Unstitched Fabric",
+    note: "Cloth for custom stitching",
+  },
+  {
+    href: "/shop?category=stitched_shalwar_kameez",
+    label: "Stitched Shalwar Kameez",
+    note: "Ready suits with sizes",
+  },
+  {
+    href: "/shop?category=dress_shirt",
+    label: "Dress Shirts",
+    note: "Formal shirts with collar sizes",
   },
   {
     href: "/shop?filter=new",
     label: "New Arrivals",
-    note: "Latest fabric releases",
+    note: "Latest releases",
   },
   {
     href: "/collections",
     label: "Collections",
-    note: "Browse by fabric line",
+    note: "Browse by line",
   },
 ];
 
@@ -190,7 +205,7 @@ export function Header({ collections }: { collections: Collection[] }) {
               <p className="mb-4 text-[11px] uppercase tracking-[0.2em] text-ink/45">
                 Shop fabrics
               </p>
-              <div className="grid gap-2 sm:grid-cols-3">
+              <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
                 {shopPanel.map((item) => (
                   <Link
                     key={item.href}
@@ -240,8 +255,8 @@ export function Header({ collections }: { collections: Collection[] }) {
                 ))}
               </ul>
               <p className="mt-6 text-xs leading-relaxed text-ink/50">
-                Men&apos;s unstitched shalwar kameez fabric. Stitching is
-                arranged separately.
+                Elite Men&apos;s Collection — unstitched fabric, stitched
+                shalwar kameez, and dress shirts.
               </p>
             </div>
           </Container>

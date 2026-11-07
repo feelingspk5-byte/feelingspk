@@ -29,6 +29,7 @@ function makeKey(line: Omit<CartLine, "key">): string {
     line.productId,
     line.colourVariantId ?? "no-colour",
     line.cutOptionId ?? "no-cut",
+    line.sizeOptionId ?? "no-size",
   ].join("::");
 }
 

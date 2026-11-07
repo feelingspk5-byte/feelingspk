@@ -32,8 +32,8 @@ export function Footer() {
             <BrandLogo variant="footer" />
           </Link>
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-ivory/70">
-            Traditional Pakistani luxury fabric house — unstitched cloth for
-            men&apos;s shalwar kameez.
+            Elite Men&apos;s Collection — unstitched fabric, stitched shalwar
+            kameez, and dress shirts.
           </p>
         </div>
 
@@ -111,7 +111,7 @@ export function Footer() {
       <div className="border-t border-ivory/10">
         <Container className="flex flex-col gap-2 py-5 text-xs text-ivory/50 sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} FEELINGS. All rights reserved.</p>
-          <p>Unstitched fabric only — stitching is arranged separately.</p>
+          <p>Elite Men&apos;s Collection by FEELINGS.</p>
         </Container>
       </div>
     </footer>

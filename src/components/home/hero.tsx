@@ -9,11 +9,23 @@ import { VectorBackdrop } from "@/components/ui/vector-backdrop";
 import { demoHero } from "@/data/demo-home";
 
 const destinations = [
-  { href: "/shop", label: "Shop All", detail: "Browse every fabric" },
-  { href: "/shop?filter=new", label: "New Arrivals", detail: "Latest releases" },
-  { href: "/collections", label: "Collections", detail: "Shop by fabric line" },
+  { href: "/shop", label: "Shop All", detail: "Full collection" },
+  {
+    href: "/shop?category=unstitched_fabric",
+    label: "Fabric",
+    detail: "Unstitched cloth",
+  },
+  {
+    href: "/shop?category=stitched_shalwar_kameez",
+    label: "Stitched",
+    detail: "Shalwar kameez",
+  },
+  {
+    href: "/shop?category=dress_shirt",
+    label: "Shirts",
+    detail: "Dress shirts",
+  },
   { href: "/about", label: "About", detail: "The FEELINGS house" },
-  { href: "/contact", label: "Contact", detail: "Order assistance" },
 ];
 
 export function HomeHero() {
@@ -22,7 +34,7 @@ export function HomeHero() {
       <div className="relative min-h-[72vh] md:min-h-[78vh]">
         <Image
           src={demoHero.image}
-          alt="Folded premium men's unstitched fabric — sample preview imagery"
+          alt="Premium men's collection sample imagery"
           fill
           priority
           className="object-cover object-center"

@@ -1,6 +1,6 @@
 # FEELINGS
 
-Premium **men’s unstitched shalwar kameez fabric** storefront — traditional Pakistani luxury, Stone-led visual system.
+**FEELINGS — Elite Men’s Collection**: unstitched fabric, stitched shalwar kameez (sized), and dress shirts — traditional Pakistani luxury, Stone-led visual system.
 
 Design source of truth: [`docs/feelings-design-language.pdf`](./docs/feelings-design-language.pdf)
 
@@ -28,7 +28,7 @@ npm run build && npm run start
 - Homepage sections per design brief (empty states where content is pending)
 - Navigation: Shop All, New Arrivals, Collections, About, Contact, Search, Cart
 - Collection listing + detail templates
-- Product detail template for **unstitched fabric** (colour / cut selectors, no garment sizes)
+- Product detail templates for **fabric** (cut/quantity), **stitched shalwar kameez** (sizes), and **dress shirts** (collar sizes)
 - Cart + checkout structure (explicitly does not place real orders yet)
 - About, Contact, FAQ, Shipping, Exchanges, Privacy, Terms placeholders
 

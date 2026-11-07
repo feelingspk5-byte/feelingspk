@@ -27,7 +27,7 @@ export async function generateMetadata({
     title: product.name,
     description:
       product.description ??
-      `${product.name} — men's unstitched fabric from FEELINGS.`,
+      `${product.name} — from FEELINGS Elite Men's Collection.`,
   };
 }
 
@@ -74,7 +74,7 @@ export default async function ProductPage({
 
         <div>
           <p className="text-[11px] uppercase tracking-[0.18em] text-wine">
-            Unstitched fabric
+            Elite Men&apos;s Collection
           </p>
           <h1 className="mt-2 font-display text-4xl tracking-tight text-ink md:text-5xl">
             {product.name}
@@ -130,9 +130,9 @@ export default async function ProductPage({
               published.
             </Disclosure>
             <Disclosure title="Exchanges & returns">
-              Exchange and return eligibility for unstitched fabric will follow
-              the client-approved policy. No timeframe or conditions are assumed
-              here.
+              Exchange and return eligibility will follow the client-approved
+              policy for fabric and stitched garments. No timeframe or
+              conditions are assumed here.
             </Disclosure>
           </div>
         </div>

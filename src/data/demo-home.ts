@@ -1,17 +1,40 @@
 /**
- * Temporary homepage design content + AI sample imagery.
+ * Temporary homepage design content + sample imagery.
  * Replace with owner-supplied catalogue photos and approved copy later.
- * Marked as design preview — not live FEELINGS inventory.
  */
 export const DEMO_MODE = true;
 
 export const demoHero = {
   image: "/demo/hero-fabric.jpg",
-  eyebrow: "Men's unstitched shalwar kameez fabric",
-  title: "Cloth with quiet confidence",
+  eyebrow: "Elite Men's Collection",
+  title: "Cloth, stitched form, and shirts — composed for men",
   subtitle:
-    "A traditional Pakistani fabric house — refined cloth for shalwar kameez, presented with modern clarity.",
+    "FEELINGS presents unstitched fabric, stitched shalwar kameez, and dress shirts in one refined house experience.",
 };
+
+export const demoCategories = [
+  {
+    slug: "unstitched-fabric",
+    name: "Unstitched Fabric",
+    detail: "Cloth for shalwar kameez — choose cut & colour",
+    image: "/demo/collection-ivory.jpg",
+    href: "/shop?category=unstitched_fabric",
+  },
+  {
+    slug: "stitched-shalwar-kameez",
+    name: "Stitched Shalwar Kameez",
+    detail: "Ready stitched suits with size selection",
+    image: "/demo/cat-stitched-sk.jpg",
+    href: "/shop?category=stitched_shalwar_kameez",
+  },
+  {
+    slug: "dress-shirts",
+    name: "Dress Shirts",
+    detail: "Formal shirts with collar sizes",
+    image: "/demo/cat-dress-shirts.jpg",
+    href: "/shop?category=dress_shirt",
+  },
+];
 
 export const demoCollections = [
   {
@@ -38,30 +61,30 @@ export const demoFabrics = [
   {
     slug: "demo-charcoal-weave",
     name: "Charcoal Weave",
-    detail: "Fine suiting texture",
+    detail: "Unstitched fabric sample",
     image: "/demo/texture-charcoal.jpg",
-    tag: "Sample",
+    tag: "Fabric",
   },
   {
     slug: "demo-cream-cotton",
     name: "Cream Cotton",
-    detail: "Soft daylight finish",
+    detail: "Unstitched fabric sample",
     image: "/demo/texture-cream.jpg",
-    tag: "Sample",
+    tag: "Fabric",
   },
   {
-    slug: "demo-ivory-fold",
-    name: "Ivory Fold",
-    detail: "Clean formal presentation",
-    image: "/demo/collection-ivory.jpg",
-    tag: "Sample",
+    slug: "demo-stitched-ivory",
+    name: "Ivory Stitched Suit",
+    detail: "Stitched shalwar kameez sample",
+    image: "/demo/cat-stitched-sk.jpg",
+    tag: "Stitched",
   },
   {
-    slug: "demo-navy-sheen",
-    name: "Navy Sheen",
-    detail: "Subtle wash & wear lustre",
-    image: "/demo/collection-navy.jpg",
-    tag: "Sample",
+    slug: "demo-dress-shirt",
+    name: "Classic Dress Shirt",
+    detail: "Dress shirt sample",
+    image: "/demo/cat-dress-shirts.jpg",
+    tag: "Shirt",
   },
 ];
 
@@ -69,17 +92,17 @@ export const demoEditorial = {
   image: "/demo/editorial-drape.jpg",
   eyebrow: "The house",
   title: "Heritage calm. Modern clarity.",
-  body: "FEELINGS is built for men who choose cloth carefully — unstitched fabric with a traditional soul and a composed, contemporary shop experience.",
+  body: "FEELINGS is an elite men's collection — unstitched fabric for custom stitching, ready stitched shalwar kameez in sizes, and dress shirts for formal ease.",
 };
 
 export const demoAssurances = [
   {
-    title: "Unstitched fabric only",
-    body: "Cloth for shalwar kameez. Stitching is arranged separately.",
+    title: "Three ways to shop",
+    body: "Unstitched fabric, stitched shalwar kameez, and dress shirts — one house.",
   },
   {
-    title: "Texture-led photography",
-    body: "See weave, fold and colour clearly before you order.",
+    title: "Sized when it matters",
+    body: "Stitched suits and shirts use clear size options. Fabric uses cut or quantity.",
   },
   {
     title: "Guided shopping",

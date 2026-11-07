@@ -2,6 +2,7 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { cn } from "@/lib/cn";
+import { PRODUCT_CATEGORY_LABELS, type ProductCategory } from "@/lib/types";
 
 const sorts = [
   { value: "featured", label: "Featured" },
@@ -9,6 +10,11 @@ const sorts = [
   { value: "price-asc", label: "Price: low to high" },
   { value: "price-desc", label: "Price: high to low" },
 ];
+
+const categories = Object.entries(PRODUCT_CATEGORY_LABELS) as [
+  ProductCategory,
+  string,
+][];
 
 export function ShopToolbar({
   resultCount,
@@ -21,6 +27,7 @@ export function ShopToolbar({
   const params = useSearchParams();
   const sort = params.get("sort") ?? "featured";
   const collection = params.get("collection") ?? "";
+  const category = params.get("category") ?? "";
   const filter = params.get("filter") ?? "";
   const q = params.get("q") ?? "";
 
@@ -34,6 +41,14 @@ export function ShopToolbar({
   }
 
   const chips: { key: string; label: string; clear: () => void }[] = [];
+  if (category) {
+    chips.push({
+      key: "category",
+      label:
+        PRODUCT_CATEGORY_LABELS[category as ProductCategory] ?? category,
+      clear: () => update({ category: null }),
+    });
+  }
   if (collection) {
     const name =
       availableCollections.find((c) => c.slug === collection)?.name ??
@@ -63,7 +78,7 @@ export function ShopToolbar({
     <div className="mb-6 space-y-4">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-sm text-ink/70">
-          {resultCount} fabric{resultCount === 1 ? "" : "s"}
+          {resultCount} product{resultCount === 1 ? "" : "s"}
         </p>
         <label className="flex items-center gap-2 text-sm text-ink">
           <span className="text-ink/60">Sort</span>
@@ -82,20 +97,38 @@ export function ShopToolbar({
         </label>
       </div>
 
-      {availableCollections.length > 0 ? (
-        <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-2">
+        <button
+          type="button"
+          onClick={() => update({ category: null })}
+          className={cn(
+            "rounded-sm border px-3 py-1.5 text-xs uppercase tracking-[0.12em]",
+            !category
+              ? "border-wine bg-wine text-ivory"
+              : "border-ink/20 bg-ivory text-ink",
+          )}
+        >
+          All
+        </button>
+        {categories.map(([slug, label]) => (
           <button
+            key={slug}
             type="button"
-            onClick={() => update({ collection: null })}
+            onClick={() => update({ category: slug })}
             className={cn(
               "rounded-sm border px-3 py-1.5 text-xs uppercase tracking-[0.12em]",
-              !collection
+              category === slug
                 ? "border-wine bg-wine text-ivory"
                 : "border-ink/20 bg-ivory text-ink",
             )}
           >
-            All
+            {label}
           </button>
+        ))}
+      </div>
+
+      {availableCollections.length > 0 ? (
+        <div className="flex flex-wrap gap-2">
           {availableCollections.map((c) => (
             <button
               key={c.slug}

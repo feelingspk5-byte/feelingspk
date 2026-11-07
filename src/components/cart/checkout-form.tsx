@@ -161,6 +161,7 @@ export function CheckoutForm() {
                   Qty {line.quantity}
                   {line.colourName ? ` · ${line.colourName}` : ""}
                   {line.cutLabel ? ` · ${line.cutLabel}` : ""}
+                  {line.sizeLabel ? ` · Size ${line.sizeLabel}` : ""}
                 </p>
               </div>
               <p>{formatPrice(line.unitPrice, line.currency)}</p>

@@ -7,11 +7,13 @@ import { Container } from "@/components/layout/container";
 import { VectorBackdrop } from "@/components/ui/vector-backdrop";
 import {
   demoAssurances,
+  demoCategories,
   demoCollections,
   demoEditorial,
   demoFabrics,
   DEMO_MODE,
 } from "@/data/demo-home";
+
 export function DemoPreviewNote() {
   if (!DEMO_MODE) return null;
   return (
@@ -24,16 +26,65 @@ export function DemoPreviewNote() {
   );
 }
 
-export function FeaturedCollections() {
+export function ShopCategories() {
   return (
     <section className="relative overflow-hidden border-t border-ink/10 bg-stone py-16 md:py-24">
-      <VectorBackdrop className="opacity-60" />
+      <VectorBackdrop className="opacity-50" />
+      <Container className="relative">
+        <FadeIn>
+          <div className="mb-10 max-w-2xl">
+            <p className="text-[11px] uppercase tracking-[0.22em] text-wine">
+              Categories
+            </p>
+            <h2 className="mt-3 font-display text-4xl tracking-tight text-ink md:text-5xl">
+              Shop the house
+            </h2>
+            <p className="mt-3 text-sm text-ink/65 md:text-base">
+              Unstitched fabric, stitched shalwar kameez with sizes, and dress
+              shirts — one Elite Men&apos;s Collection.
+            </p>
+          </div>
+        </FadeIn>
+        <Stagger className="grid gap-4 md:grid-cols-3">
+          {demoCategories.map((item, index) => (
+            <StaggerItem key={item.slug}>
+              <Link
+                href={item.href}
+                className="group relative block overflow-hidden rounded-sm bg-ivory"
+              >
+                <div className="relative aspect-[3/4] overflow-hidden">
+                  <Image
+                    src={item.image}
+                    alt={`${item.name} sample`}
+                    fill
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                    sizes="(max-width:768px) 100vw, 33vw"
+                    priority={index === 0}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-ink/10 to-transparent" />
+                </div>
+                <div className="absolute inset-x-0 bottom-0 p-5 text-ivory">
+                  <p className="font-display text-2xl">{item.name}</p>
+                  <p className="mt-1 text-sm text-ivory/75">{item.detail}</p>
+                </div>
+              </Link>
+            </StaggerItem>
+          ))}
+        </Stagger>
+      </Container>
+    </section>
+  );
+}
+
+export function FeaturedCollections() {
+  return (
+    <section className="relative overflow-hidden border-t border-ink/10 bg-ivory py-16 md:py-24">
       <Container className="relative">
         <FadeIn>
           <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
               <p className="text-[11px] uppercase tracking-[0.22em] text-wine">
-                Collections
+                Looks
               </p>
               <h2 className="mt-3 font-display text-4xl tracking-tight text-ink md:text-5xl">
                 Shop by mood
@@ -90,14 +141,14 @@ export function FeaturedFabrics() {
         <FadeIn>
           <div className="mb-10 max-w-2xl">
             <p className="text-[11px] uppercase tracking-[0.22em] text-wine">
-              Featured fabrics
+              Featured pieces
             </p>
             <h2 className="mt-3 font-display text-4xl tracking-tight text-ink md:text-5xl">
-              Texture first.
+              From cloth to finished form.
             </h2>
             <p className="mt-3 text-sm text-ink/65 md:text-base">
-              Sample fabric studies for homepage layout. Prices and SKUs stay
-              empty until FEELINGS uploads the real catalogue.
+              Sample pieces across fabric, stitched suits and shirts. Prices and
+              SKUs stay empty until FEELINGS uploads the real catalogue.
             </p>
           </div>
         </FadeIn>

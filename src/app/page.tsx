@@ -6,6 +6,7 @@ import {
   EditorialBand,
   FeaturedCollections,
   FeaturedFabrics,
+  ShopCategories,
 } from "@/components/home/sections";
 
 export default function HomePage() {
@@ -13,6 +14,7 @@ export default function HomePage() {
     <>
       <DemoPreviewNote />
       <HomeHero />
+      <ShopCategories />
       <FeaturedCollections />
       <FeaturedFabrics />
       <EditorialBand />

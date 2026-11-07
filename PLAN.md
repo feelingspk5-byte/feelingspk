@@ -2,7 +2,8 @@
 
 ## Locked decisions (06 Nov 2026)
 
-- **Brand:** FEELINGS — men’s unstitched shalwar kameez fabric  
+- **Brand:** FEELINGS — Elite Men’s Collection (unstitched fabric + stitched shalwar kameez + dress shirts)  
+
 - **Visual system:** Final design language PDF (`docs/feelings-design-language.pdf`) — Stone `#D8D1C6`  
 - **Implementation:** Next.js storefront matching the PDF (not a stock Shopify theme). Catalogue data is isolated for later commerce/platform connection.  
 - **Content rule:** No invented products, prices, policies or reviews.
