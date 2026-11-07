@@ -11,20 +11,7 @@ import {
   demoCollections,
   demoEditorial,
   demoFabrics,
-  DEMO_MODE,
 } from "@/data/demo-home";
-
-export function DemoPreviewNote() {
-  if (!DEMO_MODE) return null;
-  return (
-    <div className="border-b border-ink/10 bg-ivory/80">
-      <Container className="py-2.5 text-center text-[11px] uppercase tracking-[0.16em] text-ink/55">
-        Design preview — sample AI imagery & temporary copy. Replace with
-        FEELINGS originals later.
-      </Container>
-    </div>
-  );
-}
 
 export function ShopCategories() {
   return (
@@ -40,8 +27,9 @@ export function ShopCategories() {
               Shop the house
             </h2>
             <p className="mt-3 text-sm text-ink/65 md:text-base">
-              Unstitched fabric, stitched shalwar kameez with sizes, and dress
-              shirts — one Elite Men&apos;s Collection.
+              Begin with the way you dress — unstitched cloth for a tailor’s
+              craft, ready stitched shalwar kameez for ease, or dress shirts for
+              a polished finish.
             </p>
           </div>
         </FadeIn>
@@ -55,7 +43,7 @@ export function ShopCategories() {
                 <div className="relative aspect-[3/4] overflow-hidden">
                   <Image
                     src={item.image}
-                    alt={`${item.name} sample`}
+                    alt={item.name}
                     fill
                     className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                     sizes="(max-width:768px) 100vw, 33vw"
@@ -90,8 +78,9 @@ export function FeaturedCollections() {
                 Shop by mood
               </h2>
               <p className="mt-3 max-w-lg text-sm text-ink/65 md:text-base">
-                Visual pathways into the house. Final collection names will follow
-                the owner catalogue.
+                From soft ivory calm to formal navy and winter warmth — choose a
+                mood that matches the moment, then discover pieces made to wear
+                with quiet confidence.
               </p>
             </div>
             <Link
@@ -108,12 +97,12 @@ export function FeaturedCollections() {
             <StaggerItem key={item.slug}>
               <Link
                 href="/collections"
-                className="group relative block overflow-hidden rounded-sm bg-ivory"
+                className="group relative block overflow-hidden rounded-sm bg-stone/30"
               >
                 <div className="relative aspect-[3/4] overflow-hidden">
                   <Image
                     src={item.image}
-                    alt={`${item.name} fabric sample`}
+                    alt={item.name}
                     fill
                     className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                     sizes="(max-width:768px) 100vw, 33vw"
@@ -136,7 +125,7 @@ export function FeaturedCollections() {
 
 export function FeaturedFabrics() {
   return (
-    <section className="relative border-t border-ink/10 bg-ivory py-16 md:py-24">
+    <section className="relative border-t border-ink/10 bg-stone py-16 md:py-24">
       <Container>
         <FadeIn>
           <div className="mb-10 max-w-2xl">
@@ -147,8 +136,9 @@ export function FeaturedFabrics() {
               From cloth to finished form.
             </h2>
             <p className="mt-3 text-sm text-ink/65 md:text-base">
-              Sample pieces across fabric, stitched suits and shirts. Prices and
-              SKUs stay empty until FEELINGS uploads the real catalogue.
+              A first look across the Elite Men&apos;s Collection — fabric with
+              presence, stitched suits with ease, and shirts that complete the
+              wardrobe.
             </p>
           </div>
         </FadeIn>
@@ -158,12 +148,12 @@ export function FeaturedFabrics() {
             <StaggerItem key={fabric.slug}>
               <Link
                 href="/shop"
-                className="group block overflow-hidden rounded-sm bg-stone/40 transition-transform duration-feel hover:-translate-y-1"
+                className="group block overflow-hidden rounded-sm bg-ivory transition-transform duration-feel hover:-translate-y-1"
               >
                 <div className="relative aspect-[3/4] overflow-hidden">
                   <Image
                     src={fabric.image}
-                    alt={`${fabric.name} sample fabric`}
+                    alt={fabric.name}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-[1.05]"
                     sizes="(max-width:768px) 50vw, 25vw"
@@ -177,8 +167,8 @@ export function FeaturedFabrics() {
                     {fabric.name}
                   </p>
                   <p className="mt-0.5 text-xs text-ink/55">{fabric.detail}</p>
-                  <p className="mt-2 text-xs uppercase tracking-[0.12em] text-ink/40">
-                    Price pending
+                  <p className="mt-2 text-xs uppercase tracking-[0.12em] text-wine">
+                    Explore
                   </p>
                 </div>
               </Link>
@@ -197,7 +187,7 @@ export function EditorialBand() {
         <div className="relative min-h-[22rem] lg:min-h-[32rem]">
           <Image
             src={demoEditorial.image}
-            alt="Draped fabric editorial sample"
+            alt="FEELINGS editorial presentation"
             fill
             className="object-cover"
             sizes="(max-width:1024px) 100vw, 50vw"
@@ -238,12 +228,12 @@ export function EditorialBand() {
 
 export function AssuranceRow() {
   return (
-    <section className="border-t border-ink/10 bg-stone py-14 md:py-16">
+    <section className="border-t border-ink/10 bg-ivory py-14 md:py-16">
       <Container>
         <Stagger className="grid gap-4 md:grid-cols-3">
           {demoAssurances.map((item) => (
             <StaggerItem key={item.title}>
-              <div className="rounded-sm border border-ink/10 bg-ivory/70 px-5 py-7">
+              <div className="rounded-sm border border-ink/10 bg-stone/40 px-5 py-7">
                 <div className="mb-4 h-px w-10 bg-wine" />
                 <p className="font-display text-2xl text-ink">{item.title}</p>
                 <p className="mt-2 text-sm leading-relaxed text-ink/60">
@@ -257,4 +247,3 @@ export function AssuranceRow() {
     </section>
   );
 }
-

@@ -9,9 +9,9 @@ const assets: Record<
 > = {
   header: {
     src: "/brand/feelings-logo-ink.png",
-    width: 180,
-    height: 110,
-    className: "h-9 w-auto md:h-10",
+    width: 220,
+    height: 135,
+    className: "h-12 w-auto sm:h-14 md:h-[3.75rem]",
   },
   footer: {
     src: "/brand/feelings-logo-transparent.png",

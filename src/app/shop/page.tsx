@@ -81,8 +81,8 @@ function ShopContent({
       />
       <ProductGrid
         products={products}
-        emptyTitle="Catalogue pending upload"
-        emptyDescription="FEELINGS products will appear here once the owner supplies unstitched fabric, stitched shalwar kameez, and dress shirt listings."
+        emptyTitle="The collection is being arranged"
+        emptyDescription="Filter by unstitched fabric, stitched shalwar kameez, or dress shirts — products will appear here as the Elite Men's Collection goes live."
       />
     </>
   );

@@ -29,8 +29,8 @@ export function NewsletterSignup() {
             New fabric arrivals, quietly announced.
           </h2>
           <p className="mt-3 max-w-md text-sm text-ivory/60">
-            Join for collection updates. Privacy details will follow the
-            published FEELINGS policy.
+            Be first to hear about new fabric drops, stitched releases, and
+            shirt arrivals from the house.
           </p>
         </FadeIn>
         <FadeIn delay={0.12}>

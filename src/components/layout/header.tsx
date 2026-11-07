@@ -100,7 +100,7 @@ export function Header({ collections }: { collections: Collection[] }) {
 
   return (
     <header className="relative sticky top-0 z-50 border-b border-ink/10 bg-ivory/95 backdrop-blur-md">
-      <Container className="flex h-16 items-center justify-between gap-4 lg:h-[4.5rem]">
+      <Container className="flex h-[4.75rem] items-center justify-between gap-4 sm:h-20 lg:h-[5.25rem]">
         <button
           type="button"
           className="inline-flex h-10 w-10 items-center justify-center rounded-sm text-ink lg:hidden"

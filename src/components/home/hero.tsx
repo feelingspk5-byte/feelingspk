@@ -34,7 +34,7 @@ export function HomeHero() {
       <div className="relative min-h-[72vh] md:min-h-[78vh]">
         <Image
           src={demoHero.image}
-          alt="Premium men's collection sample imagery"
+          alt="FEELINGS Elite Men's Collection"
           fill
           priority
           className="object-cover object-center"

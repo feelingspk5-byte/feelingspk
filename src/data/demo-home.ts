@@ -1,36 +1,37 @@
 /**
- * Temporary homepage design content + sample imagery.
- * Replace with owner-supplied catalogue photos and approved copy later.
+ * Homepage marketing content and media.
+ * Swap image paths when FEELINGS provides final photography.
  */
-export const DEMO_MODE = true;
-
 export const demoHero = {
   image: "/demo/hero-fabric.jpg",
   eyebrow: "Elite Men's Collection",
   title: "Cloth, stitched form, and shirts — composed for men",
   subtitle:
-    "FEELINGS presents unstitched fabric, stitched shalwar kameez, and dress shirts in one refined house experience.",
+    "FEELINGS brings unstitched fabric, stitched shalwar kameez, and dress shirts together in one refined house experience.",
 };
 
 export const demoCategories = [
   {
     slug: "unstitched-fabric",
     name: "Unstitched Fabric",
-    detail: "Cloth for shalwar kameez — choose cut & colour",
+    detail:
+      "Premium cloth cut for shalwar kameez — choose colour and length with confidence.",
     image: "/demo/collection-ivory.jpg",
     href: "/shop?category=unstitched_fabric",
   },
   {
     slug: "stitched-shalwar-kameez",
     name: "Stitched Shalwar Kameez",
-    detail: "Ready stitched suits with size selection",
+    detail:
+      "Ready-to-wear suits finished with care — select your size and step out polished.",
     image: "/demo/cat-stitched-sk.jpg",
     href: "/shop?category=stitched_shalwar_kameez",
   },
   {
     slug: "dress-shirts",
     name: "Dress Shirts",
-    detail: "Formal shirts with collar sizes",
+    detail:
+      "Crisp formal shirts for work and occasion — sized for a clean, confident fit.",
     image: "/demo/cat-dress-shirts.jpg",
     href: "/shop?category=dress_shirt",
   },
@@ -40,49 +41,49 @@ export const demoCollections = [
   {
     slug: "ivory-essentials",
     name: "Ivory Essentials",
-    detail: "Soft cream cloth for everyday elegance",
+    detail: "Quiet cream tones for everyday elegance and timeless gatherings.",
     image: "/demo/collection-ivory.jpg",
   },
   {
     slug: "navy-formal",
     name: "Navy Formal",
-    detail: "Deep tones for refined gatherings",
+    detail: "Deep formal shades made for dinners, offices, and evening presence.",
     image: "/demo/collection-navy.jpg",
   },
   {
     slug: "winter-warmth",
     name: "Winter Warmth",
-    detail: "Richer textures for the cooler season",
+    detail: "Richer textures and warmer hues for the cooler months.",
     image: "/demo/collection-tobacco.jpg",
   },
 ];
 
 export const demoFabrics = [
   {
-    slug: "demo-charcoal-weave",
+    slug: "charcoal-weave",
     name: "Charcoal Weave",
-    detail: "Unstitched fabric sample",
+    detail: "A refined suiting texture with quiet depth.",
     image: "/demo/texture-charcoal.jpg",
     tag: "Fabric",
   },
   {
-    slug: "demo-cream-cotton",
+    slug: "cream-cotton",
     name: "Cream Cotton",
-    detail: "Unstitched fabric sample",
+    detail: "Soft daylight finish for effortless wear.",
     image: "/demo/texture-cream.jpg",
     tag: "Fabric",
   },
   {
-    slug: "demo-stitched-ivory",
+    slug: "ivory-stitched-suit",
     name: "Ivory Stitched Suit",
-    detail: "Stitched shalwar kameez sample",
+    detail: "A composed stitched silhouette for formal ease.",
     image: "/demo/cat-stitched-sk.jpg",
     tag: "Stitched",
   },
   {
-    slug: "demo-dress-shirt",
+    slug: "classic-dress-shirt",
     name: "Classic Dress Shirt",
-    detail: "Dress shirt sample",
+    detail: "Clean lines and a polished collar presence.",
     image: "/demo/cat-dress-shirts.jpg",
     tag: "Shirt",
   },
@@ -92,20 +93,20 @@ export const demoEditorial = {
   image: "/demo/editorial-drape.jpg",
   eyebrow: "The house",
   title: "Heritage calm. Modern clarity.",
-  body: "FEELINGS is an elite men's collection — unstitched fabric for custom stitching, ready stitched shalwar kameez in sizes, and dress shirts for formal ease.",
+  body: "FEELINGS is shaped for the modern Pakistani gentleman — whether you prefer unstitched cloth for a tailor’s hand, a ready stitched shalwar kameez in your size, or a dress shirt that finishes the look with quiet precision.",
 };
 
 export const demoAssurances = [
   {
-    title: "Three ways to shop",
-    body: "Unstitched fabric, stitched shalwar kameez, and dress shirts — one house.",
+    title: "Three ways to dress",
+    body: "Unstitched fabric, stitched shalwar kameez, and dress shirts — curated as one Elite Men’s Collection.",
   },
   {
-    title: "Sized when it matters",
-    body: "Stitched suits and shirts use clear size options. Fabric uses cut or quantity.",
+    title: "Fit with clarity",
+    body: "Stitched suits and shirts offer clear size choices. Fabric is selected by colour, cut, and quantity.",
   },
   {
-    title: "Guided shopping",
-    body: "Collections, search and support — structured like a premium house.",
+    title: "A considered shop",
+    body: "From discovery to checkout, the experience stays calm, clear, and worthy of the wardrobe.",
   },
 ];

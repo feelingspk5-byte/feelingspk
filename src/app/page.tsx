@@ -2,7 +2,6 @@ import { HomeHero } from "@/components/home/hero";
 import { NewsletterSignup } from "@/components/home/newsletter";
 import {
   AssuranceRow,
-  DemoPreviewNote,
   EditorialBand,
   FeaturedCollections,
   FeaturedFabrics,
@@ -12,7 +11,6 @@ import {
 export default function HomePage() {
   return (
     <>
-      <DemoPreviewNote />
       <HomeHero />
       <ShopCategories />
       <FeaturedCollections />
