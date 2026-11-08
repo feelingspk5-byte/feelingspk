@@ -70,6 +70,26 @@ function ShopContent({
 
   products = sortProducts(products, searchParams.sort ?? "featured");
 
+  const category = searchParams.category;
+  const comingSoon =
+    category === "stitched_shalwar_kameez"
+      ? {
+          title: "Stitched Shalwar Kameez — Coming soon",
+          description:
+            "Sized ready-to-wear suits are being prepared for the Elite Men's Collection. Explore unstitched fabric while you wait.",
+        }
+      : category === "dress_shirt"
+        ? {
+            title: "Dress Shirts — Coming soon",
+            description:
+              "Formal shirt styles are on the way. Browse unstitched fabric collections in the meantime.",
+          }
+        : {
+            title: "The collection is being arranged",
+            description:
+              "Unstitched fabric is live now. Stitched shalwar kameez and dress shirts are coming soon.",
+          };
+
   return (
     <>
       <ShopToolbar
@@ -81,8 +101,8 @@ function ShopContent({
       />
       <ProductGrid
         products={products}
-        emptyTitle="The collection is being arranged"
-        emptyDescription="Filter by unstitched fabric, stitched shalwar kameez, or dress shirts — products will appear here as the Elite Men's Collection goes live."
+        emptyTitle={comingSoon.title}
+        emptyDescription={comingSoon.description}
       />
     </>
   );
@@ -105,7 +125,7 @@ export default async function ShopPage({
     <>
       <PageHeader
         title="Shop the collection"
-        description="Elite Men's Collection — unstitched fabric, stitched shalwar kameez with sizes, and dress shirts. Filters update as the catalogue is uploaded."
+        description="Elite Men's Collection — unstitched fabric is available now. Stitched shalwar kameez and dress shirts are coming soon."
       />
       <Container className="py-10 md:py-14">
         <Suspense fallback={<p className="text-sm text-ink/60">Loading shop…</p>}>

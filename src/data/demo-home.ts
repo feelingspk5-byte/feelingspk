@@ -1,38 +1,38 @@
 /**
- * Homepage marketing content — uses live catalogue photography.
+ * Homepage marketing content — live fabric photography + upcoming categories.
  */
 export const demoHero = {
-  image: "/catalogue/signature-fabric/fea-01-01-fill.jpg",
+  image: "/catalogue/signature-fabric/fea-01-01-fill-v2.jpg",
   eyebrow: "Elite Men's Collection",
-  title: "Six unstitched fabric lines — colour, texture, length",
+  title: "Unstitched fabric — colour, texture, length",
   subtitle:
-    "FEELINGS presents real cloth from our Signature, Nightfall, Earth & Neutrals, Noir, Heritage Depth, and Atelier Five collections. Choose a shade, then 1, 2, 4, or 6 metres.",
+    "FEELINGS presents refined unstitched cloth across Signature Fabric, Nightfall, Earth & Neutrals, The Noir, Heritage Depth, and Atelier Five. Choose a shade, then 1, 2, 4, or 6 metres.",
 };
 
 export const demoCategories = [
   {
     slug: "unstitched-fabric",
     name: "Unstitched Fabric",
-    detail:
-      "Six article lines with distinct colours — cut to 1, 2, 4, or 6 metres.",
-    image: "/catalogue/earth-neutrals/fea-03-01-fill.jpg",
+    detail: "Premium cloth by colour — order 1, 2, 4, or 6 metres.",
+    image: "/catalogue/earth-neutrals/fea-03-01-fill-v2.jpg",
     href: "/shop?category=unstitched_fabric",
+    badge: null as string | null,
   },
   {
-    slug: "collections",
-    name: "Collections",
-    detail:
-      "Signature Fabric, Nightfall, Earth & Neutrals, Noir, Heritage Depth, Atelier Five.",
-    image: "/catalogue/nightfall/fea-02-01-fill.jpg",
-    href: "/collections",
+    slug: "stitched-shalwar-kameez",
+    name: "Stitched Shalwar Kameez",
+    detail: "Ready suits in sized fits — curated for the Elite Men's Collection.",
+    image: "/catalogue/placeholders/coming-soon-stitched.jpg",
+    href: "/shop?category=stitched_shalwar_kameez",
+    badge: "Coming soon",
   },
   {
-    slug: "atelier-five",
-    name: "Atelier Five",
-    detail:
-      "Five studio colours from jet black to warm ivory — a complete unstitched set.",
-    image: "/catalogue/atelier-five/fea-06-04-fill.jpg",
-    href: "/collections/atelier-five",
+    slug: "dress-shirts",
+    name: "Dress Shirts",
+    detail: "Formal shirts for work and occasion — new styles arriving soon.",
+    image: "/catalogue/placeholders/dress-shirt-white.jpg",
+    href: "/shop?category=dress_shirt",
+    badge: "Coming soon",
   },
 ];
 
@@ -41,19 +41,19 @@ export const demoCollections = [
     slug: "signature-fabric",
     name: "Signature Fabric",
     detail: "Ivory, warm taupe, charcoal, and olive — everyday polish.",
-    image: "/catalogue/signature-fabric/cover.jpg",
+    image: "/catalogue/signature-fabric/cover-v2.jpg",
   },
   {
     slug: "nightfall",
     name: "Nightfall",
     detail: "Classic black, espresso brown, and midnight navy.",
-    image: "/catalogue/nightfall/cover.jpg",
+    image: "/catalogue/nightfall/cover-v2.jpg",
   },
   {
     slug: "noir",
     name: "The Noir",
     detail: "Jet, ink, charcoal, and navy for formal depth.",
-    image: "/catalogue/noir/cover.jpg",
+    image: "/catalogue/noir/cover-v2.jpg",
   },
 ];
 
@@ -61,44 +61,44 @@ export const demoFabrics = [
   {
     slug: "signature-fabric",
     name: "Signature Fabric",
-    detail: "Four composed everyday tones.",
-    image: "/catalogue/signature-fabric/fea-01-01-studio.jpg",
-    tag: "Article 01",
+    detail: "Composed everyday tones.",
+    image: "/catalogue/signature-fabric/fea-01-01-studio-v2.jpg",
+    tag: "Fabric",
   },
   {
     slug: "earth-neutrals",
     name: "Earth & Neutrals",
     detail: "Soft ivory through dark olive.",
-    image: "/catalogue/earth-neutrals/fea-03-02-studio.jpg",
-    tag: "Article 03",
+    image: "/catalogue/earth-neutrals/fea-03-02-studio-v2.jpg",
+    tag: "Fabric",
   },
   {
     slug: "heritage-depth",
     name: "Heritage Depth",
     detail: "Graphite, olive, burgundy, navy.",
-    image: "/catalogue/heritage-depth/fea-05-03-studio.jpg",
-    tag: "Article 05",
+    image: "/catalogue/heritage-depth/fea-05-03-studio-v2.jpg",
+    tag: "Fabric",
   },
   {
     slug: "atelier-five",
     name: "Atelier Five",
-    detail: "Five colours for a full wardrobe.",
-    image: "/catalogue/atelier-five/fea-06-05-studio.jpg",
-    tag: "Article 06",
+    detail: "Studio colours for a full wardrobe.",
+    image: "/catalogue/atelier-five/fea-06-05-studio-v2.jpg",
+    tag: "Fabric",
   },
 ];
 
 export const demoEditorial = {
-  image: "/catalogue/heritage-depth/fea-05-04-fill.jpg",
+  image: "/catalogue/heritage-depth/fea-05-04-fill-v2.jpg",
   eyebrow: "The house",
   title: "Cloth photographed from our own rolls.",
-  body: "Every shade on this site comes from FEELINGS unstitched fabric catalogues — true colour and texture from the cloth, presented for clear selection. Pick a collection, choose a colour, then order the metres you need.",
+  body: "Every shade on this site comes from FEELINGS unstitched fabric — true colour and texture from the cloth, presented clearly for selection. Stitched shalwar kameez and dress shirts are arriving next.",
 };
 
 export const demoAssurances = [
   {
-    title: "Six fabric lines",
-    body: "Signature Fabric, Nightfall, Earth & Neutrals, The Noir, Heritage Depth, and Atelier Five — each with its own colour set.",
+    title: "Unstitched, by colour",
+    body: "Open a collection, compare shades, then choose the length that suits your tailor.",
   },
   {
     title: "Metres you choose",

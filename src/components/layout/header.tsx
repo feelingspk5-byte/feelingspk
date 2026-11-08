@@ -33,12 +33,12 @@ const shopPanel = [
   {
     href: "/shop?category=stitched_shalwar_kameez",
     label: "Stitched Shalwar Kameez",
-    note: "Ready suits with sizes",
+    note: "Coming soon",
   },
   {
     href: "/shop?category=dress_shirt",
     label: "Dress Shirts",
-    note: "Formal shirts with collar sizes",
+    note: "Coming soon",
   },
   {
     href: "/shop?filter=new",

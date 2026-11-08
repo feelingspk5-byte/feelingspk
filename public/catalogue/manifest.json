@@ -5,7 +5,7 @@
     "name": "Signature Fabric",
     "tagline": "Four refined everyday tones for tailored shalwar kameez.",
     "description": "A composed unstitched line in ivory, warm taupe, charcoal, and olive \u2014 calm cloth with a fine rib that reads polished under daylight.",
-    "cover": "/catalogue/signature-fabric/cover.jpg",
+    "cover": "/catalogue/signature-fabric/cover-v2.jpg",
     "colours": [
       {
         "code": "FEA-01-01",
@@ -13,11 +13,11 @@
         "shade": "Ivory",
         "page": 1,
         "id": "fea-01-01",
-        "hex": "#c5c3b2",
+        "hex": "#cfcdb9",
         "images": {
-          "fill": "/catalogue/signature-fabric/fea-01-01-fill.jpg",
-          "studio": "/catalogue/signature-fabric/fea-01-01-studio.jpg",
-          "detail": "/catalogue/signature-fabric/fea-01-01-detail.jpg"
+          "fill": "/catalogue/signature-fabric/fea-01-01-fill-v2.jpg",
+          "studio": "/catalogue/signature-fabric/fea-01-01-studio-v2.jpg",
+          "detail": "/catalogue/signature-fabric/fea-01-01-detail-v2.jpg"
         }
       },
       {
@@ -26,11 +26,11 @@
         "shade": "Warm Taupe",
         "page": 2,
         "id": "fea-01-02",
-        "hex": "#887d66",
+        "hex": "#7b6b4b",
         "images": {
-          "fill": "/catalogue/signature-fabric/fea-01-02-fill.jpg",
-          "studio": "/catalogue/signature-fabric/fea-01-02-studio.jpg",
-          "detail": "/catalogue/signature-fabric/fea-01-02-detail.jpg"
+          "fill": "/catalogue/signature-fabric/fea-01-02-fill-v2.jpg",
+          "studio": "/catalogue/signature-fabric/fea-01-02-studio-v2.jpg",
+          "detail": "/catalogue/signature-fabric/fea-01-02-detail-v2.jpg"
         }
       },
       {
@@ -39,11 +39,11 @@
         "shade": "Charcoal",
         "page": 3,
         "id": "fea-01-03",
-        "hex": "#4c4c4b",
+        "hex": "#252424",
         "images": {
-          "fill": "/catalogue/signature-fabric/fea-01-03-fill.jpg",
-          "studio": "/catalogue/signature-fabric/fea-01-03-studio.jpg",
-          "detail": "/catalogue/signature-fabric/fea-01-03-detail.jpg"
+          "fill": "/catalogue/signature-fabric/fea-01-03-fill-v2.jpg",
+          "studio": "/catalogue/signature-fabric/fea-01-03-studio-v2.jpg",
+          "detail": "/catalogue/signature-fabric/fea-01-03-detail-v2.jpg"
         }
       },
       {
@@ -52,11 +52,11 @@
         "shade": "Olive",
         "page": 4,
         "id": "fea-01-04",
-        "hex": "#525348",
+        "hex": "#3a3b2d",
         "images": {
-          "fill": "/catalogue/signature-fabric/fea-01-04-fill.jpg",
-          "studio": "/catalogue/signature-fabric/fea-01-04-studio.jpg",
-          "detail": "/catalogue/signature-fabric/fea-01-04-detail.jpg"
+          "fill": "/catalogue/signature-fabric/fea-01-04-fill-v2.jpg",
+          "studio": "/catalogue/signature-fabric/fea-01-04-studio-v2.jpg",
+          "detail": "/catalogue/signature-fabric/fea-01-04-detail-v2.jpg"
         }
       }
     ]
@@ -67,7 +67,7 @@
     "name": "Nightfall",
     "tagline": "Deep evening shades for formal presence.",
     "description": "Classic black, espresso brown, and midnight navy \u2014 denser unstitched fabric for dinners, offices, and night gatherings.",
-    "cover": "/catalogue/nightfall/cover.jpg",
+    "cover": "/catalogue/nightfall/cover-v2.jpg",
     "colours": [
       {
         "code": "FEA-02-01",
@@ -75,11 +75,11 @@
         "shade": "Classic Black",
         "page": 1,
         "id": "fea-02-01",
-        "hex": "#4d4d4d",
+        "hex": "#1b1b1b",
         "images": {
-          "fill": "/catalogue/nightfall/fea-02-01-fill.jpg",
-          "studio": "/catalogue/nightfall/fea-02-01-studio.jpg",
-          "detail": "/catalogue/nightfall/fea-02-01-detail.jpg"
+          "fill": "/catalogue/nightfall/fea-02-01-fill-v2.jpg",
+          "studio": "/catalogue/nightfall/fea-02-01-studio-v2.jpg",
+          "detail": "/catalogue/nightfall/fea-02-01-detail-v2.jpg"
         }
       },
       {
@@ -88,11 +88,11 @@
         "shade": "Espresso Brown",
         "page": 2,
         "id": "fea-02-02",
-        "hex": "#5a5553",
+        "hex": "#251c19",
         "images": {
-          "fill": "/catalogue/nightfall/fea-02-02-fill.jpg",
-          "studio": "/catalogue/nightfall/fea-02-02-studio.jpg",
-          "detail": "/catalogue/nightfall/fea-02-02-detail.jpg"
+          "fill": "/catalogue/nightfall/fea-02-02-fill-v2.jpg",
+          "studio": "/catalogue/nightfall/fea-02-02-studio-v2.jpg",
+          "detail": "/catalogue/nightfall/fea-02-02-detail-v2.jpg"
         }
       },
       {
@@ -101,11 +101,11 @@
         "shade": "Midnight Navy",
         "page": 3,
         "id": "fea-02-03",
-        "hex": "#373636",
+        "hex": "#0f0e0e",
         "images": {
-          "fill": "/catalogue/nightfall/fea-02-03-fill.jpg",
-          "studio": "/catalogue/nightfall/fea-02-03-studio.jpg",
-          "detail": "/catalogue/nightfall/fea-02-03-detail.jpg"
+          "fill": "/catalogue/nightfall/fea-02-03-fill-v2.jpg",
+          "studio": "/catalogue/nightfall/fea-02-03-studio-v2.jpg",
+          "detail": "/catalogue/nightfall/fea-02-03-detail-v2.jpg"
         }
       }
     ]
@@ -116,7 +116,7 @@
     "name": "Earth & Neutrals",
     "tagline": "Soft ground tones for day-to-day elegance.",
     "description": "Soft ivory, sand beige, earth khaki, and dark olive \u2014 breathable unstitched neutrals that pair easily across seasons.",
-    "cover": "/catalogue/earth-neutrals/cover.jpg",
+    "cover": "/catalogue/earth-neutrals/cover-v2.jpg",
     "colours": [
       {
         "code": "FEA-03-01",
@@ -124,11 +124,11 @@
         "shade": "Soft Ivory",
         "page": 1,
         "id": "fea-03-01",
-        "hex": "#c3c2b8",
+        "hex": "#d4d2bd",
         "images": {
-          "fill": "/catalogue/earth-neutrals/fea-03-01-fill.jpg",
-          "studio": "/catalogue/earth-neutrals/fea-03-01-studio.jpg",
-          "detail": "/catalogue/earth-neutrals/fea-03-01-detail.jpg"
+          "fill": "/catalogue/earth-neutrals/fea-03-01-fill-v2.jpg",
+          "studio": "/catalogue/earth-neutrals/fea-03-01-studio-v2.jpg",
+          "detail": "/catalogue/earth-neutrals/fea-03-01-detail-v2.jpg"
         }
       },
       {
@@ -137,11 +137,11 @@
         "shade": "Sand Beige",
         "page": 2,
         "id": "fea-03-02",
-        "hex": "#8a846c",
+        "hex": "#8f886d",
         "images": {
-          "fill": "/catalogue/earth-neutrals/fea-03-02-fill.jpg",
-          "studio": "/catalogue/earth-neutrals/fea-03-02-studio.jpg",
-          "detail": "/catalogue/earth-neutrals/fea-03-02-detail.jpg"
+          "fill": "/catalogue/earth-neutrals/fea-03-02-fill-v2.jpg",
+          "studio": "/catalogue/earth-neutrals/fea-03-02-studio-v2.jpg",
+          "detail": "/catalogue/earth-neutrals/fea-03-02-detail-v2.jpg"
         }
       },
       {
@@ -150,11 +150,11 @@
         "shade": "Earth Khaki",
         "page": 3,
         "id": "fea-03-03",
-        "hex": "#7a725d",
+        "hex": "#6a5e44",
         "images": {
-          "fill": "/catalogue/earth-neutrals/fea-03-03-fill.jpg",
-          "studio": "/catalogue/earth-neutrals/fea-03-03-studio.jpg",
-          "detail": "/catalogue/earth-neutrals/fea-03-03-detail.jpg"
+          "fill": "/catalogue/earth-neutrals/fea-03-03-fill-v2.jpg",
+          "studio": "/catalogue/earth-neutrals/fea-03-03-studio-v2.jpg",
+          "detail": "/catalogue/earth-neutrals/fea-03-03-detail-v2.jpg"
         }
       },
       {
@@ -163,11 +163,11 @@
         "shade": "Dark Olive",
         "page": 4,
         "id": "fea-03-04",
-        "hex": "#352e1f",
+        "hex": "#1d1503",
         "images": {
-          "fill": "/catalogue/earth-neutrals/fea-03-04-fill.jpg",
-          "studio": "/catalogue/earth-neutrals/fea-03-04-studio.jpg",
-          "detail": "/catalogue/earth-neutrals/fea-03-04-detail.jpg"
+          "fill": "/catalogue/earth-neutrals/fea-03-04-fill-v2.jpg",
+          "studio": "/catalogue/earth-neutrals/fea-03-04-studio-v2.jpg",
+          "detail": "/catalogue/earth-neutrals/fea-03-04-detail-v2.jpg"
         }
       }
     ]
@@ -178,7 +178,7 @@
     "name": "The Noir",
     "tagline": "Black-led depth with charcoal and navy.",
     "description": "Jet black, ink black, deep charcoal, and midnight navy \u2014 a dark unstitched wardrobe for sharp, formal silhouettes.",
-    "cover": "/catalogue/noir/cover.jpg",
+    "cover": "/catalogue/noir/cover-v2.jpg",
     "colours": [
       {
         "code": "FEA-04-01",
@@ -186,11 +186,11 @@
         "shade": "Jet Black",
         "page": 1,
         "id": "fea-04-01",
-        "hex": "#252623",
+        "hex": "#0d0c0b",
         "images": {
-          "fill": "/catalogue/noir/fea-04-01-fill.jpg",
-          "studio": "/catalogue/noir/fea-04-01-studio.jpg",
-          "detail": "/catalogue/noir/fea-04-01-detail.jpg"
+          "fill": "/catalogue/noir/fea-04-01-fill-v2.jpg",
+          "studio": "/catalogue/noir/fea-04-01-studio-v2.jpg",
+          "detail": "/catalogue/noir/fea-04-01-detail-v2.jpg"
         }
       },
       {
@@ -199,11 +199,11 @@
         "shade": "Ink Black",
         "page": 2,
         "id": "fea-04-02",
-        "hex": "#404241",
+        "hex": "#212424",
         "images": {
-          "fill": "/catalogue/noir/fea-04-02-fill.jpg",
-          "studio": "/catalogue/noir/fea-04-02-studio.jpg",
-          "detail": "/catalogue/noir/fea-04-02-detail.jpg"
+          "fill": "/catalogue/noir/fea-04-02-fill-v2.jpg",
+          "studio": "/catalogue/noir/fea-04-02-studio-v2.jpg",
+          "detail": "/catalogue/noir/fea-04-02-detail-v2.jpg"
         }
       },
       {
@@ -212,11 +212,11 @@
         "shade": "Deep Charcoal",
         "page": 3,
         "id": "fea-04-03",
-        "hex": "#45453e",
+        "hex": "#171812",
         "images": {
-          "fill": "/catalogue/noir/fea-04-03-fill.jpg",
-          "studio": "/catalogue/noir/fea-04-03-studio.jpg",
-          "detail": "/catalogue/noir/fea-04-03-detail.jpg"
+          "fill": "/catalogue/noir/fea-04-03-fill-v2.jpg",
+          "studio": "/catalogue/noir/fea-04-03-studio-v2.jpg",
+          "detail": "/catalogue/noir/fea-04-03-detail-v2.jpg"
         }
       },
       {
@@ -225,11 +225,11 @@
         "shade": "Midnight Navy",
         "page": 4,
         "id": "fea-04-04",
-        "hex": "#5b5b60",
+        "hex": "#1c1c22",
         "images": {
-          "fill": "/catalogue/noir/fea-04-04-fill.jpg",
-          "studio": "/catalogue/noir/fea-04-04-studio.jpg",
-          "detail": "/catalogue/noir/fea-04-04-detail.jpg"
+          "fill": "/catalogue/noir/fea-04-04-fill-v2.jpg",
+          "studio": "/catalogue/noir/fea-04-04-studio-v2.jpg",
+          "detail": "/catalogue/noir/fea-04-04-detail-v2.jpg"
         }
       }
     ]
@@ -240,7 +240,7 @@
     "name": "Heritage Depth",
     "tagline": "Graphite, olive, burgundy, and navy with presence.",
     "description": "Graphite charcoal, dark olive, deep burgundy, and midnight navy \u2014 richer unstitched colours for statement winter and occasion wear.",
-    "cover": "/catalogue/heritage-depth/cover.jpg",
+    "cover": "/catalogue/heritage-depth/cover-v2.jpg",
     "colours": [
       {
         "code": "FEA-05-01",
@@ -248,11 +248,11 @@
         "shade": "Graphite Charcoal",
         "page": 1,
         "id": "fea-05-01",
-        "hex": "#545553",
+        "hex": "#373835",
         "images": {
-          "fill": "/catalogue/heritage-depth/fea-05-01-fill.jpg",
-          "studio": "/catalogue/heritage-depth/fea-05-01-studio.jpg",
-          "detail": "/catalogue/heritage-depth/fea-05-01-detail.jpg"
+          "fill": "/catalogue/heritage-depth/fea-05-01-fill-v2.jpg",
+          "studio": "/catalogue/heritage-depth/fea-05-01-studio-v2.jpg",
+          "detail": "/catalogue/heritage-depth/fea-05-01-detail-v2.jpg"
         }
       },
       {
@@ -261,11 +261,11 @@
         "shade": "Dark Olive",
         "page": 2,
         "id": "fea-05-02",
-        "hex": "#504e49",
+        "hex": "#3f3b2f",
         "images": {
-          "fill": "/catalogue/heritage-depth/fea-05-02-fill.jpg",
-          "studio": "/catalogue/heritage-depth/fea-05-02-studio.jpg",
-          "detail": "/catalogue/heritage-depth/fea-05-02-detail.jpg"
+          "fill": "/catalogue/heritage-depth/fea-05-02-fill-v2.jpg",
+          "studio": "/catalogue/heritage-depth/fea-05-02-studio-v2.jpg",
+          "detail": "/catalogue/heritage-depth/fea-05-02-detail-v2.jpg"
         }
       },
       {
@@ -274,11 +274,11 @@
         "shade": "Deep Burgundy",
         "page": 3,
         "id": "fea-05-03",
-        "hex": "#362926",
+        "hex": "#20110d",
         "images": {
-          "fill": "/catalogue/heritage-depth/fea-05-03-fill.jpg",
-          "studio": "/catalogue/heritage-depth/fea-05-03-studio.jpg",
-          "detail": "/catalogue/heritage-depth/fea-05-03-detail.jpg"
+          "fill": "/catalogue/heritage-depth/fea-05-03-fill-v2.jpg",
+          "studio": "/catalogue/heritage-depth/fea-05-03-studio-v2.jpg",
+          "detail": "/catalogue/heritage-depth/fea-05-03-detail-v2.jpg"
         }
       },
       {
@@ -287,11 +287,11 @@
         "shade": "Midnight Navy",
         "page": 4,
         "id": "fea-05-04",
-        "hex": "#232228",
+        "hex": "#13131a",
         "images": {
-          "fill": "/catalogue/heritage-depth/fea-05-04-fill.jpg",
-          "studio": "/catalogue/heritage-depth/fea-05-04-studio.jpg",
-          "detail": "/catalogue/heritage-depth/fea-05-04-detail.jpg"
+          "fill": "/catalogue/heritage-depth/fea-05-04-fill-v2.jpg",
+          "studio": "/catalogue/heritage-depth/fea-05-04-studio-v2.jpg",
+          "detail": "/catalogue/heritage-depth/fea-05-04-detail-v2.jpg"
         }
       }
     ]
@@ -302,7 +302,7 @@
     "name": "Atelier Five",
     "tagline": "Five studio colours from jet black to warm ivory.",
     "description": "Jet black, deep olive, mocha brown, warm ivory, and stone grey \u2014 a five-colour unstitched atelier set for complete wardrobe building.",
-    "cover": "/catalogue/atelier-five/cover.jpg",
+    "cover": "/catalogue/atelier-five/cover-v2.jpg",
     "colours": [
       {
         "code": "FEA-06-01",
@@ -310,11 +310,11 @@
         "shade": "Jet Black",
         "page": 1,
         "id": "fea-06-01",
-        "hex": "#151412",
+        "hex": "#060503",
         "images": {
-          "fill": "/catalogue/atelier-five/fea-06-01-fill.jpg",
-          "studio": "/catalogue/atelier-five/fea-06-01-studio.jpg",
-          "detail": "/catalogue/atelier-five/fea-06-01-detail.jpg"
+          "fill": "/catalogue/atelier-five/fea-06-01-fill-v2.jpg",
+          "studio": "/catalogue/atelier-five/fea-06-01-studio-v2.jpg",
+          "detail": "/catalogue/atelier-five/fea-06-01-detail-v2.jpg"
         }
       },
       {
@@ -323,11 +323,11 @@
         "shade": "Deep Olive",
         "page": 2,
         "id": "fea-06-02",
-        "hex": "#5e5c4f",
+        "hex": "#4f4d3f",
         "images": {
-          "fill": "/catalogue/atelier-five/fea-06-02-fill.jpg",
-          "studio": "/catalogue/atelier-five/fea-06-02-studio.jpg",
-          "detail": "/catalogue/atelier-five/fea-06-02-detail.jpg"
+          "fill": "/catalogue/atelier-five/fea-06-02-fill-v2.jpg",
+          "studio": "/catalogue/atelier-five/fea-06-02-studio-v2.jpg",
+          "detail": "/catalogue/atelier-five/fea-06-02-detail-v2.jpg"
         }
       },
       {
@@ -336,11 +336,11 @@
         "shade": "Mocha Brown",
         "page": 3,
         "id": "fea-06-03",
-        "hex": "#5d5449",
+        "hex": "#4f4438",
         "images": {
-          "fill": "/catalogue/atelier-five/fea-06-03-fill.jpg",
-          "studio": "/catalogue/atelier-five/fea-06-03-studio.jpg",
-          "detail": "/catalogue/atelier-five/fea-06-03-detail.jpg"
+          "fill": "/catalogue/atelier-five/fea-06-03-fill-v2.jpg",
+          "studio": "/catalogue/atelier-five/fea-06-03-studio-v2.jpg",
+          "detail": "/catalogue/atelier-five/fea-06-03-detail-v2.jpg"
         }
       },
       {
@@ -349,11 +349,11 @@
         "shade": "Warm Ivory",
         "page": 4,
         "id": "fea-06-04",
-        "hex": "#c5c0af",
+        "hex": "#d1cbb5",
         "images": {
-          "fill": "/catalogue/atelier-five/fea-06-04-fill.jpg",
-          "studio": "/catalogue/atelier-five/fea-06-04-studio.jpg",
-          "detail": "/catalogue/atelier-five/fea-06-04-detail.jpg"
+          "fill": "/catalogue/atelier-five/fea-06-04-fill-v2.jpg",
+          "studio": "/catalogue/atelier-five/fea-06-04-studio-v2.jpg",
+          "detail": "/catalogue/atelier-five/fea-06-04-detail-v2.jpg"
         }
       },
       {
@@ -362,11 +362,11 @@
         "shade": "Stone Grey",
         "page": 5,
         "id": "fea-06-05",
-        "hex": "#6b6a5f",
+        "hex": "#5c5a4d",
         "images": {
-          "fill": "/catalogue/atelier-five/fea-06-05-fill.jpg",
-          "studio": "/catalogue/atelier-five/fea-06-05-studio.jpg",
-          "detail": "/catalogue/atelier-five/fea-06-05-detail.jpg"
+          "fill": "/catalogue/atelier-five/fea-06-05-fill-v2.jpg",
+          "studio": "/catalogue/atelier-five/fea-06-05-studio-v2.jpg",
+          "detail": "/catalogue/atelier-five/fea-06-05-detail-v2.jpg"
         }
       }
     ]

@@ -1,6 +1,6 @@
 # FEELINGS
 
-**FEELINGS — Elite Men’s Collection**: unstitched fabric from six article catalogues, with colour selection and metre lengths (1m · 2m · 4m · 6m).
+**FEELINGS — Elite Men’s Collection**: unstitched fabric catalogues with colour selection and metre lengths (1m · 2m · 4m · 6m). Stitched shalwar kameez and dress shirts — coming soon.
 
 Design source of truth: [`docs/feelings-design-language.pdf`](./docs/feelings-design-language.pdf)
 

@@ -51,6 +51,11 @@ export function ShopCategories() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-ink/10 to-transparent" />
                 </div>
+                {"badge" in item && item.badge ? (
+                  <span className="absolute left-4 top-4 rounded-sm bg-ivory/95 px-2.5 py-1 text-[10px] uppercase tracking-[0.16em] text-ink">
+                    {item.badge}
+                  </span>
+                ) : null}
                 <div className="absolute inset-x-0 bottom-0 p-5 text-ivory">
                   <p className="font-display text-2xl">{item.name}</p>
                   <p className="mt-1 text-sm text-ivory/75">{item.detail}</p>
@@ -78,8 +83,8 @@ export function FeaturedCollections() {
                 Shop by mood
               </h2>
               <p className="mt-3 max-w-lg text-sm text-ink/65 md:text-base">
-                Six unstitched fabric collections — open a line, compare
-                colours, then choose 1, 2, 4, or 6 metres of the shade you want.
+                Open a fabric line, compare colours, then choose 1, 2, 4, or 6
+                metres of the shade you want.
               </p>
             </div>
             <Link
