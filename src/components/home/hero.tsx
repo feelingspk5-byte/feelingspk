@@ -34,15 +34,15 @@ export function HomeHero() {
       <div className="relative min-h-[72vh] md:min-h-[78vh]">
         <Image
           src={demoHero.image}
-          alt="FEELINGS Elite Men's Collection"
+          alt="Man in ivory shalwar kameez — FEELINGS Elite Men's Collection"
           fill
           priority
-          className="object-cover object-center"
+          className="object-cover object-[62%_18%] sm:object-[68%_12%] md:object-[72%_10%]"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-stone via-stone/55 to-stone/15" />
-        <div className="absolute inset-0 bg-gradient-to-r from-stone/50 via-transparent to-transparent" />
-        <VectorBackdrop className="opacity-50" />
+        <div className="absolute inset-0 bg-gradient-to-t from-stone via-stone/40 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-stone/80 via-stone/40 to-transparent md:via-stone/30" />
+        <VectorBackdrop className="opacity-30" />
 
         <Container className="relative flex min-h-[72vh] flex-col justify-end pb-10 pt-28 md:min-h-[78vh] md:pb-14">
           <FadeIn>

@@ -2,7 +2,7 @@
  * Homepage marketing content — live fabric photography + upcoming categories.
  */
 export const demoHero = {
-  image: "/catalogue/signature-fabric/fea-01-01-fill-v2.jpg",
+  image: "/catalogue/hero/hero-ivory-shalwar-kameez.jpg",
   eyebrow: "Elite Men's Collection",
   title: "Unstitched fabric — colour, texture, length",
   subtitle:
