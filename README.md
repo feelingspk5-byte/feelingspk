@@ -1,14 +1,14 @@
 # FEELINGS
 
-**FEELINGS — Elite Men’s Collection**: unstitched fabric, stitched shalwar kameez (sized), and dress shirts — traditional Pakistani luxury, Stone-led visual system.
+**FEELINGS — Elite Men’s Collection**: unstitched fabric from six article catalogues, with colour selection and metre lengths (1m · 2m · 4m · 6m).
 
 Design source of truth: [`docs/feelings-design-language.pdf`](./docs/feelings-design-language.pdf)
 
 ## Stack
 
-- **Next.js** (App Router) + TypeScript + Tailwind CSS  
-- Structured catalogue in `src/data/catalog.ts` (ready for later Shopify / commerce backend)  
-- Local cart (browser storage); checkout UI prepared but **not** connected to payment
+- **Next.js** (App Router) + TypeScript + Tailwind CSS
+- Catalogue in `src/data/catalog.ts` + photography in `public/catalogue/`
+- Local cart + account (browser storage); checkout prepared but **not** connected to payment
 
 ## Run locally
 
@@ -17,24 +17,30 @@ npm install
 npm run dev
 ```
 
-Dev server defaults to port **3847**.
+Dev server defaults to port **3847** (`http://localhost:3847`).
 
 ```bash
 npm run build && npm run start
 ```
 
+## Collections
+
+| Collection | Colours |
+| --- | --- |
+| Signature Fabric | Noor, Zarrin, Shab, Sabz |
+| Nightfall | Layl, Qahwa, Neel |
+| Earth & Neutrals | Mahtab, Sunehra, Khaki, Zarqoon |
+| The Noir | Aswad, Layl, Zulmat, Neel |
+| Heritage Depth | Raad, Zarrar, Shahbaz, Sultan |
+| Atelier Five | Azraq, Sarmad, Mehran, Noor, Raaz |
+
 ## What’s built
 
-- Homepage sections per design brief (empty states where content is pending)
-- Navigation: Shop All, New Arrivals, Collections, About, Contact, Search, Cart
-- Collection listing + detail templates
-- Product detail templates for **fabric** (cut/quantity), **stitched shalwar kameez** (sizes), and **dress shirts** (collar sizes)
-- Cart + checkout structure (explicitly does not place real orders yet)
-- About, Contact, FAQ, Shipping, Exchanges, Privacy, Terms placeholders
-
-## Adding the real catalogue
-
-See [`docs/CATALOGUE.md`](./docs/CATALOGUE.md). Do not invent products, prices or policies.
+- Homepage using real fabric photography (no AI sample imagery)
+- Collections with per-colour browsing
+- Product pages: colour switcher + 1 / 2 / 4 / 6 metre lengths
+- Sign in / Create account (header, beside search & cart)
+- Cart + checkout structure (sign-in required; no live payment yet)
 
 ## Brand colours
 

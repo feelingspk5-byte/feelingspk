@@ -43,7 +43,8 @@ export function searchProducts(query: string): FabricProduct[] {
   const q = query.trim().toLowerCase();
   if (!q) return getProducts();
   return products.filter((p) => {
-    const hay = [p.name, p.sku, p.fabricType, p.description]
+    const colours = (p.colourVariants ?? []).map((c) => c.name).join(" ");
+    const hay = [p.name, p.sku, p.fabricType, p.description, colours]
       .filter(Boolean)
       .join(" ")
       .toLowerCase();

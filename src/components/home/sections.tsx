@@ -78,9 +78,8 @@ export function FeaturedCollections() {
                 Shop by mood
               </h2>
               <p className="mt-3 max-w-lg text-sm text-ink/65 md:text-base">
-                From soft ivory calm to formal navy and winter warmth — choose a
-                mood that matches the moment, then discover pieces made to wear
-                with quiet confidence.
+                Six unstitched fabric collections — open a line, compare
+                colours, then choose 1, 2, 4, or 6 metres of the shade you want.
               </p>
             </div>
             <Link
@@ -96,7 +95,7 @@ export function FeaturedCollections() {
           {demoCollections.map((item, index) => (
             <StaggerItem key={item.slug}>
               <Link
-                href="/collections"
+                href={`/collections/${item.slug}`}
                 className="group relative block overflow-hidden rounded-sm bg-stone/30"
               >
                 <div className="relative aspect-[3/4] overflow-hidden">
@@ -147,7 +146,7 @@ export function FeaturedFabrics() {
           {demoFabrics.map((fabric) => (
             <StaggerItem key={fabric.slug}>
               <Link
-                href="/shop"
+                href={`/collections/${fabric.slug}`}
                 className="group block overflow-hidden rounded-sm bg-ivory transition-transform duration-feel hover:-translate-y-1"
               >
                 <div className="relative aspect-[3/4] overflow-hidden">

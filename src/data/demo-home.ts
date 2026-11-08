@@ -1,13 +1,12 @@
 /**
- * Homepage marketing content and media.
- * Swap image paths when FEELINGS provides final photography.
+ * Homepage marketing content — uses live catalogue photography.
  */
 export const demoHero = {
-  image: "/demo/hero-fabric.jpg",
+  image: "/catalogue/signature-fabric/fea-01-01-fill.jpg",
   eyebrow: "Elite Men's Collection",
-  title: "Cloth, stitched form, and shirts — composed for men",
+  title: "Six unstitched fabric lines — colour, texture, length",
   subtitle:
-    "FEELINGS brings unstitched fabric, stitched shalwar kameez, and dress shirts together in one refined house experience.",
+    "FEELINGS presents real cloth from our Signature, Nightfall, Earth & Neutrals, Noir, Heritage Depth, and Atelier Five collections. Choose a shade, then 1, 2, 4, or 6 metres.",
 };
 
 export const demoCategories = [
@@ -15,98 +14,98 @@ export const demoCategories = [
     slug: "unstitched-fabric",
     name: "Unstitched Fabric",
     detail:
-      "Premium cloth cut for shalwar kameez — choose colour and length with confidence.",
-    image: "/demo/collection-ivory.jpg",
+      "Six article lines with distinct colours — cut to 1, 2, 4, or 6 metres.",
+    image: "/catalogue/earth-neutrals/fea-03-01-fill.jpg",
     href: "/shop?category=unstitched_fabric",
   },
   {
-    slug: "stitched-shalwar-kameez",
-    name: "Stitched Shalwar Kameez",
+    slug: "collections",
+    name: "Collections",
     detail:
-      "Ready-to-wear suits finished with care — select your size and step out polished.",
-    image: "/demo/cat-stitched-sk.jpg",
-    href: "/shop?category=stitched_shalwar_kameez",
+      "Signature Fabric, Nightfall, Earth & Neutrals, Noir, Heritage Depth, Atelier Five.",
+    image: "/catalogue/nightfall/fea-02-01-fill.jpg",
+    href: "/collections",
   },
   {
-    slug: "dress-shirts",
-    name: "Dress Shirts",
+    slug: "atelier-five",
+    name: "Atelier Five",
     detail:
-      "Crisp formal shirts for work and occasion — sized for a clean, confident fit.",
-    image: "/demo/cat-dress-shirts.jpg",
-    href: "/shop?category=dress_shirt",
+      "Five studio colours from jet black to warm ivory — a complete unstitched set.",
+    image: "/catalogue/atelier-five/fea-06-04-fill.jpg",
+    href: "/collections/atelier-five",
   },
 ];
 
 export const demoCollections = [
   {
-    slug: "ivory-essentials",
-    name: "Ivory Essentials",
-    detail: "Quiet cream tones for everyday elegance and timeless gatherings.",
-    image: "/demo/collection-ivory.jpg",
+    slug: "signature-fabric",
+    name: "Signature Fabric",
+    detail: "Ivory, warm taupe, charcoal, and olive — everyday polish.",
+    image: "/catalogue/signature-fabric/cover.jpg",
   },
   {
-    slug: "navy-formal",
-    name: "Navy Formal",
-    detail: "Deep formal shades made for dinners, offices, and evening presence.",
-    image: "/demo/collection-navy.jpg",
+    slug: "nightfall",
+    name: "Nightfall",
+    detail: "Classic black, espresso brown, and midnight navy.",
+    image: "/catalogue/nightfall/cover.jpg",
   },
   {
-    slug: "winter-warmth",
-    name: "Winter Warmth",
-    detail: "Richer textures and warmer hues for the cooler months.",
-    image: "/demo/collection-tobacco.jpg",
+    slug: "noir",
+    name: "The Noir",
+    detail: "Jet, ink, charcoal, and navy for formal depth.",
+    image: "/catalogue/noir/cover.jpg",
   },
 ];
 
 export const demoFabrics = [
   {
-    slug: "charcoal-weave",
-    name: "Charcoal Weave",
-    detail: "A refined suiting texture with quiet depth.",
-    image: "/demo/texture-charcoal.jpg",
-    tag: "Fabric",
+    slug: "signature-fabric",
+    name: "Signature Fabric",
+    detail: "Four composed everyday tones.",
+    image: "/catalogue/signature-fabric/fea-01-01-studio.jpg",
+    tag: "Article 01",
   },
   {
-    slug: "cream-cotton",
-    name: "Cream Cotton",
-    detail: "Soft daylight finish for effortless wear.",
-    image: "/demo/texture-cream.jpg",
-    tag: "Fabric",
+    slug: "earth-neutrals",
+    name: "Earth & Neutrals",
+    detail: "Soft ivory through dark olive.",
+    image: "/catalogue/earth-neutrals/fea-03-02-studio.jpg",
+    tag: "Article 03",
   },
   {
-    slug: "ivory-stitched-suit",
-    name: "Ivory Stitched Suit",
-    detail: "A composed stitched silhouette for formal ease.",
-    image: "/demo/cat-stitched-sk.jpg",
-    tag: "Stitched",
+    slug: "heritage-depth",
+    name: "Heritage Depth",
+    detail: "Graphite, olive, burgundy, navy.",
+    image: "/catalogue/heritage-depth/fea-05-03-studio.jpg",
+    tag: "Article 05",
   },
   {
-    slug: "classic-dress-shirt",
-    name: "Classic Dress Shirt",
-    detail: "Clean lines and a polished collar presence.",
-    image: "/demo/cat-dress-shirts.jpg",
-    tag: "Shirt",
+    slug: "atelier-five",
+    name: "Atelier Five",
+    detail: "Five colours for a full wardrobe.",
+    image: "/catalogue/atelier-five/fea-06-05-studio.jpg",
+    tag: "Article 06",
   },
 ];
 
 export const demoEditorial = {
-  image: "/demo/editorial-drape.jpg",
+  image: "/catalogue/heritage-depth/fea-05-04-fill.jpg",
   eyebrow: "The house",
-  title: "Heritage calm. Modern clarity.",
-  body: "FEELINGS is shaped for the modern Pakistani gentleman — whether you prefer unstitched cloth for a tailor’s hand, a ready stitched shalwar kameez in your size, or a dress shirt that finishes the look with quiet precision.",
+  title: "Cloth photographed from our own rolls.",
+  body: "Every shade on this site comes from FEELINGS unstitched fabric catalogues — true colour and texture from the cloth, presented for clear selection. Pick a collection, choose a colour, then order the metres you need.",
 };
 
 export const demoAssurances = [
   {
-    title: "Three ways to dress",
-    body: "Unstitched fabric, stitched shalwar kameez, and dress shirts — curated as one Elite Men’s Collection.",
+    title: "Six fabric lines",
+    body: "Signature Fabric, Nightfall, Earth & Neutrals, The Noir, Heritage Depth, and Atelier Five — each with its own colour set.",
   },
   {
-    title: "Fit with clarity",
-    body: "Stitched suits and shirts offer clear size choices. Fabric is selected by colour, cut, and quantity.",
+    title: "Metres you choose",
+    body: "Buy 1, 2, 4, or 6 metres of the colour you select. Stitching remains with your tailor.",
   },
   {
-    title: "A considered shop",
-    body: "From discovery to checkout, the experience stays calm, clear, and worthy of the wardrobe.",
+    title: "Sign in to check out",
+    body: "Create an account beside the cart so your details are ready when payment is connected.",
   },
 ];

@@ -13,7 +13,7 @@ import type { Product, ProductCategory } from "@/lib/types";
 export const metadata = {
   title: "Shop All",
   description:
-    "Browse FEELINGS Elite Men's Collection — unstitched fabric, stitched shalwar kameez, and dress shirts.",
+    "Browse FEELINGS unstitched fabric collections — choose colour and length (1m, 2m, 4m, 6m).",
 };
 
 function sortProducts(list: Product[], sort: string) {

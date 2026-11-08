@@ -12,8 +12,10 @@ import {
   IconClose,
   IconMenu,
   IconSearch,
+  IconUser,
 } from "@/components/ui/icons";
 import { cn } from "@/lib/cn";
+import { useAuth } from "@/lib/auth-context";
 import { useCart } from "@/lib/cart-context";
 import type { Collection } from "@/lib/types";
 
@@ -69,6 +71,7 @@ export function Header({ collections }: { collections: Collection[] }) {
   const pathname = usePathname();
   const router = useRouter();
   const { itemCount } = useCart();
+  const { user } = useAuth();
   const [open, setOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [shopOpen, setShopOpen] = useState(false);
@@ -179,6 +182,16 @@ export function Header({ collections }: { collections: Collection[] }) {
           >
             <IconSearch />
           </button>
+          <Link
+            href={user ? "/account" : "/sign-in"}
+            className="inline-flex h-10 items-center justify-center gap-1.5 rounded-sm px-2 text-ink sm:px-2.5"
+            aria-label={user ? "Account" : "Sign in"}
+          >
+            <IconUser />
+            <span className="hidden text-[11px] uppercase tracking-[0.14em] sm:inline">
+              {user ? "Account" : "Sign in"}
+            </span>
+          </Link>
           <Link
             href="/cart"
             className="relative inline-flex h-10 w-10 items-center justify-center rounded-sm text-ink"
@@ -329,6 +342,14 @@ export function Header({ collections }: { collections: Collection[] }) {
                 {link.label}
               </Link>
             ))}
+            <div className="my-2 border-t border-ink/10" />
+            <Link
+              href={user ? "/account" : "/sign-in"}
+              className="block py-2.5 text-sm uppercase tracking-[0.12em] text-ink"
+              onClick={() => setOpen(false)}
+            >
+              {user ? "Account" : "Sign in"}
+            </Link>
           </Container>
         </div>
       ) : null}

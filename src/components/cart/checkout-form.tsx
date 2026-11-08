@@ -6,11 +6,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { EmptyState } from "@/components/ui/empty-state";
+import { useAuth } from "@/lib/auth-context";
 import { useCart } from "@/lib/cart-context";
 import { formatPrice, getSiteConfig } from "@/lib/catalog";
 
 export function CheckoutForm() {
   const { lines, subtotal, clearCart } = useCart();
+  const { user, ready } = useAuth();
   const config = getSiteConfig();
   const [status, setStatus] = useState<"idle" | "submitting" | "blocked">(
     "idle",
@@ -21,7 +23,24 @@ export function CheckoutForm() {
     return (
       <EmptyState
         title="Nothing to check out"
-        description="Add fabric from the shop once the catalogue is live, then return here."
+        description="Add fabric from the shop, choose colour and length, then return here."
+      />
+    );
+  }
+
+  if (ready && !user) {
+    return (
+      <EmptyState
+        title="Sign in to continue"
+        description="Create an account or sign in before completing payment details. Your cart stays saved on this device."
+        action={
+          <Link
+            href="/sign-in?next=/checkout&notice=checkout"
+            className="inline-flex h-11 items-center rounded-sm bg-ink px-5 text-sm text-ivory"
+          >
+            Sign in
+          </Link>
+        }
       />
     );
   }

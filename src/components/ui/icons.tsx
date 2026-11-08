@@ -66,3 +66,16 @@ export function IconChevronDown({ className, title }: IconProps) {
     </svg>
   );
 }
+
+export function IconUser({ className, title }: IconProps) {
+  return (
+    <svg {...baseProps(className, title)}>
+      {title ? <title>{title}</title> : null}
+      <circle cx="12" cy="8" r="3.25" />
+      <path
+        d="M5.5 19.25c1.6-2.7 3.8-4 6.5-4s4.9 1.3 6.5 4"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}

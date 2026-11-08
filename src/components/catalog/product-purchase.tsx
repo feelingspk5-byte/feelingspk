@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/lib/auth-context";
 import { useCart } from "@/lib/cart-context";
 import { formatPrice } from "@/lib/catalog";
 import { cn } from "@/lib/cn";
@@ -16,7 +17,7 @@ import {
 function categoryHint(product: Product) {
   switch (product.category) {
     case "unstitched_fabric":
-      return "Unstitched fabric — stitching is arranged separately unless included in the listing.";
+      return "Unstitched fabric — select a colour and length, then add to cart.";
     case "stitched_shalwar_kameez":
       return "Stitched shalwar kameez — select your size before adding to cart.";
     case "dress_shirt":
@@ -26,8 +27,17 @@ function categoryHint(product: Product) {
   }
 }
 
-export function ProductPurchase({ product }: { product: Product }) {
+export function ProductPurchase({
+  product,
+  colourId,
+  onColourChange,
+}: {
+  product: Product;
+  colourId?: string;
+  onColourChange?: (id: string) => void;
+}) {
   const { addLine } = useCart();
+  const { user } = useAuth();
   const router = useRouter();
   const colours = product.colourVariants ?? [];
   const cuts = product.cutOptions ?? [];
@@ -43,13 +53,19 @@ export function ProductPurchase({ product }: { product: Product }) {
           ? DEFAULT_DRESS_SHIRT_SIZES
           : [];
 
-  const [colourId, setColourId] = useState(colours[0]?.id);
+  const [internalColourId, setInternalColourId] = useState(colours[0]?.id);
+  const activeColourId = colourId ?? internalColourId;
+  const setColour = (id: string) => {
+    onColourChange?.(id);
+    setInternalColourId(id);
+  };
+
   const [cutId, setCutId] = useState(cuts[0]?.id);
   const [sizeId, setSizeId] = useState(sizes[0]?.id);
   const [quantity, setQuantity] = useState(1);
   const [message, setMessage] = useState<string | null>(null);
 
-  const selectedColour = colours.find((c) => c.id === colourId);
+  const selectedColour = colours.find((c) => c.id === activeColourId);
   const selectedCut = cuts.find((c) => c.id === cutId);
   const selectedSize = sizes.find((s) => s.id === sizeId);
 
@@ -58,9 +74,14 @@ export function ProductPurchase({ product }: { product: Product }) {
     return product.price;
   }, [product.price, selectedCut]);
 
+  const colourImage =
+    selectedColour?.imageIds
+      ?.map((id) => product.images.find((img) => img.id === id)?.src)
+      .find(Boolean) ?? product.images[0]?.src;
+
   const canPurchase =
     product.availability !== "out_of_stock" &&
-    (colours.length === 0 || Boolean(colourId)) &&
+    (colours.length === 0 || Boolean(activeColourId)) &&
     (!isGarment || Boolean(sizeId)) &&
     (product.category !== "unstitched_fabric" ||
       cuts.length === 0 ||
@@ -74,6 +95,12 @@ export function ProductPurchase({ product }: { product: Product }) {
     }
     if (isGarment && !selectedSize) {
       setMessage("Please select a size.");
+      return;
+    }
+    if (goCheckout && !user) {
+      router.push(
+        `/sign-in?next=${encodeURIComponent("/checkout")}&notice=checkout`,
+      );
       return;
     }
 
@@ -92,7 +119,7 @@ export function ProductPurchase({ product }: { product: Product }) {
       unitLabel: selectedCut?.unit,
       unitPrice,
       currency: product.currency,
-      imageSrc: product.images[0]?.src,
+      imageSrc: colourImage,
     });
 
     setMessage("Added to cart.");
@@ -114,34 +141,43 @@ export function ProductPurchase({ product }: { product: Product }) {
 
       {colours.length > 0 ? (
         <fieldset>
-          <legend className="mb-2 text-[11px] uppercase tracking-[0.16em] text-ink/60">
+          <legend className="mb-3 text-[11px] uppercase tracking-[0.16em] text-ink/60">
             Colour
           </legend>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-3">
             {colours.map((colour) => (
               <button
                 key={colour.id}
                 type="button"
                 disabled={colour.available === false}
-                onClick={() => setColourId(colour.id)}
+                onClick={() => setColour(colour.id)}
                 className={cn(
-                  "rounded-sm border px-3 py-2 text-sm",
-                  colourId === colour.id
-                    ? "border-wine bg-wine text-ivory"
-                    : "border-ink/20 bg-ivory text-ink",
+                  "group flex min-w-[7.5rem] flex-col items-start gap-2 rounded-sm border px-3 py-3 text-left transition-colors",
+                  activeColourId === colour.id
+                    ? "border-wine bg-wine/5"
+                    : "border-ink/15 bg-ivory hover:border-ink/35",
                   colour.available === false && "opacity-40",
                 )}
               >
-                {colour.name}
+                <span
+                  className={cn(
+                    "h-8 w-8 rounded-sm border border-ink/10",
+                    activeColourId === colour.id && "ring-1 ring-wine",
+                  )}
+                  style={{ backgroundColor: colour.hex ?? "#d8d1c6" }}
+                  aria-hidden
+                />
+                <span className="text-sm leading-snug text-ink">{colour.name}</span>
               </button>
             ))}
           </div>
+          {selectedColour ? (
+            <p className="mt-3 text-sm text-ink/65">
+              Selected: <span className="text-ink">{selectedColour.name}</span>
+            </p>
+          ) : null}
         </fieldset>
-      ) : (
-        <p className="rounded-sm border border-dashed border-ink/20 bg-ivory px-3 py-2 text-sm text-ink/65">
-          Colour options will appear when FEELINGS supplies confirmed variants.
-        </p>
-      )}
+      ) : null}
 
       {isGarment ? (
         <fieldset>
@@ -167,52 +203,35 @@ export function ProductPurchase({ product }: { product: Product }) {
               </button>
             ))}
           </div>
-          <p className="mt-2 text-xs text-ink/50">
-            Size chart details will appear when FEELINGS supplies measurements.
-          </p>
         </fieldset>
-      ) : null}
-
-      {product.category === "unstitched_fabric" &&
-      product.sellingMethod === "unconfirmed" &&
-      cuts.length === 0 ? (
-        <p className="rounded-sm border border-dashed border-ink/20 bg-ivory px-3 py-2 text-sm text-ink/65">
-          Cut length / quantity rules are pending owner confirmation (fixed suit
-          cut, per metre, or another method).
-        </p>
       ) : null}
 
       {product.category === "unstitched_fabric" && cuts.length > 0 ? (
         <fieldset>
           <legend className="mb-2 text-[11px] uppercase tracking-[0.16em] text-ink/60">
-            Cut / quantity option
+            Length
           </legend>
-          <div className="space-y-2">
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
             {cuts.map((cut) => (
-              <label
+              <button
                 key={cut.id}
+                type="button"
+                onClick={() => setCutId(cut.id)}
                 className={cn(
-                  "flex cursor-pointer items-center justify-between gap-3 rounded-sm border px-3 py-3 text-sm",
+                  "rounded-sm border px-3 py-3 text-sm",
                   cutId === cut.id
-                    ? "border-wine bg-ivory"
-                    : "border-ink/15 bg-ivory/70",
+                    ? "border-wine bg-wine text-ivory"
+                    : "border-ink/15 bg-ivory text-ink hover:border-ink/35",
                 )}
               >
-                <span className="flex items-center gap-2">
-                  <input
-                    type="radio"
-                    name="cut"
-                    checked={cutId === cut.id}
-                    onChange={() => setCutId(cut.id)}
-                  />
-                  {cut.label}
-                </span>
-                {cut.price !== undefined ? (
-                  <span>{formatPrice(cut.price, product.currency)}</span>
-                ) : null}
-              </label>
+                {cut.label}
+              </button>
             ))}
           </div>
+          <p className="mt-2 text-xs text-ink/50">
+            Choose how many metres you need. Price appears once FEELINGS
+            confirms rates.
+          </p>
         </fieldset>
       ) : null}
 
@@ -252,6 +271,21 @@ export function ProductPurchase({ product }: { product: Product }) {
           Buy now
         </Button>
       </div>
+
+      {!user ? (
+        <p className="text-sm text-ink/55">
+          Sign in before checkout so we can save your order details.{" "}
+          <button
+            type="button"
+            className="text-wine underline-offset-2 hover:underline"
+            onClick={() =>
+              router.push(`/sign-in?next=${encodeURIComponent("/checkout")}`)
+            }
+          >
+            Sign in
+          </button>
+        </p>
+      ) : null}
 
       {message ? <p className="text-sm text-wine">{message}</p> : null}
     </div>

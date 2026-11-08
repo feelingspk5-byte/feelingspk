@@ -33,6 +33,8 @@ export interface ProductImage {
 export interface ColourVariant {
   id: string;
   name: string;
+  /** Approximate fabric swatch colour for UI chips */
+  hex?: string;
   imageIds?: string[];
   available?: boolean;
 }
