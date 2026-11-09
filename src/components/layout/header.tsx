@@ -82,12 +82,23 @@ export function Header({ collections }: { collections: Collection[] }) {
     setOpen(false);
   }, [pathname]);
 
-  // Warm the main storefront routes so Home ↔ Collections feels instant
+  // Warm core routes + collection/product pages for snappier clicks
   useEffect(() => {
-    const routes = ["/", "/collections", "/shop", "/about", "/contact"];
+    const routes = [
+      "/",
+      "/collections",
+      "/shop",
+      "/about",
+      "/contact",
+      "/faq",
+      "/cart",
+      "/sign-in",
+    ];
     routes.forEach((route) => router.prefetch(route));
-    collections.slice(0, 6).forEach((c) => {
+    collections.forEach((c) => {
       router.prefetch(`/collections/${c.slug}`);
+      router.prefetch(`/products/${c.slug}`);
+      router.prefetch(`/shop?category=unstitched_fabric`);
     });
   }, [router, collections]);
 

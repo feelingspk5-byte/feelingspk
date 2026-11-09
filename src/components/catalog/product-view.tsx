@@ -29,11 +29,7 @@ export function ProductView({
 
   return (
     <div className="grid gap-10 lg:grid-cols-2">
-      <ProductGallery
-        key={colourId ?? "default"}
-        images={images}
-        productName={product.name}
-      />
+      <ProductGallery images={images} productName={product.name} />
       <div>
         <p className="text-[11px] uppercase tracking-[0.18em] text-wine">
           Elite Men&apos;s Collection

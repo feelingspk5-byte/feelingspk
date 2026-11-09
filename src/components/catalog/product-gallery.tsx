@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 import { FabricPlaceholder } from "@/components/ui/fabric-placeholder";
 import { cn } from "@/lib/cn";
 import type { FabricImage } from "@/lib/types";
@@ -12,9 +13,25 @@ export function ProductGallery({
   images: FabricImage[];
   productName: string;
 }) {
-  const usable = images.filter((img) => img.src);
+  // Dedupe identical srcs so colour switches stay light
+  const usable = images.filter(
+    (img, index, arr) =>
+      Boolean(img.src) && arr.findIndex((x) => x.src === img.src) === index,
+  );
   const [active, setActive] = useState(0);
-  const current = usable[active];
+  const current = usable[active] ?? usable[0];
+
+  useEffect(() => {
+    setActive(0);
+  }, [usable[0]?.id]);
+
+  // Warm remaining thumbs in the background
+  useEffect(() => {
+    usable.slice(1).forEach((img) => {
+      const el = new window.Image();
+      el.src = img.src;
+    });
+  }, [usable]);
 
   if (usable.length === 0) {
     return (
@@ -33,12 +50,17 @@ export function ProductGallery({
 
   return (
     <div className="space-y-3">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={current.src}
-        alt={current.alt || `${productName} fabric`}
-        className="aspect-square w-full rounded-sm object-cover bg-ivory"
-      />
+      <div className="relative aspect-square overflow-hidden rounded-sm bg-ivory">
+        <Image
+          key={current.src}
+          src={current.src}
+          alt={current.alt || `${productName} fabric`}
+          fill
+          priority
+          sizes="(max-width:1024px) 100vw, 50vw"
+          className="object-cover"
+        />
+      </div>
       {usable.length > 1 ? (
         <div className="grid grid-cols-4 gap-2">
           {usable.map((img, index) => (
@@ -47,16 +69,17 @@ export function ProductGallery({
               type="button"
               onClick={() => setActive(index)}
               className={cn(
-                "overflow-hidden rounded-sm border",
+                "relative aspect-square overflow-hidden rounded-sm border",
                 active === index ? "border-wine" : "border-transparent",
               )}
               aria-label={`View image ${index + 1}`}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <Image
                 src={img.src}
                 alt=""
-                className="aspect-square w-full object-cover"
+                fill
+                sizes="120px"
+                className="object-cover"
               />
             </button>
           ))}
