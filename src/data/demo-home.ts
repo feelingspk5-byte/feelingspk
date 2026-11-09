@@ -15,8 +15,8 @@ export const demoHero = {
       position: "object-center",
     },
     {
-      src: "/brand/hero/fabric-wide.jpg",
-      alt: "Unstitched FEELINGS fabric bolts and folds on a table",
+      src: "/brand/hero/fabric-atelier.jpg",
+      alt: "FEELINGS unstitched cloth in ivory and midnight — real house fabric",
       label: "Unstitched Fabric",
       position: "object-center",
     },
