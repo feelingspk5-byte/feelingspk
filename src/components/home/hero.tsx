@@ -70,9 +70,9 @@ export function HomeHero() {
   const active = slides[index];
 
   return (
-    <section className="relative overflow-hidden bg-ink text-ivory">
+    <section className="relative overflow-hidden bg-stone text-ink">
       <div className="relative min-h-[70vh] md:min-h-[78vh] lg:min-h-[82vh]">
-        {/* Full-bleed rotating backgrounds — wide 16:9 assets, gentle scale */}
+        {/* Full-bleed rotating backgrounds */}
         <div className="absolute inset-0">
           <AnimatePresence mode="sync" initial={false}>
             <motion.div
@@ -94,29 +94,29 @@ export function HomeHero() {
             </motion.div>
           </AnimatePresence>
 
-          {/* Cinematic wash — logo and copy stay readable on every slide */}
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-ink/78 via-ink/40 to-ink/15" />
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/15 to-ink/30" />
+          {/* Soft cream wash — keeps black FEELINGS logo and copy crisp */}
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-stone/92 via-stone/55 to-transparent md:via-stone/45 md:to-transparent" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-stone/50 via-transparent to-stone/25" />
         </div>
 
         <Container className="relative flex min-h-[70vh] flex-col justify-end pb-16 pt-28 md:min-h-[78vh] md:justify-center md:pb-20 md:pt-24 lg:min-h-[82vh]">
           <div className="max-w-xl">
             <FadeIn>
-              <p className="text-[10px] uppercase tracking-[0.32em] text-ivory/70 md:text-[11px]">
+              <p className="text-[10px] uppercase tracking-[0.32em] text-wine md:text-[11px]">
                 {demoHero.eyebrow}
               </p>
             </FadeIn>
             <h1 className="sr-only">FEELINGS — {demoHero.title}</h1>
             <FadeIn delay={0.08}>
               <div className="mt-5 max-w-[15rem] sm:max-w-[18rem] md:mt-7 md:max-w-[20rem]">
-                <BrandLogo variant="heroDark" priority className="brightness-0 invert" />
+                <BrandLogo variant="hero" priority />
               </div>
             </FadeIn>
             <FadeIn delay={0.16}>
-              <p className="mt-6 font-display text-3xl leading-tight tracking-tight text-ivory sm:text-4xl md:mt-8 md:text-5xl">
+              <p className="mt-6 font-display text-3xl leading-tight tracking-tight text-ink sm:text-4xl md:mt-8 md:text-5xl">
                 {demoHero.title}
               </p>
-              <p className="mt-4 max-w-md text-sm leading-relaxed text-ivory/75 md:text-base">
+              <p className="mt-4 max-w-md text-sm leading-relaxed text-ink/75 md:text-base">
                 {demoHero.subtitle}
               </p>
             </FadeIn>
@@ -124,13 +124,13 @@ export function HomeHero() {
               <div className="mt-8 flex flex-wrap gap-3 md:mt-9">
                 <Link
                   href="/shop"
-                  className="inline-flex h-12 min-w-[10rem] items-center justify-center rounded-sm bg-ivory px-6 text-sm tracking-[0.08em] text-ink transition-transform duration-feel hover:-translate-y-0.5"
+                  className="inline-flex h-12 min-w-[10rem] items-center justify-center rounded-sm bg-ink px-6 text-sm tracking-[0.08em] text-ivory transition-transform duration-feel hover:-translate-y-0.5"
                 >
                   Explore the Collection
                 </Link>
                 <Link
                   href="/collections"
-                  className="inline-flex h-12 min-w-[10rem] items-center justify-center rounded-sm border border-ivory/70 bg-transparent px-6 text-sm tracking-[0.08em] text-ivory transition-colors duration-feel hover:bg-ivory hover:text-ink"
+                  className="inline-flex h-12 min-w-[10rem] items-center justify-center rounded-sm border border-ink bg-ivory/70 px-6 text-sm tracking-[0.08em] text-ink backdrop-blur-sm transition-colors duration-feel hover:bg-ink hover:text-ivory"
                 >
                   View Collections
                 </Link>
@@ -138,9 +138,9 @@ export function HomeHero() {
             </FadeIn>
           </div>
 
-          {/* Slide controls — progress + labels */}
+          {/* Slide controls */}
           <div className="mt-12 flex flex-col gap-4 md:mt-16 md:absolute md:bottom-10 md:right-8 md:mt-0 lg:right-12">
-            <p className="text-[10px] uppercase tracking-[0.28em] text-ivory/65 md:text-right">
+            <p className="text-[10px] uppercase tracking-[0.28em] text-ink/55 md:text-right">
               {active.label}
             </p>
             <div className="flex items-center gap-3 md:justify-end">
@@ -153,15 +153,15 @@ export function HomeHero() {
                     aria-label={`Show ${slide.label}`}
                     aria-current={isActive ? "true" : undefined}
                     onClick={() => goTo(i)}
-                    className="group relative h-1.5 w-12 overflow-hidden rounded-sm bg-ivory/25 md:w-16"
+                    className="group relative h-1.5 w-12 overflow-hidden rounded-sm bg-ink/20 md:w-16"
                   >
                     {isActive ? (
                       <span
                         key={`${index}-${tick}`}
                         className={
                           reduce
-                            ? "absolute inset-y-0 left-0 w-full bg-ivory"
-                            : "absolute inset-y-0 left-0 animate-[heroProgress_5s_linear_forwards] bg-ivory"
+                            ? "absolute inset-y-0 left-0 w-full bg-ink"
+                            : "absolute inset-y-0 left-0 animate-[heroProgress_5s_linear_forwards] bg-ink"
                         }
                       />
                     ) : null}
