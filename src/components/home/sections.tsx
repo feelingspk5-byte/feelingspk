@@ -27,9 +27,9 @@ export function ShopCategories() {
               Shop the house
             </h2>
             <p className="mt-3 text-sm text-ink/65 md:text-base">
-              Begin with the way you dress — unstitched cloth for a tailor’s
-              craft, ready stitched shalwar kameez for ease, or dress shirts for
-              a polished finish.
+              Shop the way premium menswear houses do — by category. Unstitched
+              fabric, stitched shalwar kameez, and dress shirts, each with its
+              own path.
             </p>
           </div>
         </FadeIn>
@@ -77,14 +77,14 @@ export function FeaturedCollections() {
           <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
               <p className="text-[11px] uppercase tracking-[0.22em] text-wine">
-                Looks
+                Edits
               </p>
               <h2 className="mt-3 font-display text-4xl tracking-tight text-ink md:text-5xl">
                 Shop by mood
               </h2>
               <p className="mt-3 max-w-lg text-sm text-ink/65 md:text-base">
-                Open a fabric line, compare colours, then choose 1, 2, 4, or 6
-                metres of the shade you want.
+                From formal evenings to grounded daywear — enter a line for the
+                atmosphere you want to carry.
               </p>
             </div>
             <Link
@@ -137,12 +137,11 @@ export function FeaturedFabrics() {
               Featured pieces
             </p>
             <h2 className="mt-3 font-display text-4xl tracking-tight text-ink md:text-5xl">
-              From cloth to finished form.
+              Signature fabric lines
             </h2>
             <p className="mt-3 text-sm text-ink/65 md:text-base">
-              A first look across the Elite Men&apos;s Collection — fabric with
-              presence, stitched suits with ease, and shirts that complete the
-              wardrobe.
+              A first look at the cloth that defines the house — each collection
+              with its own palette, ready to open shade by shade.
             </p>
           </div>
         </FadeIn>

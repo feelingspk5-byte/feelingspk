@@ -59,10 +59,6 @@ export default async function ProductPage({
       "Colours",
       product.colourVariants?.map((c) => c.name).join(" · "),
     ],
-    [
-      "Lengths",
-      product.cutOptions?.map((c) => c.label).join(" · "),
-    ],
   ].filter(([, value]) => Boolean(value)) as [string, string][];
 
   return (
@@ -113,17 +109,17 @@ export default async function ProductPage({
         </Disclosure>
         <Disclosure title="Exchanges & returns">
           Exchange and return eligibility will follow the client-approved policy
-          for unstitched fabric.
+          for this product line.
         </Disclosure>
       </div>
 
       <section className="mt-16 border-t border-ink/10 pt-12">
-        <h2 className="font-display text-3xl text-ink">More collections</h2>
+        <h2 className="font-display text-3xl text-ink">More from the house</h2>
         <div className="mt-6">
           <ProductGrid
             products={related}
-            emptyTitle="More fabrics soon"
-            emptyDescription="Other unstitched collections appear here."
+            emptyTitle="More pieces soon"
+            emptyDescription="Other collections from FEELINGS appear here."
           />
         </div>
       </section>

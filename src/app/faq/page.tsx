@@ -5,12 +5,13 @@ import { EmptyState } from "@/components/ui/empty-state";
 
 export const metadata = {
   title: "FAQ",
-  description: "FEELINGS fabric shopping questions.",
+  description: "FEELINGS Elite Men's Collection — shopping questions.",
 };
 
 const structuralTopics = [
-  "Fabric details",
-  "Quantity / cut length",
+  "Products & categories",
+  "Fabric & shades",
+  "Sizing (shalwar kameez & shirts)",
   "Delivery",
   "Payment",
   "Orders",
@@ -23,7 +24,7 @@ export default function FaqPage() {
     <>
       <PageHeader
         title="FAQ"
-        description="Answers will use FEELINGS-approved information only."
+        description="Clear answers for shopping the Elite Men's Collection."
       />
       <Container className="max-w-3xl space-y-2 py-10 md:py-14">
         <EmptyState

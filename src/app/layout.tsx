@@ -23,12 +23,12 @@ export const metadata: Metadata = {
     template: "%s | FEELINGS",
   },
   description:
-    "FEELINGS — Elite Men's Collection. Unstitched fabric, stitched shalwar kameez, and dress shirts. Traditional Pakistani luxury.",
+    "FEELINGS Elite Men's Collection — premium unstitched fabric, stitched shalwar kameez, and dress shirts.",
   metadataBase: new URL("https://feelings.local"),
   openGraph: {
     title: "FEELINGS | Elite Men's Collection",
     description:
-      "Unstitched fabric, stitched shalwar kameez, and dress shirts. Traditional Pakistani luxury.",
+      "Quiet luxury for the modern gentleman — fabric, shalwar kameez, and dress shirts.",
     type: "website",
     images: [
       {

@@ -13,7 +13,7 @@ import type { Product, ProductCategory } from "@/lib/types";
 export const metadata = {
   title: "Shop All",
   description:
-    "Browse FEELINGS unstitched fabric collections — choose colour and length (1m, 2m, 4m, 6m).",
+    "Shop FEELINGS Elite Men's Collection — unstitched fabric, stitched shalwar kameez, and dress shirts.",
 };
 
 function sortProducts(list: Product[], sort: string) {
@@ -76,18 +76,18 @@ function ShopContent({
       ? {
           title: "Stitched Shalwar Kameez — Coming soon",
           description:
-            "Sized ready-to-wear suits are being prepared for the Elite Men's Collection. Explore unstitched fabric while you wait.",
+            "Ready silhouettes for the Elite Men's Collection are being prepared. Explore fabric collections in the meantime.",
         }
       : category === "dress_shirt"
         ? {
             title: "Dress Shirts — Coming soon",
             description:
-              "Formal shirt styles are on the way. Browse unstitched fabric collections in the meantime.",
+              "Formal shirts for the house are on the way. Browse fabric and collections while we finish the line.",
           }
         : {
-            title: "The collection is being arranged",
+            title: "Nothing matches this filter yet",
             description:
-              "Unstitched fabric is live now. Stitched shalwar kameez and dress shirts are coming soon.",
+              "Try another category, or open Collections to browse by fabric line.",
           };
 
   return (
@@ -124,8 +124,8 @@ export default async function ShopPage({
   return (
     <>
       <PageHeader
-        title="Shop the collection"
-        description="Elite Men's Collection — unstitched fabric is available now. Stitched shalwar kameez and dress shirts are coming soon."
+        title="Shop"
+        description="Browse by category the way a menswear house is meant to be shopped — fabric, shalwar kameez, and dress shirts."
       />
       <Container className="py-10 md:py-14">
         <Suspense fallback={<p className="text-sm text-ink/60">Loading shop…</p>}>

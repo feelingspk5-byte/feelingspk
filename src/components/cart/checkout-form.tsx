@@ -23,7 +23,7 @@ export function CheckoutForm() {
     return (
       <EmptyState
         title="Nothing to check out"
-        description="Add fabric from the shop, choose colour and length, then return here."
+        description="Add pieces from the shop, then return here to complete your order."
       />
     );
   }

@@ -9,7 +9,7 @@ import { VectorBackdrop } from "@/components/ui/vector-backdrop";
 import { demoHero } from "@/data/demo-home";
 
 const destinations = [
-  { href: "/shop", label: "Shop All", detail: "Full collection" },
+  { href: "/shop", label: "Shop All", detail: "The full house" },
   {
     href: "/shop?category=unstitched_fabric",
     label: "Fabric",
@@ -17,15 +17,15 @@ const destinations = [
   },
   {
     href: "/shop?category=stitched_shalwar_kameez",
-    label: "Stitched",
-    detail: "Shalwar kameez",
+    label: "Shalwar Kameez",
+    detail: "Stitched readywear",
   },
   {
     href: "/shop?category=dress_shirt",
-    label: "Shirts",
-    detail: "Dress shirts",
+    label: "Dress Shirts",
+    detail: "Formal shirts",
   },
-  { href: "/about", label: "About", detail: "The FEELINGS house" },
+  { href: "/collections", label: "Collections", detail: "Shop by line" },
 ];
 
 export function HomeHero() {
@@ -70,13 +70,13 @@ export function HomeHero() {
                 href="/shop"
                 className="inline-flex h-12 min-w-[10rem] items-center justify-center rounded-sm bg-ink px-6 text-sm tracking-[0.08em] text-ivory transition-transform duration-feel hover:-translate-y-0.5"
               >
-                Shop Fabrics
+                Explore the Collection
               </Link>
               <Link
-                href="/about"
+                href="/collections"
                 className="inline-flex h-12 min-w-[10rem] items-center justify-center rounded-sm border border-ink bg-ivory/70 px-6 text-sm tracking-[0.08em] text-ink backdrop-blur-sm transition-colors duration-feel hover:bg-ink hover:text-ivory"
               >
-                About the House
+                View Collections
               </Link>
             </div>
           </FadeIn>

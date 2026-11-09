@@ -23,32 +23,32 @@ const shopPanel = [
   {
     href: "/shop",
     label: "Shop All",
-    note: "Full elite men's catalogue",
+    note: "Browse the full house",
   },
   {
     href: "/shop?category=unstitched_fabric",
     label: "Unstitched Fabric",
-    note: "Cloth for custom stitching",
+    note: "Cloth for bespoke and made-to-measure",
   },
   {
     href: "/shop?category=stitched_shalwar_kameez",
-    label: "Stitched Shalwar Kameez",
-    note: "Coming soon",
+    label: "Shalwar Kameez",
+    note: "Stitched readywear — coming soon",
   },
   {
     href: "/shop?category=dress_shirt",
     label: "Dress Shirts",
-    note: "Coming soon",
+    note: "Formal shirts — coming soon",
   },
   {
     href: "/shop?filter=new",
     label: "New Arrivals",
-    note: "Latest releases",
+    note: "What just landed",
   },
   {
     href: "/collections",
     label: "Collections",
-    note: "Browse by line",
+    note: "Shop by fabric line",
   },
 ];
 
@@ -268,8 +268,8 @@ export function Header({ collections }: { collections: Collection[] }) {
                 ))}
               </ul>
               <p className="mt-6 text-xs leading-relaxed text-ink/50">
-                Elite Men&apos;s Collection — unstitched fabric, stitched
-                shalwar kameez, and dress shirts.
+                Elite Men&apos;s Collection — cloth, shalwar kameez, and shirts
+                under one house.
               </p>
             </div>
           </Container>
@@ -282,8 +282,8 @@ export function Header({ collections }: { collections: Collection[] }) {
             <form onSubmit={onSearch} className="flex gap-2">
               <Input
                 name="q"
-                placeholder="Search fabrics by name or SKU"
-                aria-label="Search fabrics"
+                placeholder="Search the collection"
+                aria-label="Search the collection"
                 autoFocus
               />
               <button

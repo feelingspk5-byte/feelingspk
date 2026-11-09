@@ -5,7 +5,7 @@ import type { FabricProduct } from "@/lib/types";
 export function ProductGrid({
   products,
   emptyTitle = "New pieces are being prepared",
-  emptyDescription = "Explore categories above — unstitched fabric, stitched shalwar kameez, and dress shirts will fill this grid as the collection goes live.",
+  emptyDescription = "Explore Shop by category — fabric, shalwar kameez, and dress shirts fill this grid as each line goes live.",
 }: {
   products: FabricProduct[];
   emptyTitle?: string;

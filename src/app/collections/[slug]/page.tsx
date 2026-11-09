@@ -25,7 +25,7 @@ export async function generateMetadata({
     title: collection.name,
     description:
       collection.description ??
-      `${collection.name} unstitched fabrics from FEELINGS.`,
+      `${collection.name} from FEELINGS Elite Men's Collection.`,
   };
 }
 
@@ -48,7 +48,7 @@ export default async function CollectionDetailPage({
         title={collection.name}
         description={
           collection.description ??
-          "Unstitched fabric collection from FEELINGS Elite Men's Collection."
+          "A FEELINGS Elite Men's Collection line."
         }
       />
       <Container className="py-10 md:py-14">
@@ -67,15 +67,15 @@ export default async function CollectionDetailPage({
           </div>
           <div>
             <p className="text-[11px] uppercase tracking-[0.18em] text-wine">
-              Unstitched fabric
+              Collection
             </p>
             <h2 className="mt-3 font-display text-3xl text-ink md:text-4xl">
-              {colours.length} colour
+              {colours.length} shade
               {colours.length === 1 ? "" : "s"} in this line
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-ink/70">
-              Open a colour to see the cloth up close, then choose 1, 2, 4, or 6
-              metres. Switch between the other shades on the product page.
+              Open a shade to see the cloth up close and continue to purchase
+              options. Move between colours on the product page.
             </p>
             {product ? (
               <div className="mt-6">
@@ -94,7 +94,7 @@ export default async function CollectionDetailPage({
           <div className="mb-6 flex items-end justify-between gap-4">
             <div>
               <p className="text-[11px] uppercase tracking-[0.18em] text-ink/45">
-                Colours
+                Shades
               </p>
               <h3 className="mt-2 font-display text-3xl text-ink">
                 Choose a shade
@@ -137,7 +137,7 @@ export default async function CollectionDetailPage({
                         <p className="text-sm font-medium text-ink group-hover:text-wine">
                           {colour.name}
                         </p>
-                        <p className="text-xs text-ink/50">Select length</p>
+                        <p className="text-xs text-ink/50">View shade</p>
                       </div>
                     </div>
                   </Link>
@@ -146,7 +146,7 @@ export default async function CollectionDetailPage({
             </div>
           ) : (
             <p className="text-sm text-ink/60">
-              Colours for this collection will appear when linked in the
+              Shades for this collection will appear when linked in the
               catalogue.
             </p>
           )}

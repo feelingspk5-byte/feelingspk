@@ -17,11 +17,11 @@ import {
 function categoryHint(product: Product) {
   switch (product.category) {
     case "unstitched_fabric":
-      return "Unstitched fabric — select a colour and length, then add to cart.";
+      return "Select a shade to continue. Length is chosen below once you are ready.";
     case "stitched_shalwar_kameez":
-      return "Stitched shalwar kameez — select your size before adding to cart.";
+      return "Select your size, then add to cart.";
     case "dress_shirt":
-      return "Dress shirt — select collar / shirt size before adding to cart.";
+      return "Select your shirt size, then add to cart.";
     default:
       return "Elite Men's Collection";
   }
@@ -229,8 +229,7 @@ export function ProductPurchase({
             ))}
           </div>
           <p className="mt-2 text-xs text-ink/50">
-            Choose how many metres you need. Price appears once FEELINGS
-            confirms rates.
+            Price appears once FEELINGS confirms rates for your selection.
           </p>
         </fieldset>
       ) : null}

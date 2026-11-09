@@ -5,8 +5,10 @@ import { getSiteConfig } from "@/lib/catalog";
 
 const shopLinks = [
   { href: "/shop", label: "Shop All" },
+  { href: "/shop?category=unstitched_fabric", label: "Unstitched Fabric" },
+  { href: "/shop?category=stitched_shalwar_kameez", label: "Shalwar Kameez" },
+  { href: "/shop?category=dress_shirt", label: "Dress Shirts" },
   { href: "/collections", label: "Collections" },
-  { href: "/shop?filter=new", label: "New Arrivals" },
 ];
 
 const helpLinks = [
@@ -32,8 +34,8 @@ export function Footer() {
             <BrandLogo variant="footer" />
           </Link>
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-ivory/70">
-            Elite Men&apos;s Collection — unstitched fabric, stitched shalwar
-            kameez, and dress shirts.
+            Quiet luxury for the modern gentleman — fabric, shalwar kameez, and
+            dress shirts under one house.
           </p>
         </div>
 

@@ -26,11 +26,11 @@ export function NewsletterSignup() {
             Newsletter
           </p>
           <h2 className="mt-3 font-display text-3xl md:text-5xl">
-            New fabric arrivals, quietly announced.
+            New from the house, quietly announced.
           </h2>
           <p className="mt-3 max-w-md text-sm text-ivory/60">
-            Be first to hear about new fabric drops, stitched releases, and
-            shirt arrivals from the house.
+            Be first to hear about fabric drops, stitched releases, and shirt
+            arrivals — never noisy, always considered.
           </p>
         </FadeIn>
         <FadeIn delay={0.12}>

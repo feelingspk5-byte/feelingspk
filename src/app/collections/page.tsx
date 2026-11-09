@@ -16,7 +16,7 @@ export default function CollectionsPage() {
     <>
       <PageHeader
         title="Collections"
-        description="Unstitched fabric lines from FEELINGS — open any collection to see every colour, then choose your length."
+        description="Signature fabric lines from the Elite Men's Collection — open any edit to explore its shades."
       />
       <Container className="py-10 md:py-14">
         {collections.length === 0 ? (
