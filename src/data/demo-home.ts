@@ -89,7 +89,7 @@ export const demoFabrics = [
 ];
 
 export const demoEditorial = {
-  image: "/catalogue/tropical-signature/fea-06-03-studio.jpg",
+  image: "/brand/editorial-one-house.jpg",
   eyebrow: "The house",
   title: "One house. Three ways to dress.",
   body: "FEELINGS is built for men who value fabric as much as form — unstitched cloth for the tailor’s bench, stitched shalwar kameez for everyday presence, and dress shirts that finish the look.",
