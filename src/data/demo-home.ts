@@ -15,10 +15,10 @@ export const demoHero = {
       position: "object-center",
     },
     {
-      src: "/brand/hero/fabric-table.jpg",
-      alt: "Three folded unstitched fabrics piled on a table — cream, camel, and navy",
+      src: "/brand/hero/fabric-clear.jpg",
+      alt: "Three folded unstitched fabrics on the right of a wooden table — cream, camel, and navy",
       label: "Unstitched Fabric",
-      position: "object-[58%_48%]",
+      position: "object-center",
     },
     {
       src: "/brand/hero/dress-shirt-navy.jpg",

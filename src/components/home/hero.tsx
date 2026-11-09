@@ -100,7 +100,7 @@ export function HomeHero() {
         </div>
 
         <Container className="relative flex min-h-[70vh] flex-col justify-end pb-16 pt-28 md:min-h-[78vh] md:justify-center md:pb-20 md:pt-24 lg:min-h-[82vh]">
-          <div className="max-w-xl">
+          <div className="max-w-[18rem] sm:max-w-sm md:max-w-[22rem] lg:max-w-md">
             <FadeIn>
               <p className="text-[10px] uppercase tracking-[0.32em] text-wine md:text-[11px]">
                 {demoHero.eyebrow}
@@ -108,15 +108,15 @@ export function HomeHero() {
             </FadeIn>
             <h1 className="sr-only">FEELINGS — {demoHero.title}</h1>
             <FadeIn delay={0.08}>
-              <div className="mt-5 max-w-[15rem] sm:max-w-[18rem] md:mt-7 md:max-w-[20rem]">
+              <div className="mt-5 max-w-[13rem] sm:max-w-[15rem] md:mt-7 md:max-w-[17rem]">
                 <BrandLogo variant="hero" priority />
               </div>
             </FadeIn>
             <FadeIn delay={0.16}>
-              <p className="mt-6 font-display text-3xl leading-tight tracking-tight text-ink sm:text-4xl md:mt-8 md:text-5xl">
+              <p className="mt-6 font-display text-3xl leading-tight tracking-tight text-ink sm:text-4xl md:mt-8 md:text-[2.65rem]">
                 {demoHero.title}
               </p>
-              <p className="mt-4 max-w-md text-sm leading-relaxed text-ink/75 md:text-base">
+              <p className="mt-4 text-sm leading-relaxed text-ink/75 md:text-base">
                 {demoHero.subtitle}
               </p>
             </FadeIn>
