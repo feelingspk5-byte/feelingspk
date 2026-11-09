@@ -227,6 +227,20 @@ export function ProductPurchase({
               </button>
             ))}
           </div>
+          <p className="mt-3 text-sm leading-relaxed text-ink/70">
+            If your desired fabric length is not listed in the options above
+            (e.g., 5 meters, 5.5 meters, or even 1 meter, 2 meters, or any custom
+            length), please feel free to contact us on WhatsApp at{" "}
+            <a
+              href="https://wa.me/923055551507"
+              target="_blank"
+              rel="noreferrer"
+              className="font-medium text-wine underline-offset-2 hover:underline"
+            >
+              +92 3055551507
+            </a>{" "}
+            for assistance.
+          </p>
           <p className="mt-2 text-xs text-ink/50">
             Price appears once FEELINGS confirms rates for your selection.
           </p>
