@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { FabricPlaceholder } from "@/components/ui/fabric-placeholder";
 import { availabilityLabel, formatPrice } from "@/lib/catalog";
@@ -10,15 +11,19 @@ export function ProductCard({ product }: { product: FabricProduct }) {
   return (
     <Link
       href={`/products/${product.slug}`}
+      prefetch
       className="group block rounded-sm bg-ivory p-3 transition-colors duration-feel hover:bg-ivory/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wine"
     >
       {image?.src ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={image.src}
-          alt={image.alt || `${product.name} fabric`}
-          className="aspect-[3/4] w-full rounded-sm object-cover"
-        />
+        <div className="relative aspect-[3/4] w-full overflow-hidden rounded-sm bg-stone/40">
+          <Image
+            src={image.src}
+            alt={image.alt || `${product.name} fabric`}
+            fill
+            sizes="(max-width:640px) 50vw, (max-width:1024px) 33vw, 25vw"
+            className="object-cover transition-transform duration-feel group-hover:scale-[1.02]"
+          />
+        </div>
       ) : (
         <FabricPlaceholder label="Fabric photo pending" />
       )}

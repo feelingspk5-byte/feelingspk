@@ -113,13 +113,14 @@ export default async function CollectionDetailPage({
                     href={`/products/${product.slug}?colour=${colour.id}`}
                     className="group block overflow-hidden rounded-sm bg-ivory transition-transform duration-feel hover:-translate-y-1"
                   >
-                    <div className="relative aspect-[3/4] overflow-hidden">
+                    <div className="relative aspect-[3/4] overflow-hidden bg-stone/40">
                       {image?.src ? (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img
+                        <Image
                           src={image.src}
                           alt={colour.name}
-                          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                          fill
+                          sizes="(max-width:768px) 50vw, (max-width:1024px) 33vw, 25vw"
+                          className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                         />
                       ) : (
                         <div

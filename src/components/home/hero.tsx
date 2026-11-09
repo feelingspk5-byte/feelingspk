@@ -87,7 +87,7 @@ export function HomeHero() {
                 src={active.src}
                 alt={active.alt}
                 fill
-                priority
+                priority={index === 0}
                 className={`object-cover ${active.position}`}
                 sizes="100vw"
               />

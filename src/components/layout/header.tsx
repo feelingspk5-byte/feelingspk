@@ -82,6 +82,15 @@ export function Header({ collections }: { collections: Collection[] }) {
     setOpen(false);
   }, [pathname]);
 
+  // Warm the main storefront routes so Home ↔ Collections feels instant
+  useEffect(() => {
+    const routes = ["/", "/collections", "/shop", "/about", "/contact"];
+    routes.forEach((route) => router.prefetch(route));
+    collections.slice(0, 6).forEach((c) => {
+      router.prefetch(`/collections/${c.slug}`);
+    });
+  }, [router, collections]);
+
   function openShop() {
     if (shopTimer.current) clearTimeout(shopTimer.current);
     shopTimer.current = setTimeout(() => setShopOpen(true), 180);
