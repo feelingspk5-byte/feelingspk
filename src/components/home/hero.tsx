@@ -71,14 +71,14 @@ export function HomeHero() {
 
   return (
     <section className="relative overflow-hidden bg-ink text-ivory">
-      <div className="relative min-h-[78vh] md:min-h-[88vh]">
-        {/* Full-bleed rotating backgrounds */}
+      <div className="relative min-h-[70vh] md:min-h-[78vh] lg:min-h-[82vh]">
+        {/* Full-bleed rotating backgrounds — wide 16:9 assets, gentle scale */}
         <div className="absolute inset-0">
           <AnimatePresence mode="sync" initial={false}>
             <motion.div
               key={active.src}
               className="absolute inset-0"
-              initial={reduce ? false : { opacity: 0, scale: 1.04 }}
+              initial={reduce ? false : { opacity: 0, scale: 1.02 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={reduce ? undefined : { opacity: 0 }}
               transition={{ duration: reduce ? 0 : 1.1, ease: [0.22, 1, 0.36, 1] }}
@@ -95,11 +95,11 @@ export function HomeHero() {
           </AnimatePresence>
 
           {/* Cinematic wash — logo and copy stay readable on every slide */}
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-ink/80 via-ink/45 to-ink/20" />
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/75 via-ink/20 to-ink/35" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-ink/78 via-ink/40 to-ink/15" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/15 to-ink/30" />
         </div>
 
-        <Container className="relative flex min-h-[78vh] flex-col justify-end pb-16 pt-28 md:min-h-[88vh] md:justify-center md:pb-20 md:pt-24">
+        <Container className="relative flex min-h-[70vh] flex-col justify-end pb-16 pt-28 md:min-h-[78vh] md:justify-center md:pb-20 md:pt-24 lg:min-h-[82vh]">
           <div className="max-w-xl">
             <FadeIn>
               <p className="text-[10px] uppercase tracking-[0.32em] text-ivory/70 md:text-[11px]">

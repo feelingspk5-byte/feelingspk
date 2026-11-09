@@ -9,22 +9,22 @@ export const demoHero = {
   /** Full-bleed slides — rotate every 5s, Ahmad Fabrics–style house carousel */
   slides: [
     {
-      src: "/brand/hero/shalwar-kameez.jpg",
+      src: "/brand/hero/shalwar-kameez-wide.jpg",
       alt: "Gentleman in ivory stitched shalwar kameez",
       label: "Stitched Shalwar Kameez",
-      position: "object-[50%_18%]",
+      position: "object-center",
     },
     {
-      src: "/brand/hero/fabric.jpg",
-      alt: "Folded unstitched FEELINGS fabric piled on a table",
+      src: "/brand/hero/fabric-wide.jpg",
+      alt: "Unstitched FEELINGS fabric bolts and folds on a table",
       label: "Unstitched Fabric",
-      position: "object-[50%_42%]",
+      position: "object-center",
     },
     {
-      src: "/brand/hero/dress-shirt.jpg",
+      src: "/brand/hero/dress-shirt-wide.jpg",
       alt: "Crisp white dress shirt on hanger",
       label: "Dress Shirts",
-      position: "object-[50%_28%]",
+      position: "object-[62%_42%]",
     },
   ],
 };
