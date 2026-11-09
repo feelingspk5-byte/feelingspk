@@ -8,14 +8,14 @@ export const demoHero = {
     "FEELINGS brings together unstitched cloth, stitched shalwar kameez, and dress shirts — considered fabrics and silhouettes for every occasion.",
   panels: [
     {
-      src: "/brand/hero/shalwar-kameez.jpg",
-      alt: "Gentleman in ivory stitched shalwar kameez",
-      label: "Shalwar Kameez",
-    },
-    {
       src: "/brand/hero/fabric.jpg",
       alt: "Folded unstitched FEELINGS fabric piled on a table — cream, camel, charcoal, and navy",
       label: "Unstitched",
+    },
+    {
+      src: "/brand/hero/shalwar-kameez.jpg",
+      alt: "Gentleman in ivory stitched shalwar kameez",
+      label: "Shalwar Kameez",
     },
     {
       src: "/brand/hero/dress-shirt.jpg",

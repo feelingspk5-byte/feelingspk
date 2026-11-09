@@ -30,71 +30,34 @@ const destinations = [
 export function HomeHero() {
   return (
     <section className="relative overflow-hidden bg-stone text-ink">
-      <div className="relative min-h-[78vh] md:min-h-[86vh]">
-        {/* Full-bleed triptych — fabric sits centre so the cloth stays visible */}
-        <div className="absolute inset-0 grid grid-cols-1 md:grid-cols-3">
-          {demoHero.panels.map((panel, index) => (
-            <div
-              key={panel.src}
-              className="relative min-h-[34vh] overflow-hidden md:min-h-full"
-            >
-              <Image
-                src={panel.src}
-                alt={panel.alt}
-                fill
-                priority
-                className={[
-                  "object-cover transition-transform duration-[1.4s] ease-out will-change-transform",
-                  index === 0
-                    ? "object-[50%_18%]"
-                    : index === 1
-                      ? "object-[50%_40%] scale-[1.04]"
-                      : "object-[50%_30%]",
-                ].join(" ")}
-                sizes="(max-width:768px) 100vw, 33vw"
-              />
-              {/* Keep centre fabric clear — lighter veil only on the flanking panels */}
-              <div
-                className={[
-                  "absolute inset-0",
-                  index === 1 ? "bg-ink/5" : "bg-ink/20 md:bg-ink/15",
-                ].join(" ")}
-              />
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-ink/50 to-transparent md:h-1/4" />
-              <p className="absolute bottom-4 left-4 text-[10px] uppercase tracking-[0.22em] text-ivory/90 md:bottom-6 md:left-6 md:text-[11px]">
-                {panel.label}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        {/* Readability wash stops short of the centre fabric panel */}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-stone/90 via-stone/40 to-transparent md:bg-gradient-to-r md:from-stone/92 md:via-stone/55 md:via-[30%] md:to-transparent md:to-[48%]" />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-stone/40 via-transparent to-transparent md:from-stone/20" />
-
-        <Container className="relative flex min-h-[78vh] flex-col justify-end pb-10 pt-28 md:min-h-[86vh] md:justify-center md:pb-16 md:pt-24">
-          <div className="max-w-[22rem] md:max-w-md">
+      <div className="relative grid min-h-[78vh] md:min-h-[86vh] md:grid-cols-[minmax(17.5rem,0.92fr)_1.08fr_1.08fr_1.08fr]">
+        {/* Brand column — solid stage so FEELINGS and copy stay crisp */}
+        <div className="relative z-10 flex flex-col justify-center border-b border-ink/10 px-6 py-16 sm:px-8 md:border-b-0 md:border-r md:border-ink/10 md:px-10 md:py-24 lg:px-12">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 opacity-[0.35]"
+            style={{
+              backgroundImage:
+                "radial-gradient(ellipse at 20% 10%, rgba(107,38,56,0.08), transparent 55%), linear-gradient(160deg, rgba(245,241,233,0.9), transparent 60%)",
+            }}
+          />
+          <div className="relative max-w-md">
             <FadeIn>
-              <p className="text-[10px] uppercase tracking-[0.28em] text-wine md:text-[11px]">
-                {demoHero.eyebrow}
-              </p>
-            </FadeIn>
-            <h1 className="sr-only">FEELINGS — {demoHero.title}</h1>
-            <FadeIn delay={0.08}>
-              <div className="mt-5 max-w-sm md:mt-7 md:max-w-md">
+              <div className="max-w-[15rem] sm:max-w-[17rem] md:max-w-[18rem]">
                 <BrandLogo variant="hero" priority />
               </div>
             </FadeIn>
-            <FadeIn delay={0.16}>
-              <p className="mt-5 font-display text-3xl leading-tight tracking-tight text-ink md:mt-7 md:text-5xl">
+            <h1 className="sr-only">FEELINGS — {demoHero.title}</h1>
+            <FadeIn delay={0.1}>
+              <p className="mt-7 font-display text-[1.85rem] leading-[1.12] tracking-tight text-ink sm:text-4xl md:mt-8 md:text-[2.55rem]">
                 {demoHero.title}
               </p>
-              <p className="mt-4 max-w-md text-sm leading-relaxed text-ink/75 md:text-base">
+              <p className="mt-4 max-w-sm text-sm leading-relaxed text-ink/70 md:text-[0.95rem]">
                 {demoHero.subtitle}
               </p>
             </FadeIn>
-            <FadeIn delay={0.24}>
-              <div className="mt-7 flex flex-wrap gap-3 md:mt-9">
+            <FadeIn delay={0.18}>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap md:mt-9">
                 <Link
                   href="/shop"
                   className="inline-flex h-12 min-w-[10rem] items-center justify-center rounded-sm bg-ink px-6 text-sm tracking-[0.08em] text-ivory transition-transform duration-feel hover:-translate-y-0.5"
@@ -103,17 +66,46 @@ export function HomeHero() {
                 </Link>
                 <Link
                   href="/collections"
-                  className="inline-flex h-12 min-w-[10rem] items-center justify-center rounded-sm border border-ink bg-ivory/80 px-6 text-sm tracking-[0.08em] text-ink backdrop-blur-sm transition-colors duration-feel hover:bg-ink hover:text-ivory"
+                  className="inline-flex h-12 min-w-[10rem] items-center justify-center rounded-sm border border-ink bg-transparent px-6 text-sm tracking-[0.08em] text-ink transition-colors duration-feel hover:bg-ink hover:text-ivory"
                 >
                   View Collections
                 </Link>
               </div>
             </FadeIn>
           </div>
-        </Container>
+        </div>
+
+        {/* Three product panels — fully visible, no copy over them */}
+        {demoHero.panels.map((panel, index) => (
+          <div
+            key={panel.src}
+            className="relative min-h-[42vh] overflow-hidden md:min-h-full"
+          >
+            <Image
+              src={panel.src}
+              alt={panel.alt}
+              fill
+              priority
+              className={[
+                "object-cover transition-transform duration-[1.4s] ease-out will-change-transform hover:scale-[1.03]",
+                index === 0
+                  ? "object-[50%_40%]"
+                  : index === 1
+                    ? "object-[50%_18%]"
+                    : "object-[50%_28%]",
+              ].join(" ")}
+              sizes="(max-width:768px) 100vw, 25vw"
+            />
+            <div className="absolute inset-0 bg-ink/10" />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-ink/55 to-transparent" />
+            <p className="absolute bottom-4 left-4 text-[10px] uppercase tracking-[0.22em] text-ivory md:bottom-5 md:left-5 md:text-[11px]">
+              {panel.label}
+            </p>
+          </div>
+        ))}
       </div>
 
-      <Container className="relative pb-10 pt-2 md:pb-14">
+      <Container className="relative pb-10 pt-8 md:pb-14 md:pt-10">
         <div className="mb-3 flex items-center gap-4">
           <p className="text-[11px] uppercase tracking-[0.22em] text-ink/45">
             Explore
