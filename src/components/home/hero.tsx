@@ -94,12 +94,12 @@ export function HomeHero() {
             </motion.div>
           </AnimatePresence>
 
-          {/* Soft cream wash — keeps black FEELINGS logo and copy crisp */}
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-stone/92 via-stone/55 to-transparent md:via-stone/45 md:to-transparent" />
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-stone/50 via-transparent to-stone/25" />
+          {/* Soft cream wash — keeps black FEELINGS logo and copy crisp on the wall */}
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-stone/95 via-stone/60 to-transparent md:via-[38%] md:to-transparent" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-stone/35 via-transparent to-stone/20" />
         </div>
 
-        <Container className="relative flex min-h-[70vh] flex-col justify-end pb-16 pt-28 md:min-h-[78vh] md:justify-center md:pb-20 md:pt-24 lg:min-h-[82vh]">
+        <Container className="relative flex min-h-[70vh] flex-col justify-center pb-16 pt-28 md:min-h-[78vh] md:pb-20 md:pt-24 lg:min-h-[82vh]">
           <div className="max-w-[18rem] sm:max-w-sm md:max-w-[22rem] lg:max-w-md">
             <FadeIn>
               <p className="text-[10px] uppercase tracking-[0.32em] text-wine md:text-[11px]">
