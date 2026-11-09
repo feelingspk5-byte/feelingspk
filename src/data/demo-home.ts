@@ -53,7 +53,7 @@ export const demoCollections = [
     slug: "noir",
     name: "The Noir",
     detail: "Jet, ink, charcoal, and navy for formal depth.",
-    image: "/catalogue/noir/fea-04-01-studio.jpg",
+    image: "/catalogue/noir/fea-04-04-studio.jpg",
   },
 ];
 

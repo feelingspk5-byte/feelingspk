@@ -57,7 +57,7 @@ export const collections: Collection[] = [
     name: "The Noir",
     description: "Four dark shades for sharp formal silhouettes — jet black, ink black, deep charcoal, and midnight navy.",
     category: "unstitched_fabric",
-    imageSrc: "/catalogue/noir/fea-04-01-studio.jpg",
+    imageSrc: "/catalogue/noir/fea-04-04-studio.jpg",
     sortOrder: 4,
   },
   {
