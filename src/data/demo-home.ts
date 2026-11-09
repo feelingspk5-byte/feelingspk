@@ -18,7 +18,7 @@ export const demoHero = {
       src: "/brand/hero/fabric-table.jpg",
       alt: "Three folded unstitched fabrics piled on a table — cream, camel, and navy",
       label: "Unstitched Fabric",
-      position: "object-[50%_55%]",
+      position: "object-[58%_48%]",
     },
     {
       src: "/brand/hero/dress-shirt-navy.jpg",
