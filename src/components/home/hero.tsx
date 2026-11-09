@@ -31,7 +31,7 @@ export function HomeHero() {
   return (
     <section className="relative overflow-hidden bg-stone text-ink">
       <div className="relative min-h-[78vh] md:min-h-[86vh]">
-        {/* Full-bleed triptych — one visual plane, three lines of the house */}
+        {/* Full-bleed triptych — fabric sits centre so the cloth stays visible */}
         <div className="absolute inset-0 grid grid-cols-1 md:grid-cols-3">
           {demoHero.panels.map((panel, index) => (
             <div
@@ -42,32 +42,38 @@ export function HomeHero() {
                 src={panel.src}
                 alt={panel.alt}
                 fill
-                priority={index === 0}
+                priority
                 className={[
                   "object-cover transition-transform duration-[1.4s] ease-out will-change-transform",
                   index === 0
-                    ? "object-[50%_45%] scale-[1.03]"
+                    ? "object-[50%_18%]"
                     : index === 1
-                      ? "object-[50%_18%]"
+                      ? "object-[50%_40%] scale-[1.04]"
                       : "object-[50%_30%]",
                 ].join(" ")}
                 sizes="(max-width:768px) 100vw, 33vw"
               />
-              <div className="absolute inset-0 bg-ink/15 md:bg-ink/10" />
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-ink/45 to-transparent md:h-1/4" />
-              <p className="absolute bottom-4 left-4 text-[10px] uppercase tracking-[0.22em] text-ivory/85 md:bottom-6 md:left-6 md:text-[11px]">
+              {/* Keep centre fabric clear — lighter veil only on the flanking panels */}
+              <div
+                className={[
+                  "absolute inset-0",
+                  index === 1 ? "bg-ink/5" : "bg-ink/20 md:bg-ink/15",
+                ].join(" ")}
+              />
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-ink/50 to-transparent md:h-1/4" />
+              <p className="absolute bottom-4 left-4 text-[10px] uppercase tracking-[0.22em] text-ivory/90 md:bottom-6 md:left-6 md:text-[11px]">
                 {panel.label}
               </p>
             </div>
           ))}
         </div>
 
-        {/* Soft brand wash so logo + headline remain the hero signal */}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-stone via-stone/55 to-stone/20 md:bg-gradient-to-r md:from-stone md:via-stone/70 md:to-transparent" />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-stone/50 via-transparent to-transparent md:from-stone/30" />
+        {/* Readability wash stops short of the centre fabric panel */}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-stone/90 via-stone/40 to-transparent md:bg-gradient-to-r md:from-stone/92 md:via-stone/55 md:via-[30%] md:to-transparent md:to-[48%]" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-stone/40 via-transparent to-transparent md:from-stone/20" />
 
         <Container className="relative flex min-h-[78vh] flex-col justify-end pb-10 pt-28 md:min-h-[86vh] md:justify-center md:pb-16 md:pt-24">
-          <div className="max-w-xl md:max-w-lg">
+          <div className="max-w-[22rem] md:max-w-md">
             <FadeIn>
               <p className="text-[10px] uppercase tracking-[0.28em] text-wine md:text-[11px]">
                 {demoHero.eyebrow}
