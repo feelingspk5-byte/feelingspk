@@ -1,12 +1,12 @@
 /**
- * Homepage marketing content — live fabric photography + upcoming categories.
+ * Homepage marketing content — live fabric catalogues + upcoming categories.
  */
 export const demoHero = {
   image: "/catalogue/hero/hero-ivory-shalwar-kameez.jpg",
   eyebrow: "Elite Men's Collection",
   title: "Unstitched fabric — colour, texture, length",
   subtitle:
-    "FEELINGS presents refined unstitched cloth across Signature Fabric, Nightfall, Earth & Neutrals, The Noir, Heritage Depth, and Atelier Five. Choose a shade, then 1, 2, 4, or 6 metres.",
+    "FEELINGS presents refined unstitched cloth across Buraq, Signature Midnight, Signature Earth, The Noir, Heritage Depth, and Tropical Signature. Choose a shade, then 1, 2, 4, or 6 metres.",
 };
 
 export const demoCategories = [
@@ -14,7 +14,7 @@ export const demoCategories = [
     slug: "unstitched-fabric",
     name: "Unstitched Fabric",
     detail: "Premium cloth by colour — order 1, 2, 4, or 6 metres.",
-    image: "/catalogue/placeholders/cat-unstitched-fabric.jpg",
+    image: "/catalogue/buraq/fl-brq-01-04-studio.jpg",
     href: "/shop?category=unstitched_fabric",
     badge: null as string | null,
   },
@@ -38,61 +38,61 @@ export const demoCategories = [
 
 export const demoCollections = [
   {
-    slug: "signature-fabric",
-    name: "Signature Fabric",
-    detail: "Ivory, warm taupe, charcoal, and olive — everyday polish.",
-    image: "/catalogue/signature-fabric/cover-v3.jpg",
+    slug: "buraq",
+    name: "Buraq Signature Fabric",
+    detail: "Sahara taupe, heritage olive, obsidian black, ivory dune.",
+    image: "/catalogue/buraq/cover.jpg",
   },
   {
-    slug: "nightfall",
-    name: "Nightfall",
-    detail: "Classic black, espresso brown, and midnight navy.",
-    image: "/catalogue/nightfall/cover-v3.jpg",
+    slug: "signature-midnight",
+    name: "Signature Midnight",
+    detail: "Espresso brown, midnight navy, and classic black.",
+    image: "/catalogue/signature-midnight/cover.jpg",
   },
   {
     slug: "noir",
     name: "The Noir",
     detail: "Jet, ink, charcoal, and navy for formal depth.",
-    image: "/catalogue/noir/cover-v3.jpg",
+    image: "/catalogue/noir/cover.jpg",
   },
 ];
 
 export const demoFabrics = [
   {
-    slug: "signature-fabric",
-    name: "Signature Fabric",
-    detail: "Composed everyday tones.",
-    image: "/catalogue/signature-fabric/fea-01-01-studio-v3.jpg",
+    slug: "buraq",
+    name: "Buraq Signature Fabric",
+    detail: "Four considered signature shades.",
+    image: "/catalogue/buraq/fl-brq-01-01-studio.jpg",
     tag: "Fabric",
   },
   {
-    slug: "earth-neutrals",
-    name: "Earth & Neutrals",
-    detail: "Soft ivory through dark olive.",
-    image: "/catalogue/earth-neutrals/fea-03-02-studio-v3.jpg",
+    slug: "article-03",
+    name: "Signature Earth",
+    detail: "Ivory through deep olive.",
+    image: "/catalogue/article-03/fea-03-02-studio.jpg",
     tag: "Fabric",
   },
   {
     slug: "heritage-depth",
     name: "Heritage Depth",
     detail: "Graphite, olive, burgundy, navy.",
-    image: "/catalogue/heritage-depth/fea-05-03-studio-v3.jpg",
+    image: "/catalogue/heritage-depth/fea-05-03-studio.jpg",
     tag: "Fabric",
   },
   {
-    slug: "atelier-five",
-    name: "Atelier Five",
-    detail: "Studio colours for a full wardrobe.",
-    image: "/catalogue/atelier-five/fea-06-05-studio-v3.jpg",
+    slug: "tropical-signature",
+    name: "Tropical Signature",
+    detail: "Tropical unstitched colours.",
+    image: "/catalogue/tropical-signature/fea-06-02-studio.jpg",
     tag: "Fabric",
   },
 ];
 
 export const demoEditorial = {
-  image: "/catalogue/heritage-depth/fea-05-04-fill-v3.jpg",
+  image: "/catalogue/tropical-signature/fea-06-03-studio.jpg",
   eyebrow: "The house",
-  title: "Cloth photographed from our own rolls.",
-  body: "Every shade on this site comes from FEELINGS unstitched fabric — true colour and texture from the cloth, presented clearly for selection. Stitched shalwar kameez and dress shirts are arriving next.",
+  title: "Cloth from our own catalogues.",
+  body: "Every shade on this site comes from FEELINGS unstitched fabric catalogues. Stitched shalwar kameez and dress shirts are arriving next.",
 };
 
 export const demoAssurances = [
