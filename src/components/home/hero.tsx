@@ -2,11 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import {
-  AnimatePresence,
-  motion,
-  useReducedMotion,
-} from "framer-motion";
+import { useReducedMotion } from "framer-motion";
 import { useCallback, useEffect, useState } from "react";
 import { BrandLogo } from "@/components/brand/logo";
 import { FadeIn, Stagger, StaggerItem } from "@/components/home/motion";
@@ -41,6 +37,7 @@ export function HomeHero() {
   const [index, setIndex] = useState(0);
   const [tick, setTick] = useState(0);
   const [hidden, setHidden] = useState(false);
+  const [ready, setReady] = useState(false);
 
   const goTo = useCallback(
     (next: number) => {
@@ -50,8 +47,30 @@ export function HomeHero() {
     [slides.length],
   );
 
+  // Preload every slide image into the browser cache before rotating
   useEffect(() => {
-    if (reduce || hidden || slides.length < 2) return;
+    let cancelled = false;
+    const loaders = slides.map(
+      (slide) =>
+        new Promise<void>((resolve) => {
+          const img = new window.Image();
+          img.onload = () => resolve();
+          img.onerror = () => resolve();
+          img.src = slide.src;
+        }),
+    );
+
+    Promise.all(loaders).then(() => {
+      if (!cancelled) setReady(true);
+    });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [slides]);
+
+  useEffect(() => {
+    if (!ready || reduce || hidden || slides.length < 2) return;
 
     const id = window.setInterval(() => {
       setIndex((current) => (current + 1) % slides.length);
@@ -59,7 +78,7 @@ export function HomeHero() {
     }, SLIDE_MS);
 
     return () => window.clearInterval(id);
-  }, [hidden, reduce, slides.length]);
+  }, [ready, hidden, reduce, slides.length]);
 
   useEffect(() => {
     const onVisibility = () => setHidden(document.hidden);
@@ -72,27 +91,32 @@ export function HomeHero() {
   return (
     <section className="relative overflow-hidden bg-stone text-ink">
       <div className="relative min-h-[70vh] md:min-h-[78vh] lg:min-h-[82vh]">
-        {/* Full-bleed rotating backgrounds */}
+        {/* Keep ALL slides mounted — crossfade opacity only, no blank remount */}
         <div className="absolute inset-0">
-          <AnimatePresence mode="sync" initial={false}>
-            <motion.div
-              key={active.src}
-              className="absolute inset-0"
-              initial={reduce ? false : { opacity: 0, scale: 1.02 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={reduce ? undefined : { opacity: 0 }}
-              transition={{ duration: reduce ? 0 : 1.1, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <Image
-                src={active.src}
-                alt={active.alt}
-                fill
-                priority={index === 0}
-                className={`object-cover ${active.position}`}
-                sizes="100vw"
-              />
-            </motion.div>
-          </AnimatePresence>
+          {slides.map((slide, i) => {
+            const isActive = i === index;
+            return (
+              <div
+                key={slide.src}
+                aria-hidden={!isActive}
+                className={[
+                  "absolute inset-0 transition-opacity ease-out",
+                  reduce ? "duration-0" : "duration-700",
+                  isActive ? "opacity-100" : "opacity-0",
+                ].join(" ")}
+              >
+                <Image
+                  src={slide.src}
+                  alt={slide.alt}
+                  fill
+                  priority
+                  quality={75}
+                  className={`object-cover ${slide.position}`}
+                  sizes="100vw"
+                />
+              </div>
+            );
+          })}
 
           {/* Soft cream wash — keeps black FEELINGS logo and copy crisp on the wall */}
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-stone/95 via-stone/60 to-transparent md:via-[38%] md:to-transparent" />
@@ -159,7 +183,7 @@ export function HomeHero() {
                       <span
                         key={`${index}-${tick}`}
                         className={
-                          reduce
+                          reduce || !ready
                             ? "absolute inset-y-0 left-0 w-full bg-ink"
                             : "absolute inset-y-0 left-0 animate-[heroProgress_5s_linear_forwards] bg-ink"
                         }
