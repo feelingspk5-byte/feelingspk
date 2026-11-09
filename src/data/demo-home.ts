@@ -6,21 +6,25 @@ export const demoHero = {
   title: "Quiet luxury for the modern gentleman",
   subtitle:
     "FEELINGS brings together unstitched cloth, stitched shalwar kameez, and dress shirts — considered fabrics and silhouettes for every occasion.",
-  panels: [
-    {
-      src: "/brand/hero/fabric.jpg",
-      alt: "Folded unstitched FEELINGS fabric piled on a table — cream, camel, charcoal, and navy",
-      label: "Unstitched",
-    },
+  /** Full-bleed slides — rotate every 5s, Ahmad Fabrics–style house carousel */
+  slides: [
     {
       src: "/brand/hero/shalwar-kameez.jpg",
       alt: "Gentleman in ivory stitched shalwar kameez",
-      label: "Shalwar Kameez",
+      label: "Stitched Shalwar Kameez",
+      position: "object-[50%_18%]",
+    },
+    {
+      src: "/brand/hero/fabric.jpg",
+      alt: "Folded unstitched FEELINGS fabric piled on a table",
+      label: "Unstitched Fabric",
+      position: "object-[50%_42%]",
     },
     {
       src: "/brand/hero/dress-shirt.jpg",
       alt: "Crisp white dress shirt on hanger",
       label: "Dress Shirts",
+      position: "object-[50%_28%]",
     },
   ],
 };
