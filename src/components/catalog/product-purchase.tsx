@@ -144,7 +144,7 @@ export function ProductPurchase({
           <legend className="mb-3 text-[11px] uppercase tracking-[0.16em] text-ink/60">
             Colour
           </legend>
-          <div className="flex flex-wrap gap-3">
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-2">
             {colours.map((colour) => (
               <button
                 key={colour.id}
@@ -152,22 +152,21 @@ export function ProductPurchase({
                 disabled={colour.available === false}
                 onClick={() => setColour(colour.id)}
                 className={cn(
-                  "group flex min-w-[7.5rem] flex-col items-start gap-2 rounded-sm border px-3 py-3 text-left transition-colors",
+                  "group overflow-hidden rounded-sm border text-left transition-colors",
                   activeColourId === colour.id
-                    ? "border-wine bg-wine/5"
+                    ? "border-wine ring-1 ring-wine"
                     : "border-ink/15 bg-ivory hover:border-ink/35",
                   colour.available === false && "opacity-40",
                 )}
               >
                 <span
-                  className={cn(
-                    "h-8 w-8 rounded-sm border border-ink/10",
-                    activeColourId === colour.id && "ring-1 ring-wine",
-                  )}
+                  className="block h-14 w-full border-b border-ink/10 sm:h-16"
                   style={{ backgroundColor: colour.hex ?? "#d8d1c6" }}
                   aria-hidden
                 />
-                <span className="text-sm leading-snug text-ink">{colour.name}</span>
+                <span className="block px-3 py-2.5 text-sm leading-snug text-ink">
+                  {colour.name}
+                </span>
               </button>
             ))}
           </div>
