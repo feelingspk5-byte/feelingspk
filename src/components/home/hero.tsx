@@ -5,7 +5,6 @@ import Link from "next/link";
 import { BrandLogo } from "@/components/brand/logo";
 import { FadeIn, Stagger, StaggerItem } from "@/components/home/motion";
 import { Container } from "@/components/layout/container";
-import { VectorBackdrop } from "@/components/ui/vector-backdrop";
 import { demoHero } from "@/data/demo-home";
 
 const destinations = [
@@ -31,55 +30,80 @@ const destinations = [
 export function HomeHero() {
   return (
     <section className="relative overflow-hidden bg-stone text-ink">
-      <div className="relative min-h-[72vh] md:min-h-[78vh]">
-        <Image
-          src={demoHero.image}
-          alt="Man in ivory shalwar kameez — FEELINGS Elite Men's Collection"
-          fill
-          priority
-          className="object-cover object-[62%_18%] sm:object-[68%_12%] md:object-[72%_10%]"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-stone via-stone/40 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-r from-stone/80 via-stone/40 to-transparent md:via-stone/30" />
-        <VectorBackdrop className="opacity-30" />
+      <div className="relative min-h-[78vh] md:min-h-[86vh]">
+        {/* Full-bleed triptych — one visual plane, three lines of the house */}
+        <div className="absolute inset-0 grid grid-cols-1 md:grid-cols-3">
+          {demoHero.panels.map((panel, index) => (
+            <div
+              key={panel.src}
+              className="relative min-h-[34vh] overflow-hidden md:min-h-full"
+            >
+              <Image
+                src={panel.src}
+                alt={panel.alt}
+                fill
+                priority={index === 0}
+                className={[
+                  "object-cover transition-transform duration-[1.4s] ease-out will-change-transform",
+                  index === 0
+                    ? "object-[50%_45%] scale-[1.03]"
+                    : index === 1
+                      ? "object-[50%_18%]"
+                      : "object-[50%_30%]",
+                ].join(" ")}
+                sizes="(max-width:768px) 100vw, 33vw"
+              />
+              <div className="absolute inset-0 bg-ink/15 md:bg-ink/10" />
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-ink/45 to-transparent md:h-1/4" />
+              <p className="absolute bottom-4 left-4 text-[10px] uppercase tracking-[0.22em] text-ivory/85 md:bottom-6 md:left-6 md:text-[11px]">
+                {panel.label}
+              </p>
+            </div>
+          ))}
+        </div>
 
-        <Container className="relative flex min-h-[72vh] flex-col justify-end pb-10 pt-28 md:min-h-[78vh] md:pb-14">
-          <FadeIn>
-            <p className="text-[10px] uppercase tracking-[0.28em] text-wine md:text-[11px]">
-              {demoHero.eyebrow}
-            </p>
-          </FadeIn>
-          <h1 className="sr-only">FEELINGS — {demoHero.title}</h1>
-          <FadeIn delay={0.08}>
-            <div className="mt-5 max-w-sm md:mt-7 md:max-w-md">
-              <BrandLogo variant="hero" priority />
-            </div>
-          </FadeIn>
-          <FadeIn delay={0.16}>
-            <p className="mt-5 max-w-xl font-display text-3xl leading-tight tracking-tight text-ink md:mt-7 md:text-5xl">
-              {demoHero.title}
-            </p>
-            <p className="mt-4 max-w-lg text-sm leading-relaxed text-ink/75 md:text-base">
-              {demoHero.subtitle}
-            </p>
-          </FadeIn>
-          <FadeIn delay={0.24}>
-            <div className="mt-7 flex flex-wrap gap-3 md:mt-9">
-              <Link
-                href="/shop"
-                className="inline-flex h-12 min-w-[10rem] items-center justify-center rounded-sm bg-ink px-6 text-sm tracking-[0.08em] text-ivory transition-transform duration-feel hover:-translate-y-0.5"
-              >
-                Explore the Collection
-              </Link>
-              <Link
-                href="/collections"
-                className="inline-flex h-12 min-w-[10rem] items-center justify-center rounded-sm border border-ink bg-ivory/70 px-6 text-sm tracking-[0.08em] text-ink backdrop-blur-sm transition-colors duration-feel hover:bg-ink hover:text-ivory"
-              >
-                View Collections
-              </Link>
-            </div>
-          </FadeIn>
+        {/* Soft brand wash so logo + headline remain the hero signal */}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-stone via-stone/55 to-stone/20 md:bg-gradient-to-r md:from-stone md:via-stone/70 md:to-transparent" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-stone/50 via-transparent to-transparent md:from-stone/30" />
+
+        <Container className="relative flex min-h-[78vh] flex-col justify-end pb-10 pt-28 md:min-h-[86vh] md:justify-center md:pb-16 md:pt-24">
+          <div className="max-w-xl md:max-w-lg">
+            <FadeIn>
+              <p className="text-[10px] uppercase tracking-[0.28em] text-wine md:text-[11px]">
+                {demoHero.eyebrow}
+              </p>
+            </FadeIn>
+            <h1 className="sr-only">FEELINGS — {demoHero.title}</h1>
+            <FadeIn delay={0.08}>
+              <div className="mt-5 max-w-sm md:mt-7 md:max-w-md">
+                <BrandLogo variant="hero" priority />
+              </div>
+            </FadeIn>
+            <FadeIn delay={0.16}>
+              <p className="mt-5 font-display text-3xl leading-tight tracking-tight text-ink md:mt-7 md:text-5xl">
+                {demoHero.title}
+              </p>
+              <p className="mt-4 max-w-md text-sm leading-relaxed text-ink/75 md:text-base">
+                {demoHero.subtitle}
+              </p>
+            </FadeIn>
+            <FadeIn delay={0.24}>
+              <div className="mt-7 flex flex-wrap gap-3 md:mt-9">
+                <Link
+                  href="/shop"
+                  className="inline-flex h-12 min-w-[10rem] items-center justify-center rounded-sm bg-ink px-6 text-sm tracking-[0.08em] text-ivory transition-transform duration-feel hover:-translate-y-0.5"
+                >
+                  Explore the Collection
+                </Link>
+                <Link
+                  href="/collections"
+                  className="inline-flex h-12 min-w-[10rem] items-center justify-center rounded-sm border border-ink bg-ivory/80 px-6 text-sm tracking-[0.08em] text-ink backdrop-blur-sm transition-colors duration-feel hover:bg-ink hover:text-ivory"
+                >
+                  View Collections
+                </Link>
+              </div>
+            </FadeIn>
+          </div>
         </Container>
       </div>
 

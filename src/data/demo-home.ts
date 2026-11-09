@@ -2,11 +2,27 @@
  * Homepage marketing content — Elite Men's Collection across three lines.
  */
 export const demoHero = {
-  image: "/catalogue/hero/hero-ivory-shalwar-kameez.jpg",
   eyebrow: "Elite Men's Collection",
   title: "Quiet luxury for the modern gentleman",
   subtitle:
     "FEELINGS brings together unstitched cloth, stitched shalwar kameez, and dress shirts — considered fabrics and silhouettes for every occasion.",
+  panels: [
+    {
+      src: "/brand/hero/fabric.jpg",
+      alt: "Folded unstitched FEELINGS fabric on a table",
+      label: "Unstitched",
+    },
+    {
+      src: "/brand/hero/shalwar-kameez.jpg",
+      alt: "Gentleman in ivory stitched shalwar kameez",
+      label: "Shalwar Kameez",
+    },
+    {
+      src: "/brand/hero/dress-shirt.jpg",
+      alt: "Crisp white dress shirt on hanger",
+      label: "Dress Shirts",
+    },
+  ],
 };
 
 export const demoCategories = [
