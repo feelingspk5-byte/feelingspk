@@ -84,15 +84,37 @@ export function Footer() {
               {config.contactEmail ? (
                 <a href={`mailto:${config.contactEmail}`}>{config.contactEmail}</a>
               ) : (
-                <span>Email pending owner confirmation</span>
+                <span>Email pending</span>
               )}
             </li>
             <li>
               {config.contactPhone ? (
                 <a href={`tel:${config.contactPhone}`}>{config.contactPhone}</a>
               ) : (
-                <span>Phone / WhatsApp pending confirmation</span>
+                <span>Phone pending</span>
               )}
+            </li>
+            <li>
+              {config.whatsapp ? (
+                <a
+                  href={`https://wa.me/${config.whatsapp.replace(/\D/g, "").replace(/^0/, "92")}`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  WhatsApp {config.whatsapp}
+                </a>
+              ) : null}
+            </li>
+            <li>
+              {config.social.instagram ? (
+                <a
+                  href={`https://instagram.com/${config.social.instagram}`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Instagram @{config.social.instagram}
+                </a>
+              ) : null}
             </li>
           </ul>
           <ul className="mt-6 space-y-2">
