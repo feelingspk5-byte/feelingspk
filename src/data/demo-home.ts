@@ -41,19 +41,19 @@ export const demoCollections = [
     slug: "buraq",
     name: "Buraq Signature Fabric",
     detail: "Sahara taupe, heritage olive, obsidian black, ivory dune.",
-    image: "/catalogue/buraq/cover.jpg",
+    image: "/catalogue/buraq/fl-brq-01-01-studio.jpg",
   },
   {
     slug: "signature-midnight",
     name: "Signature Midnight",
     detail: "Espresso brown, midnight navy, and classic black.",
-    image: "/catalogue/signature-midnight/cover.jpg",
+    image: "/catalogue/signature-midnight/fea-02-01-studio.jpg",
   },
   {
     slug: "noir",
     name: "The Noir",
     detail: "Jet, ink, charcoal, and navy for formal depth.",
-    image: "/catalogue/noir/cover.jpg",
+    image: "/catalogue/noir/fea-04-01-studio.jpg",
   },
 ];
 
