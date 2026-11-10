@@ -232,12 +232,12 @@ export function ProductPurchase({
             (e.g., 5 meters, 5.5 meters, or even 1 meter, 2 meters, or any custom
             length), please feel free to contact us on WhatsApp at{" "}
             <a
-              href="https://wa.me/923055551507"
+              href="https://wa.me/923155551505"
               target="_blank"
               rel="noreferrer"
               className="font-medium text-wine underline-offset-2 hover:underline"
             >
-              +92 3055551507
+              +92 3155551505
             </a>{" "}
             for assistance.
           </p>

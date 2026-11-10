@@ -21,10 +21,10 @@ export const demoHero = {
       position: "object-center",
     },
     {
-      src: "/brand/hero/dress-shirt-navy.jpg",
-      alt: "Navy dress shirt on wooden hanger",
+      src: "/brand/hero/dress-shirt-formal.jpg",
+      alt: "Crisp white formal dress shirt on wooden hanger",
       label: "Dress Shirts",
-      position: "object-[62%_42%]",
+      position: "object-[68%_40%]",
     },
   ],
 };
