@@ -53,6 +53,12 @@ body {
   }
 }
 
+.admin-workspace {
+  background-image:
+    radial-gradient(ellipse at 100% 0%, rgba(107, 38, 56, 0.05), transparent 42%),
+    linear-gradient(180deg, #ebe6dc 0%, #e4ddd2 100%);
+}
+
 @keyframes heroProgress {
   from {
     width: 0%;

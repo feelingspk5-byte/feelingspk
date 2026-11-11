@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { CallClientActions } from "@/components/admin/call-client-button";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -60,16 +61,18 @@ export function OrderDetail({ order: initial }: { order: Order }) {
     router.refresh();
   }
 
-  const waDigits = order.customer.phone
-    .replace(/\D/g, "")
-    .replace(/^0/, "92");
-  const wa = `https://wa.me/${waDigits}`;
-
   return (
     <div className="grid gap-8 lg:grid-cols-[1fr_320px]">
       <div className="space-y-6">
-        <section className="border border-ink/10 bg-ivory p-6">
-          <h2 className="font-display text-2xl">Customer</h2>
+        <section className="rounded-sm border border-ink/10 bg-ivory p-6">
+          <div className="flex flex-wrap items-start justify-between gap-4">
+            <h2 className="font-display text-2xl">Customer</h2>
+            <CallClientActions
+              phone={order.customer.phone}
+              name={order.customer.name}
+              compact
+            />
+          </div>
           <dl className="mt-4 space-y-2 text-sm">
             <div className="flex justify-between gap-4">
               <dt className="text-ink/55">Name</dt>
@@ -81,16 +84,12 @@ export function OrderDetail({ order: initial }: { order: Order }) {
             </div>
             <div className="flex justify-between gap-4">
               <dt className="text-ink/55">Phone</dt>
-              <dd>
-                <a href={wa} target="_blank" rel="noreferrer" className="text-wine">
-                  {order.customer.phone}
-                </a>
-              </dd>
+              <dd className="font-medium">{order.customer.phone}</dd>
             </div>
           </dl>
         </section>
 
-        <section className="border border-ink/10 bg-ivory p-6">
+        <section className="rounded-sm border border-ink/10 bg-ivory p-6">
           <h2 className="font-display text-2xl">Delivery</h2>
           <p className="mt-4 text-sm leading-relaxed text-ink/80">
             {order.delivery.address}
@@ -103,7 +102,7 @@ export function OrderDetail({ order: initial }: { order: Order }) {
           ) : null}
         </section>
 
-        <section className="border border-ink/10 bg-ivory p-6">
+        <section className="rounded-sm border border-ink/10 bg-ivory p-6">
           <h2 className="font-display text-2xl">Items</h2>
           <ul className="mt-4 divide-y divide-ink/10">
             {order.lines.map((line) => (
@@ -119,7 +118,7 @@ export function OrderDetail({ order: initial }: { order: Order }) {
                 </div>
                 <p>
                   {line.unitPrice === undefined
-                    ? "On request"
+                    ? "—"
                     : formatPrice(line.unitPrice * line.quantity, line.currency)}
                 </p>
               </li>
@@ -128,15 +127,19 @@ export function OrderDetail({ order: initial }: { order: Order }) {
         </section>
       </div>
 
-      <aside className="h-fit space-y-4 border border-ink/10 bg-stone/40 p-6">
+      <aside className="h-fit space-y-4 rounded-sm border border-ink/10 bg-[#f3eee4] p-6">
         <p className="text-[11px] uppercase tracking-[0.16em] text-wine">
           Cash on Delivery
         </p>
         <p className="font-display text-2xl">
           {order.subtotal === undefined
-            ? "On request"
+            ? "—"
             : formatPrice(order.subtotal, order.currency)}
         </p>
+        <CallClientActions
+          phone={order.customer.phone}
+          name={order.customer.name}
+        />
 
         <label className="block text-sm">
           <span className="mb-1.5 block text-[11px] uppercase tracking-[0.14em] text-ink/55">
@@ -183,18 +186,10 @@ export function OrderDetail({ order: initial }: { order: Order }) {
           {busy ? "Saving…" : "Update order"}
         </Button>
         <a
-          href={wa}
-          target="_blank"
-          rel="noreferrer"
-          className="inline-flex h-11 w-full items-center justify-center border border-ink text-sm"
-        >
-          WhatsApp customer
-        </a>
-        <a
           href={`/admin/orders/${order.id}/print`}
           target="_blank"
           rel="noreferrer"
-          className="inline-flex h-11 w-full items-center justify-center border border-ink text-sm"
+          className="inline-flex h-11 w-full items-center justify-center rounded-sm border border-ink text-sm transition-colors hover:bg-ink hover:text-ivory"
         >
           Print invoice / packing slip
         </a>
