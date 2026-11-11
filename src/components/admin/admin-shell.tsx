@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { AdminLogoutButton } from "@/components/admin/admin-logout-button";
+import { AdminSearch } from "@/components/admin/admin-search";
 
 const NAV = [
   { href: "/admin", label: "Overview" },
@@ -34,8 +35,9 @@ export function AdminShell({
             </p>
             <p className="font-display text-xl tracking-tight">Control panel</p>
           </div>
-          <div className="flex items-center gap-4 text-sm">
-            <span className="hidden text-ink/50 sm:inline">{email}</span>
+          <div className="flex items-center gap-3 text-sm sm:gap-4">
+            <AdminSearch />
+            <span className="hidden text-ink/50 lg:inline">{email}</span>
             <Link
               href="/"
               className="text-ink/60 transition-colors hover:text-wine"
