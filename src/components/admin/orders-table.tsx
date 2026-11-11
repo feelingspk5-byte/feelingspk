@@ -3,14 +3,30 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { formatPrice } from "@/lib/format";
-import type { Order } from "@/lib/store/types";
+import type { Order, OrderStatus } from "@/lib/store/types";
+
+type FilterId = "all" | OrderStatus;
+
+const FILTERS: { id: FilterId; label: string }[] = [
+  { id: "all", label: "All" },
+  { id: "pending", label: "Pending" },
+  { id: "confirmed", label: "Confirmed" },
+  { id: "packing", label: "Packing" },
+  { id: "shipped", label: "Shipped" },
+  { id: "delivered", label: "Delivered" },
+  { id: "cancelled", label: "Cancelled" },
+];
 
 export function OrdersTable({ orders }: { orders: Order[] }) {
   const [query, setQuery] = useState("");
+  const [filter, setFilter] = useState<FilterId>("all");
+
   const filtered = useMemo(() => {
+    let list = orders;
+    if (filter !== "all") list = list.filter((o) => o.status === filter);
     const q = query.trim().toLowerCase();
-    if (!q) return orders;
-    return orders.filter((o) =>
+    if (!q) return list;
+    return list.filter((o) =>
       [
         o.id,
         o.customer.name,
@@ -25,38 +41,51 @@ export function OrdersTable({ orders }: { orders: Order[] }) {
         .toLowerCase()
         .includes(q),
     );
-  }, [orders, query]);
+  }, [orders, query, filter]);
 
   return (
     <div className="space-y-4">
-      <label className="relative block max-w-md">
-        <span className="sr-only">Search orders</span>
-        <svg
-          className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-ink/40"
-          width="14"
-          height="14"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          aria-hidden
-        >
-          <circle cx="11" cy="11" r="7" />
-          <path d="M20 20l-3.5-3.5" />
-        </svg>
+      <div className="flex flex-wrap items-center gap-2">
+        {FILTERS.map((f) => (
+          <button
+            key={f.id}
+            type="button"
+            onClick={() => setFilter(f.id)}
+            className={[
+              "rounded-sm border px-3 py-1.5 text-xs uppercase tracking-[0.12em]",
+              filter === f.id
+                ? "border-ink bg-ink text-ivory"
+                : "border-ink/15 text-ink/60 hover:border-ink/40",
+            ].join(" ")}
+          >
+            {f.label}
+          </button>
+        ))}
+      </div>
+
+      <div className="flex flex-wrap items-center gap-3">
         <input
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Filter by name, phone, city, status…"
-          className="h-11 w-full rounded-sm border border-ink/15 bg-ivory pl-9 pr-3 text-sm outline-none focus:border-wine"
+          className="h-11 min-w-[16rem] flex-1 max-w-md rounded-sm border border-ink/15 bg-ivory px-3 text-sm outline-none focus:border-wine"
         />
-      </label>
+        <button
+          type="button"
+          className="inline-flex h-11 items-center border border-ink px-4 text-sm"
+          onClick={() => {
+            window.location.assign("/api/admin/orders/export");
+          }}
+        >
+          Export CSV
+        </button>
+      </div>
 
       {filtered.length === 0 ? (
         <p className="border border-ink/10 bg-ivory p-8 text-sm text-ink/55">
           {orders.length === 0
             ? "No orders yet."
-            : `No orders match “${query}”.`}
+            : `No orders match this view.`}
         </p>
       ) : (
         <div className="overflow-x-auto border border-ink/10 bg-ivory">

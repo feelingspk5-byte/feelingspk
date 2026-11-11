@@ -48,6 +48,7 @@ export async function PUT(request: Request, ctx: Ctx) {
     cutOptions: body.cutOptions ?? existing.cutOptions,
     sizeOptions: body.sizeOptions ?? existing.sizeOptions,
     images: body.images ?? existing.images,
+    updatedAt: new Date().toISOString(),
   };
 
   await updateStore((draft) => {

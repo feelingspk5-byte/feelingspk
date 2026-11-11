@@ -14,6 +14,8 @@ export type SellingMethod =
 
 export type Availability = "in_stock" | "out_of_stock" | "unconfirmed";
 
+export type PublishStatus = "draft" | "published";
+
 export type ProductImageKind =
   | "hero"
   | "texture"
@@ -80,11 +82,17 @@ export interface Product {
   colourVariants?: ColourVariant[];
   images: ProductImage[];
   availability: Availability;
+  /** Draft stays off the storefront until published */
+  publishStatus?: PublishStatus;
+  /** Units / metres on hand — used for low-stock alerts */
+  stockQty?: number;
+  lowStockThreshold?: number;
   featured?: boolean;
   newArrival?: boolean;
   /** Only set when client confirms sales data or featured status */
   bestSeller?: boolean;
   includesNote?: string;
+  updatedAt?: string;
 }
 
 /** @deprecated Use Product — kept as alias during migration */

@@ -19,32 +19,40 @@ export function getCollectionBySlug(slug: string): Collection | undefined {
   return readStore().collections.find((c) => c.slug === slug);
 }
 
+function isPublished(p: FabricProduct) {
+  return (p.publishStatus ?? "published") === "published";
+}
+
 export function getProducts(): FabricProduct[] {
+  return readStore().products.filter(isPublished);
+}
+
+export function getAllProductsAdmin(): FabricProduct[] {
   return [...readStore().products];
 }
 
 export function getProductBySlug(slug: string): FabricProduct | undefined {
-  return readStore().products.find((p) => p.slug === slug);
+  return getProducts().find((p) => p.slug === slug);
 }
 
 export function getProductById(id: string): FabricProduct | undefined {
-  return readStore().products.find((p) => p.id === id);
+  return getProducts().find((p) => p.id === id);
 }
 
 export function getProductsByCollection(slug: string): FabricProduct[] {
-  return readStore().products.filter((p) => p.collectionSlugs.includes(slug));
+  return getProducts().filter((p) => p.collectionSlugs.includes(slug));
 }
 
 export function getNewArrivals(): FabricProduct[] {
-  return readStore().products.filter((p) => p.newArrival);
+  return getProducts().filter((p) => p.newArrival);
 }
 
 export function getFeaturedProducts(): FabricProduct[] {
-  return readStore().products.filter((p) => p.featured);
+  return getProducts().filter((p) => p.featured);
 }
 
 export function getBestSellers(): FabricProduct[] {
-  return readStore().products.filter((p) => p.bestSeller);
+  return getProducts().filter((p) => p.bestSeller);
 }
 
 export function searchProducts(query: string): FabricProduct[] {

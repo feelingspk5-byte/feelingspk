@@ -1,10 +1,11 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { pushRecent } from "@/lib/admin-recent";
 import { formatPrice } from "@/lib/format";
 import type { Order, OrderStatus } from "@/lib/store/types";
 
@@ -25,6 +26,16 @@ export function OrderDetail({ order: initial }: { order: Order }) {
   const [notes, setNotes] = useState(initial.internalNotes ?? "");
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
+
+  useEffect(() => {
+    pushRecent({
+      id: initial.id,
+      type: "order",
+      title: `${initial.customer.name} · ${initial.id}`,
+      subtitle: initial.status,
+      href: `/admin/orders/${initial.id}`,
+    });
+  }, [initial.id, initial.customer.name, initial.status]);
 
   async function save() {
     setBusy(true);
@@ -178,6 +189,14 @@ export function OrderDetail({ order: initial }: { order: Order }) {
           className="inline-flex h-11 w-full items-center justify-center border border-ink text-sm"
         >
           WhatsApp customer
+        </a>
+        <a
+          href={`/admin/orders/${order.id}/print`}
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex h-11 w-full items-center justify-center border border-ink text-sm"
+        >
+          Print invoice / packing slip
         </a>
       </aside>
     </div>

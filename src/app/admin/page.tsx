@@ -23,6 +23,12 @@ export default async function AdminHomePage() {
   const inStock = store.products.filter((p) => p.availability === "in_stock")
     .length;
   const activeOffers = store.offers.filter((o) => o.active).length;
+  const drafts = store.products.filter((p) => p.publishStatus === "draft")
+    .length;
+  const lowStock = store.products.filter((p) => {
+    if (p.stockQty === undefined) return false;
+    return p.stockQty <= (p.lowStockThreshold ?? 5);
+  });
   const recent = [...store.orders]
     .sort((a, b) => b.createdAt.localeCompare(a.createdAt))
     .slice(0, 5);
@@ -61,6 +67,16 @@ export default async function AdminHomePage() {
               label: "Active offers",
               value: String(activeOffers),
               href: "/admin/offers",
+            },
+            {
+              label: "Low stock",
+              value: String(lowStock.length),
+              href: "/admin/products",
+            },
+            {
+              label: "Drafts",
+              value: String(drafts),
+              href: "/admin/products",
             },
             {
               label: "Customers",
@@ -111,6 +127,30 @@ export default async function AdminHomePage() {
             </Link>
           ))}
         </div>
+
+        {lowStock.length > 0 ? (
+          <section className="border border-wine/30 bg-wine/[0.04] p-6">
+            <h2 className="font-display text-2xl text-ink">Low-stock alerts</h2>
+            <ul className="mt-4 divide-y divide-ink/10">
+              {lowStock.slice(0, 8).map((p) => (
+                <li
+                  key={p.id}
+                  className="flex flex-wrap items-center justify-between gap-3 py-3 text-sm"
+                >
+                  <Link
+                    href={`/admin/products/${p.id}`}
+                    className="font-medium hover:text-wine"
+                  >
+                    {p.name}
+                  </Link>
+                  <span className="text-wine">
+                    {p.stockQty} left (alert ≤ {p.lowStockThreshold ?? 5})
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
 
         <section className="border border-ink/10 bg-ivory p-6">
           <div className="flex items-baseline justify-between gap-4">

@@ -55,10 +55,14 @@ export async function POST(request: Request) {
     colourVariants: body.colourVariants ?? [],
     images: body.images ?? [],
     availability: body.availability ?? "in_stock",
+    publishStatus: body.publishStatus ?? "published",
+    stockQty: body.stockQty,
+    lowStockThreshold: body.lowStockThreshold ?? 5,
     featured: Boolean(body.featured),
     newArrival: Boolean(body.newArrival),
     bestSeller: Boolean(body.bestSeller),
     includesNote: body.includesNote,
+    updatedAt: new Date().toISOString(),
   };
 
   await updateStore((draft) => {

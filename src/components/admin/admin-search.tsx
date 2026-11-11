@@ -9,6 +9,7 @@ import {
   useRef,
   useState,
 } from "react";
+import { pushRecent, readRecent } from "@/lib/admin-recent";
 
 type Hit = {
   id: string;
@@ -25,6 +26,7 @@ const TYPE_LABEL: Record<string, string> = {
   customer: "Customer",
   collection: "Collection",
   offer: "Offer",
+  recent: "Recent",
 };
 
 export function AdminSearch() {
@@ -72,6 +74,24 @@ export function AdminSearch() {
     setLoading(true);
     const t = window.setTimeout(async () => {
       try {
+        if (!q) {
+          const recent = readRecent().map((r) => ({
+            id: r.id,
+            type: "recent",
+            title: r.title,
+            subtitle: r.subtitle ?? r.type,
+            href: r.href,
+          }));
+          const res = await fetch(`/api/admin/search?q=`, {
+            signal: ctrl.signal,
+          });
+          const data = (await res.json()) as { hits?: Hit[] };
+          const pages = data.hits ?? [];
+          setHits([...recent, ...pages].slice(0, 16));
+          setActive(0);
+          setLoading(false);
+          return;
+        }
         const res = await fetch(
           `/api/admin/search?q=${encodeURIComponent(q)}`,
           { signal: ctrl.signal },
@@ -92,6 +112,13 @@ export function AdminSearch() {
   }, [query, open]);
 
   function go(hit: Hit) {
+    pushRecent({
+      id: hit.id,
+      type: hit.type === "recent" ? "item" : hit.type,
+      title: hit.title,
+      subtitle: hit.subtitle,
+      href: hit.href,
+    });
     close();
     router.push(hit.href);
     router.refresh();

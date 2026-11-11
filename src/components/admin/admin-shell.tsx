@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { AdminLogoutButton } from "@/components/admin/admin-logout-button";
 import { AdminSearch } from "@/components/admin/admin-search";
+import { AdminShortcuts } from "@/components/admin/admin-shortcuts";
 
 const NAV = [
   { href: "/admin", label: "Overview" },
@@ -62,6 +63,11 @@ export function AdminShell({
       <main className="mx-auto max-w-6xl px-4 py-8 md:px-6 md:py-10">
         {children}
       </main>
+      <AdminShortcuts />
+      <p className="pb-4 text-center text-[11px] text-ink/35">
+        Press <kbd className="border border-ink/15 px-1">?</kbd> for shortcuts ·{" "}
+        <kbd className="border border-ink/15 px-1">⌘K</kbd> to search
+      </p>
     </div>
   );
 }

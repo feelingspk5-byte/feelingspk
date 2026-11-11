@@ -2,11 +2,13 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { MediaPicker } from "@/components/admin/media-picker";
 import { FABRIC_METER_OPTIONS } from "@/data/catalog";
+import { pushRecent } from "@/lib/admin-recent";
 import {
   DEFAULT_DRESS_SHIRT_SIZES,
   DEFAULT_SHALWAR_KAMEEZ_SIZES,
@@ -17,6 +19,7 @@ import {
   type CutOption,
   type Product,
   type ProductCategory,
+  type PublishStatus,
   type SellingMethod,
   type SizeOption,
 } from "@/lib/types";
@@ -49,6 +52,18 @@ export function ProductEditor({
   const [availability, setAvailability] = useState<Availability>(
     initial?.availability ?? "in_stock",
   );
+  const [publishStatus, setPublishStatus] = useState<PublishStatus>(
+    initial?.publishStatus ?? "published",
+  );
+  const [stockQty, setStockQty] = useState(
+    initial?.stockQty !== undefined ? String(initial.stockQty) : "",
+  );
+  const [lowStockThreshold, setLowStockThreshold] = useState(
+    initial?.lowStockThreshold !== undefined
+      ? String(initial.lowStockThreshold)
+      : "5",
+  );
+  const [pickerOpen, setPickerOpen] = useState(false);
   const [sellingMethod, setSellingMethod] = useState<SellingMethod>(
     initial?.sellingMethod ?? "fixed_cut",
   );
@@ -74,6 +89,17 @@ export function ProductEditor({
   );
   const [imageSrc, setImageSrc] = useState(initial?.images?.[0]?.src ?? "");
   const [imageAlt, setImageAlt] = useState(initial?.images?.[0]?.alt ?? "");
+
+  useEffect(() => {
+    if (!initial) return;
+    pushRecent({
+      id: initial.id,
+      type: "product",
+      title: initial.name,
+      subtitle: initial.sku ?? initial.slug,
+      href: `/admin/products/${initial.id}`,
+    });
+  }, [initial]);
 
   const categoryLabel = PRODUCT_CATEGORY_LABELS[category];
 
@@ -121,6 +147,11 @@ export function ProductEditor({
       description: description || undefined,
       price: price.trim() ? Number(price) : undefined,
       availability,
+      publishStatus,
+      stockQty: stockQty.trim() ? Number(stockQty) : undefined,
+      lowStockThreshold: lowStockThreshold.trim()
+        ? Number(lowStockThreshold)
+        : 5,
       sellingMethod,
       fabricType: fabricType || undefined,
       composition: composition || undefined,
@@ -152,6 +183,15 @@ export function ProductEditor({
       setError(data.error ?? "Could not save product.");
       return;
     }
+    if (data.product) {
+      pushRecent({
+        id: data.product.id,
+        type: "product",
+        title: data.product.name,
+        subtitle: data.product.sku ?? data.product.slug,
+        href: `/admin/products/${data.product.id}`,
+      });
+    }
     router.push("/admin/products");
     router.refresh();
   }
@@ -161,6 +201,22 @@ export function ProductEditor({
     setBusy(true);
     await fetch(`/api/admin/products/${initial.id}`, { method: "DELETE" });
     router.push("/admin/products");
+    router.refresh();
+  }
+
+  async function onDuplicate() {
+    if (!initial) return;
+    setBusy(true);
+    const res = await fetch(`/api/admin/products/${initial.id}/duplicate`, {
+      method: "POST",
+    });
+    const data = (await res.json()) as { product?: Product; error?: string };
+    setBusy(false);
+    if (!res.ok || !data.product) {
+      setError(data.error ?? "Could not duplicate.");
+      return;
+    }
+    router.push(`/admin/products/${data.product.id}`);
     router.refresh();
   }
 
@@ -183,14 +239,24 @@ export function ProductEditor({
             Cancel
           </Link>
           {!isNew ? (
-            <Button
-              type="button"
-              variant="outline"
-              onClick={onDelete}
-              disabled={busy}
-            >
-              Delete
-            </Button>
+            <>
+              <Button
+                type="button"
+                variant="outline"
+                onClick={onDuplicate}
+                disabled={busy}
+              >
+                Duplicate
+              </Button>
+              <Button
+                type="button"
+                variant="outline"
+                onClick={onDelete}
+                disabled={busy}
+              >
+                Delete
+              </Button>
+            </>
           ) : null}
           <Button type="submit" disabled={busy}>
             {busy ? "Saving…" : "Save product"}
@@ -265,6 +331,44 @@ export function ProductEditor({
             <option value="out_of_stock">Out of stock</option>
             <option value="unconfirmed">Coming soon / unconfirmed</option>
           </select>
+        </label>
+        <label className="block text-sm">
+          <span className="mb-1.5 block text-[11px] uppercase tracking-[0.14em] text-ink/55">
+            Publish
+          </span>
+          <select
+            className="flex h-11 w-full rounded-sm border border-ink/15 bg-stone/40 px-3 text-sm"
+            value={publishStatus}
+            onChange={(e) =>
+              setPublishStatus(e.target.value as PublishStatus)
+            }
+          >
+            <option value="published">Published (live on shop)</option>
+            <option value="draft">Draft (hidden from shop)</option>
+          </select>
+        </label>
+        <label className="block text-sm">
+          <span className="mb-1.5 block text-[11px] uppercase tracking-[0.14em] text-ink/55">
+            Stock qty
+          </span>
+          <Input
+            type="number"
+            min={0}
+            value={stockQty}
+            onChange={(e) => setStockQty(e.target.value)}
+            placeholder="e.g. 24"
+          />
+        </label>
+        <label className="block text-sm">
+          <span className="mb-1.5 block text-[11px] uppercase tracking-[0.14em] text-ink/55">
+            Low-stock alert at
+          </span>
+          <Input
+            type="number"
+            min={0}
+            value={lowStockThreshold}
+            onChange={(e) => setLowStockThreshold(e.target.value)}
+          />
         </label>
         <label className="block text-sm">
           <span className="mb-1.5 block text-[11px] uppercase tracking-[0.14em] text-ink/55">
@@ -500,10 +604,21 @@ export function ProductEditor({
       )}
 
       <section className="border border-ink/10 bg-ivory p-6">
-        <h2 className="font-display text-2xl">Primary image</h2>
-        <p className="mt-1 text-sm text-ink/55">
-          Paste a path from Media (e.g. /uploads/… or /catalogue/…).
-        </p>
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h2 className="font-display text-2xl">Primary image</h2>
+            <p className="mt-1 text-sm text-ink/55">
+              Pick from the media library or paste a path.
+            </p>
+          </div>
+          <Button
+            type="button"
+            variant="outline"
+            onClick={() => setPickerOpen(true)}
+          >
+            Browse media
+          </Button>
+        </div>
         <div className="mt-4 grid gap-4 md:grid-cols-2">
           <Input
             placeholder="/uploads/…"
@@ -517,6 +632,15 @@ export function ProductEditor({
           />
         </div>
       </section>
+
+      <MediaPicker
+        open={pickerOpen}
+        onClose={() => setPickerOpen(false)}
+        onPick={(src, alt) => {
+          setImageSrc(src);
+          if (!imageAlt) setImageAlt(alt);
+        }}
+      />
     </form>
   );
 }
