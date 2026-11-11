@@ -10,6 +10,8 @@ import {
 } from "@/lib/catalog";
 import type { Product, ProductCategory } from "@/lib/types";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: "Shop All",
   description:

@@ -8,9 +8,7 @@ import {
   getProductsByCollection,
 } from "@/lib/catalog";
 
-export function generateStaticParams() {
-  return getCollections().map((c) => ({ slug: c.slug }));
-}
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
   params,

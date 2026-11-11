@@ -9,12 +9,13 @@ import { Textarea } from "@/components/ui/textarea";
 import { EmptyState } from "@/components/ui/empty-state";
 import { useAuth } from "@/lib/auth-context";
 import { useCart } from "@/lib/cart-context";
-import { formatPrice, getSiteConfig } from "@/lib/catalog";
+import { siteConfig } from "@/data/catalog";
+import { formatPrice } from "@/lib/format";
 
 export function CheckoutForm() {
   const { lines, subtotal, clearCart } = useCart();
   const { user, ready } = useAuth();
-  const config = getSiteConfig();
+  const config = siteConfig;
   const [status, setStatus] = useState<"idle" | "submitting" | "placed">(
     "idle",
   );
@@ -58,17 +59,63 @@ export function CheckoutForm() {
     );
   }
 
-  function onSubmit(e: FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setStatus("submitting");
+    setNote(null);
 
-    window.setTimeout(() => {
+    const form = e.currentTarget;
+    const data = new FormData(form);
+
+    try {
+      const res = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          customer: {
+            name: String(data.get("name") ?? ""),
+            email: String(data.get("email") ?? ""),
+            phone: String(data.get("phone") ?? ""),
+          },
+          delivery: {
+            address: String(data.get("address") ?? ""),
+            city: String(data.get("city") ?? ""),
+            postal: String(data.get("postal") ?? ""),
+            notes: String(data.get("notes") ?? ""),
+          },
+          paymentMethod: "Cash on Delivery",
+          lines: lines.map((line) => ({
+            key: line.key,
+            productId: line.productId,
+            productSlug: line.productSlug,
+            productName: line.productName,
+            colourName: line.colourName,
+            cutLabel: line.cutLabel,
+            sizeLabel: line.sizeLabel,
+            quantity: line.quantity,
+            unitPrice: line.unitPrice,
+            currency: line.currency,
+            imageSrc: line.imageSrc,
+          })),
+        }),
+      });
+
+      if (!res.ok) {
+        const err = (await res.json()) as { error?: string };
+        setStatus("idle");
+        setNote(err.error ?? "Could not place order. Please try again.");
+        return;
+      }
+
       setStatus("placed");
       setNote(
         "Your Cash on Delivery order request has been received. FEELINGS will confirm details on WhatsApp before dispatch. No online payment was taken.",
       );
       clearCart();
-    }, 700);
+    } catch {
+      setStatus("idle");
+      setNote("Could not place order. Check your connection and try again.");
+    }
   }
 
   if (status === "placed") {
@@ -279,6 +326,9 @@ export function CheckoutForm() {
               : "Place COD order request"}
           </Button>
         </div>
+        {status === "idle" && note ? (
+          <p className="text-sm text-wine">{note}</p>
+        ) : null}
       </form>
 
       <aside className="h-fit border border-ink/10 bg-stone/40 p-6 md:sticky md:top-28 md:p-7">

@@ -1,46 +1,48 @@
 # FEELINGS
 
-**FEELINGS — Elite Men’s Collection**: unstitched fabric catalogues with colour selection and metre lengths (1m · 2m · 4m · 6m). Stitched shalwar kameez and dress shirts — coming soon.
+**FEELINGS — Elite Men’s Collection**: unstitched fabric with colour selection and metre lengths (1m · 2m · 4m · 6m). Stitched shalwar kameez and dress shirts — coming soon.
 
 Design source of truth: [`docs/feelings-design-language.pdf`](./docs/feelings-design-language.pdf)
 
 ## Stack
 
 - **Next.js** (App Router) + TypeScript + Tailwind CSS
-- Catalogue in `src/data/catalog.ts` + photography in `public/catalogue/`
-- Local cart + account (browser storage); checkout prepared but **not** connected to payment
+- Catalogue seed in `src/data/catalog.ts`; live inventory in `data/runtime-store.json` (created on first boot)
+- Local cart + account (browser storage); checkout places **Cash on Delivery** order requests
+- **Admin panel** at `/admin` for products, collections, media, and COD orders
 
 ## Run locally
 
 ```bash
 npm install
-npm run dev
-```
-
-Dev server defaults to port **3847** (`http://localhost:3847`).
-
-```bash
 npm run build && npm run start
 ```
 
-## Collections
+Server defaults to port **3847** (`http://localhost:3847`).
 
-| Collection | Colours |
-| --- | --- |
-| Signature Fabric | Noor, Zarrin, Shab, Sabz |
-| Nightfall | Layl, Qahwa, Neel |
-| Earth & Neutrals | Mahtab, Sunehra, Khaki, Zarqoon |
-| The Noir | Aswad, Layl, Zulmat, Neel |
-| Heritage Depth | Raad, Zarrar, Shahbaz, Sultan |
-| Atelier Five | Azraq, Sarmad, Mehran, Noor, Raaz |
+Dev mode:
+
+```bash
+npm run dev
+```
+
+## Admin panel
+
+1. Open `/admin` — first visit creates the admin password (8+ characters).
+2. Manage **Products** (colours, metres/sizes, stock, images), **Collections**, **Media** uploads, and **COD Orders**.
+3. Changes save to the runtime store and show on the shop immediately.
+
+Optional env (published hosting):
+
+- `ADMIN_SESSION_SECRET` — long random string for signing admin cookies
 
 ## What’s built
 
-- Homepage using real fabric photography (no AI sample imagery)
-- Collections with per-colour browsing
-- Product pages: colour switcher + 1 / 2 / 4 / 6 metre lengths
-- Sign in / Create account (header, beside search & cart)
-- Cart + checkout structure (sign-in required; no live payment yet)
+- Homepage with brand photography and slideshow hero
+- Collections + shop with colour / category filters
+- Product pages: swatches, metre lengths, custom-length WhatsApp note
+- Sign in / account, cart, premium COD checkout
+- Admin Phase 1: inventory, media, collections, COD order pipeline
 
 ## Brand colours
 

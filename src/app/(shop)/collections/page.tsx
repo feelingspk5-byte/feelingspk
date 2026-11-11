@@ -4,6 +4,8 @@ import { Container } from "@/components/layout/container";
 import { EmptyState } from "@/components/ui/empty-state";
 import { getCollections, getProductsByCollection } from "@/lib/catalog";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: "Collections",
   description:

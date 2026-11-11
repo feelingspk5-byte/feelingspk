@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/lib/auth-context";
 import { useCart } from "@/lib/cart-context";
-import { formatPrice } from "@/lib/catalog";
+import { formatPrice } from "@/lib/format";
 import { cn } from "@/lib/cn";
 import {
   DEFAULT_DRESS_SHIRT_SIZES,

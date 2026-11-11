@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, DM_Sans } from "next/font/google";
-import { SiteShell } from "@/components/layout/site-shell";
 import "./globals.css";
 
 const display = Cormorant_Garamond({
@@ -53,7 +52,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${display.variable} ${sans.variable} antialiased`}>
-        <SiteShell>{children}</SiteShell>
+        {children}
       </body>
     </html>
   );

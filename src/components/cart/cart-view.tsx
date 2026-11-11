@@ -4,11 +4,12 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { EmptyState } from "@/components/ui/empty-state";
 import { useCart } from "@/lib/cart-context";
-import { formatPrice, getSiteConfig } from "@/lib/catalog";
+import { siteConfig } from "@/data/catalog";
+import { formatPrice } from "@/lib/format";
 
 export function CartView() {
   const { lines, updateQuantity, removeLine, subtotal } = useCart();
-  const config = getSiteConfig();
+  const config = siteConfig;
 
   if (lines.length === 0) {
     return (
