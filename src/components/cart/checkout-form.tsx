@@ -2,15 +2,42 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { EmptyState } from "@/components/ui/empty-state";
 import { useAuth } from "@/lib/auth-context";
 import { useCart } from "@/lib/cart-context";
+import {
+  loadCheckoutProfile,
+  saveCheckoutProfile,
+  type CheckoutProfile,
+} from "@/lib/checkout-profile";
 import { siteConfig } from "@/data/catalog";
 import { formatPrice } from "@/lib/format";
+
+type FormFields = {
+  name: string;
+  email: string;
+  phone: string;
+  address: string;
+  city: string;
+  postal: string;
+  notes: string;
+  coupon: string;
+};
+
+const emptyFields = (seed?: { name?: string; email?: string }): FormFields => ({
+  name: seed?.name ?? "",
+  email: seed?.email ?? "",
+  phone: "",
+  address: "",
+  city: "",
+  postal: "",
+  notes: "",
+  coupon: "",
+});
 
 export function CheckoutForm() {
   const { lines, subtotal, clearCart } = useCart();
@@ -20,10 +47,54 @@ export function CheckoutForm() {
     "idle",
   );
   const [note, setNote] = useState<string | null>(null);
+  const [fields, setFields] = useState<FormFields>(() => emptyFields());
+  const [savedProfile, setSavedProfile] = useState<CheckoutProfile | null>(
+    null,
+  );
+  const [offerAutofill, setOfferAutofill] = useState(false);
+  const [autofilled, setAutofilled] = useState(false);
 
   const wa = config.whatsapp
     ? `https://wa.me/${config.whatsapp.replace(/\D/g, "").replace(/^0/, "92")}`
     : null;
+
+  useEffect(() => {
+    if (!ready) return;
+    setFields((prev) => ({
+      ...prev,
+      name: prev.name || user?.name || "",
+      email: prev.email || user?.email || "",
+    }));
+    const profile = loadCheckoutProfile(user?.email);
+    if (profile) {
+      setSavedProfile(profile);
+      setOfferAutofill(true);
+    }
+  }, [ready, user?.email, user?.name]);
+
+  function updateField<K extends keyof FormFields>(key: K, value: FormFields[K]) {
+    setFields((prev) => ({ ...prev, [key]: value }));
+  }
+
+  function applySavedDetails() {
+    if (!savedProfile) return;
+    setFields((prev) => ({
+      ...prev,
+      name: savedProfile.name,
+      email: savedProfile.email || user?.email || prev.email,
+      phone: savedProfile.phone,
+      address: savedProfile.address,
+      city: savedProfile.city,
+      postal: savedProfile.postal,
+      notes: savedProfile.notes,
+    }));
+    setAutofilled(true);
+    setOfferAutofill(false);
+  }
+
+  function dismissAutofill() {
+    setOfferAutofill(false);
+  }
 
   if (lines.length === 0 && status !== "placed") {
     return (
@@ -64,27 +135,24 @@ export function CheckoutForm() {
     setStatus("submitting");
     setNote(null);
 
-    const form = e.currentTarget;
-    const data = new FormData(form);
-
     try {
       const res = await fetch("/api/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           customer: {
-            name: String(data.get("name") ?? ""),
-            email: String(data.get("email") ?? ""),
-            phone: String(data.get("phone") ?? ""),
+            name: fields.name,
+            email: fields.email,
+            phone: fields.phone,
           },
           delivery: {
-            address: String(data.get("address") ?? ""),
-            city: String(data.get("city") ?? ""),
-            postal: String(data.get("postal") ?? ""),
-            notes: String(data.get("notes") ?? ""),
+            address: fields.address,
+            city: fields.city,
+            postal: fields.postal,
+            notes: fields.notes,
           },
           paymentMethod: "Cash on Delivery",
-          couponCode: String(data.get("coupon") ?? ""),
+          couponCode: fields.coupon,
           lines: lines.map((line) => ({
             key: line.key,
             productId: line.productId,
@@ -107,6 +175,16 @@ export function CheckoutForm() {
         setNote(err.error ?? "Could not place order. Please try again.");
         return;
       }
+
+      saveCheckoutProfile({
+        name: fields.name.trim(),
+        email: fields.email.trim(),
+        phone: fields.phone.trim(),
+        address: fields.address.trim(),
+        city: fields.city.trim(),
+        postal: fields.postal.trim(),
+        notes: fields.notes.trim(),
+      });
 
       setStatus("placed");
       setNote(
@@ -156,6 +234,41 @@ export function CheckoutForm() {
   return (
     <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_360px] lg:gap-12">
       <form onSubmit={onSubmit} className="space-y-6" noValidate={false}>
+        {offerAutofill && savedProfile ? (
+          <div className="flex flex-col gap-4 border border-wine/25 bg-wine/[0.04] p-5 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p className="text-[11px] uppercase tracking-[0.18em] text-wine">
+                Returning client
+              </p>
+              <p className="mt-1 text-sm leading-relaxed text-ink/75">
+                We found details from your last FEELINGS order
+                {savedProfile.city ? ` in ${savedProfile.city}` : ""}. Fill them
+                in with one tap?
+              </p>
+            </div>
+            <div className="flex shrink-0 flex-wrap gap-2">
+              <Button type="button" size="sm" onClick={applySavedDetails}>
+                Use saved details
+              </Button>
+              <Button
+                type="button"
+                size="sm"
+                variant="ghost"
+                onClick={dismissAutofill}
+              >
+                Enter new
+              </Button>
+            </div>
+          </div>
+        ) : null}
+
+        {autofilled ? (
+          <p className="text-sm text-ink/60">
+            Details from your last order are filled in. Edit anything that
+            changed.
+          </p>
+        ) : null}
+
         <section className="border border-ink/10 bg-ivory p-6 md:p-8">
           <div className="flex items-baseline justify-between gap-4 border-b border-ink/10 pb-4">
             <h2 className="font-display text-2xl text-ink md:text-3xl">
@@ -174,7 +287,8 @@ export function CheckoutForm() {
                 name="name"
                 required
                 autoComplete="name"
-                defaultValue={user?.name ?? ""}
+                value={fields.name}
+                onChange={(e) => updateField("name", e.target.value)}
                 placeholder="Your full name"
               />
             </label>
@@ -187,7 +301,8 @@ export function CheckoutForm() {
                 type="email"
                 required
                 autoComplete="email"
-                defaultValue={user?.email ?? ""}
+                value={fields.email}
+                onChange={(e) => updateField("email", e.target.value)}
                 placeholder="you@email.com"
               />
             </label>
@@ -200,6 +315,8 @@ export function CheckoutForm() {
                 type="tel"
                 required
                 autoComplete="tel"
+                value={fields.phone}
+                onChange={(e) => updateField("phone", e.target.value)}
                 placeholder="03XX XXXXXXX"
               />
             </label>
@@ -224,6 +341,8 @@ export function CheckoutForm() {
                 name="address"
                 required
                 autoComplete="street-address"
+                value={fields.address}
+                onChange={(e) => updateField("address", e.target.value)}
                 placeholder="House / street / area"
               />
             </label>
@@ -236,6 +355,8 @@ export function CheckoutForm() {
                   name="city"
                   required
                   autoComplete="address-level2"
+                  value={fields.city}
+                  onChange={(e) => updateField("city", e.target.value)}
                   placeholder="Lahore"
                 />
               </label>
@@ -247,7 +368,12 @@ export function CheckoutForm() {
                     (optional)
                   </span>
                 </span>
-                <Input name="postal" autoComplete="postal-code" />
+                <Input
+                  name="postal"
+                  autoComplete="postal-code"
+                  value={fields.postal}
+                  onChange={(e) => updateField("postal", e.target.value)}
+                />
               </label>
             </div>
             <label className="block text-sm">
@@ -261,6 +387,8 @@ export function CheckoutForm() {
               <Textarea
                 name="notes"
                 rows={3}
+                value={fields.notes}
+                onChange={(e) => updateField("notes", e.target.value)}
                 placeholder="Landmark, preferred time, gate instructions…"
               />
             </label>
@@ -288,6 +416,8 @@ export function CheckoutForm() {
               name="coupon"
               placeholder="Enter code from FEELINGS"
               autoComplete="off"
+              value={fields.coupon}
+              onChange={(e) => updateField("coupon", e.target.value)}
             />
           </label>
         </section>
