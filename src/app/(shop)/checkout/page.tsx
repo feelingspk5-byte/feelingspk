@@ -27,13 +27,13 @@ export default function CheckoutPage() {
             Checkout
           </h1>
           <p className="mt-4 max-w-xl text-sm leading-relaxed text-ink/70 md:text-base">
-            Confirm delivery details and place your order with Cash on Delivery.
-            We will confirm on WhatsApp before dispatch.
+            Enter your details and place your Cash on Delivery order. Our team
+            will contact you shortly to confirm.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-[11px] uppercase tracking-[0.16em] text-ink/45">
             <span>Cash on Delivery</span>
             <span className="hidden h-3 w-px bg-ink/20 sm:block" aria-hidden />
-            <span>WhatsApp confirmation</span>
+            <span>Personal confirmation call</span>
             <span className="hidden h-3 w-px bg-ink/20 sm:block" aria-hidden />
             <span>Nationwide delivery</span>
           </div>

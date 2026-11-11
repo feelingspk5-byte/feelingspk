@@ -5,7 +5,7 @@ export function formatPrice(
   currency = "PKR",
 ): string {
   if (price === undefined || Number.isNaN(price)) {
-    return "Price on request";
+    return "—";
   }
   try {
     return new Intl.NumberFormat("en-PK", {
@@ -27,6 +27,6 @@ export function availabilityLabel(
     case "out_of_stock":
       return "Out of stock";
     default:
-      return "Availability to be confirmed";
+      return "Coming soon";
   }
 }

@@ -379,7 +379,7 @@ export function ProductEditor({
             min={0}
             value={price}
             onChange={(e) => setPrice(e.target.value)}
-            placeholder="Leave blank for on request"
+            placeholder="Leave blank to confirm later"
           />
         </label>
         <label className="block text-sm">

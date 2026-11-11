@@ -98,18 +98,18 @@ export function CartView() {
             <dt className="text-ink/60">Subtotal</dt>
             <dd>
               {subtotal === undefined
-                ? "Pending priced catalogue"
+                ? "—"
                 : formatPrice(subtotal, config.currencyPlaceholder)}
             </dd>
           </div>
           <div className="flex justify-between gap-3">
             <dt className="text-ink/60">Shipping</dt>
-            <dd className="text-ink/60">Calculated at checkout</dd>
+            <dd className="text-ink/60">Shared on call</dd>
           </div>
         </dl>
         <p className="mt-4 text-xs text-ink/55">
-          Payment and shipping are not connected yet. Checkout collects details
-          for integration and will not place a real order.
+          Cash on Delivery. After you place the order, FEELINGS will contact you
+          to confirm.
         </p>
         <Link href="/checkout" className="mt-5 block">
           <Button className="w-full">Proceed to checkout</Button>

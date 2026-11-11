@@ -110,7 +110,7 @@ export function CheckoutForm() {
 
       setStatus("placed");
       setNote(
-        "Your Cash on Delivery order request has been received. FEELINGS will confirm details on WhatsApp before dispatch. No online payment was taken.",
+        "Thank you for your order. The FEELINGS team will contact you shortly to confirm.",
       );
       clearCart();
     } catch {
@@ -123,10 +123,10 @@ export function CheckoutForm() {
     return (
       <div className="mx-auto max-w-2xl border border-ink/10 bg-ivory px-6 py-12 text-center md:px-10 md:py-16">
         <p className="text-[11px] uppercase tracking-[0.22em] text-wine">
-          Order request received
+          Order placed
         </p>
         <h2 className="mt-3 font-display text-3xl tracking-tight text-ink md:text-4xl">
-          Thank you for choosing FEELINGS
+          Thank you
         </h2>
         <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-ink/70">
           {note}
@@ -139,7 +139,7 @@ export function CheckoutForm() {
               rel="noreferrer"
               className="inline-flex h-12 items-center rounded-sm bg-ink px-6 text-sm tracking-wide text-ivory"
             >
-              Confirm on WhatsApp
+              Message FEELINGS
             </a>
           ) : null}
           <Link
@@ -266,8 +266,8 @@ export function CheckoutForm() {
             </label>
           </div>
           <p className="mt-5 text-sm text-ink/55">
-            Shipping is calculated from your city using FEELINGS delivery zones.
-            Final confirmation stays on WhatsApp before dispatch.
+            Delivery is arranged after your order is placed. We will call you on
+            the number you provide.
           </p>
         </section>
 
@@ -343,9 +343,7 @@ export function CheckoutForm() {
             className="w-full sm:w-auto sm:min-w-[14rem]"
             disabled={status === "submitting"}
           >
-            {status === "submitting"
-              ? "Placing request…"
-              : "Place COD order request"}
+            {status === "submitting" ? "Placing order…" : "Place COD order"}
           </Button>
         </div>
         {status === "idle" && note ? (
@@ -399,13 +397,13 @@ export function CheckoutForm() {
             <span className="text-ink/55">Subtotal</span>
             <span className="text-ink">
               {subtotal === undefined
-                ? "On confirmation"
+                ? "—"
                 : formatPrice(subtotal, config.currencyPlaceholder)}
             </span>
           </div>
           <div className="flex justify-between">
             <span className="text-ink/55">Shipping</span>
-            <span className="text-ink/70">Confirmed on WhatsApp</span>
+            <span className="text-ink/70">Shared on call</span>
           </div>
           <div className="flex justify-between">
             <span className="text-ink/55">Payment</span>
@@ -415,15 +413,15 @@ export function CheckoutForm() {
             <span>Total</span>
             <span>
               {subtotal === undefined
-                ? "Pending"
+                ? "—"
                 : formatPrice(subtotal, config.currencyPlaceholder)}
             </span>
           </div>
         </div>
 
         <p className="mt-5 text-xs leading-relaxed text-ink/50">
-          Prices marked “on request” are confirmed with you before dispatch.
-          Cash is collected on delivery.
+          Cash on Delivery. Our team will call you shortly to confirm your
+          order.
         </p>
       </aside>
     </div>
