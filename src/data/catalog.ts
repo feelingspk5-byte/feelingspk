@@ -18,9 +18,9 @@ export const siteConfig: SiteConfig = {
   whatsapp: "03155551507",
   social: { instagram: "feelingsspk", facebook: null },
   currencyPlaceholder: "PKR",
-  paymentMethods: [],
+  paymentMethods: ["Cash on Delivery"],
   shippingConnected: false,
-  checkoutConnected: false,
+  checkoutConnected: true,
 };
 
 export const collections: Collection[] = [
