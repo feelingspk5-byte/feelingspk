@@ -7,11 +7,16 @@ import {
   FeaturedFabrics,
   ShopCategories,
 } from "@/components/home/sections";
+import { getCms } from "@/lib/catalog";
+
+export const dynamic = "force-dynamic";
 
 export default function HomePage() {
+  const cms = getCms();
+
   return (
     <>
-      <HomeHero />
+      <HomeHero content={cms.hero} />
       <ShopCategories />
       <FeaturedCollections />
       <FeaturedFabrics />

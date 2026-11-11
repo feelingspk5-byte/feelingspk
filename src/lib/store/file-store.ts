@@ -1,5 +1,6 @@
 import { existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from "fs";
 import path from "path";
+import { migrateStore } from "@/lib/store/migrate";
 import { createSeedStore } from "@/lib/store/seed";
 import type { StoreState } from "@/lib/store/types";
 
@@ -16,12 +17,11 @@ function ensureDir() {
   }
 }
 
-function parseStore(raw: string): StoreState {
-  const parsed = JSON.parse(raw) as StoreState;
-  if (!parsed || parsed.version !== 1) {
-    throw new Error("Invalid store version");
-  }
-  return parsed;
+function persist(store: StoreState) {
+  ensureDir();
+  writeFileSync(TMP_PATH, JSON.stringify(store, null, 2), "utf8");
+  renameSync(TMP_PATH, STORE_PATH);
+  memory = store;
 }
 
 export function getStorePath() {
@@ -33,18 +33,24 @@ export function readStore(): StoreState {
 
   ensureDir();
   if (!existsSync(STORE_PATH)) {
-    memory = createSeedStore();
-    writeFileSync(STORE_PATH, JSON.stringify(memory, null, 2), "utf8");
-    return memory;
+    const seeded = createSeedStore();
+    persist(seeded);
+    return seeded;
   }
 
   try {
-    memory = parseStore(readFileSync(STORE_PATH, "utf8"));
-    return memory;
+    const raw = JSON.parse(readFileSync(STORE_PATH, "utf8"));
+    const migrated = migrateStore(raw);
+    if (raw.version !== 2) {
+      persist(migrated);
+    } else {
+      memory = migrated;
+    }
+    return migrated;
   } catch {
-    memory = createSeedStore();
-    writeFileSync(STORE_PATH, JSON.stringify(memory, null, 2), "utf8");
-    return memory;
+    const seeded = createSeedStore();
+    persist(seeded);
+    return seeded;
   }
 }
 
@@ -55,10 +61,7 @@ export async function updateStore(
     const current = structuredClone(readStore());
     mutator(current);
     current.updatedAt = new Date().toISOString();
-    ensureDir();
-    writeFileSync(TMP_PATH, JSON.stringify(current, null, 2), "utf8");
-    renameSync(TMP_PATH, STORE_PATH);
-    memory = current;
+    persist(current);
   });
   await writeChain;
   return readStore();

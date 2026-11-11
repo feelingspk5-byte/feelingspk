@@ -1,4 +1,5 @@
 import { collections, products, siteConfig } from "@/data/catalog";
+import { defaultCms, defaultShippingZones } from "@/lib/store/defaults";
 import type { MediaAsset, StoreState } from "@/lib/store/types";
 
 function collectMedia(): MediaAsset[] {
@@ -38,7 +39,7 @@ function collectMedia(): MediaAsset[] {
 export function createSeedStore(): StoreState {
   const now = new Date().toISOString();
   return {
-    version: 1,
+    version: 2,
     seededAt: now,
     updatedAt: now,
     admin: {
@@ -50,5 +51,11 @@ export function createSeedStore(): StoreState {
     products: structuredClone(products),
     media: collectMedia(),
     orders: [],
+    offers: [],
+    cms: defaultCms(),
+    shippingZones: defaultShippingZones(),
+    customers: [],
+    returns: [],
+    auditLog: [],
   };
 }

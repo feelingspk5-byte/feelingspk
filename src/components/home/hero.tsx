@@ -8,8 +8,11 @@ import { BrandLogo } from "@/components/brand/logo";
 import { FadeIn, Stagger, StaggerItem } from "@/components/home/motion";
 import { Container } from "@/components/layout/container";
 import { demoHero } from "@/data/demo-home";
+import type { CmsContent } from "@/lib/store/types";
 
 const SLIDE_MS = 5000;
+
+type HeroContent = CmsContent["hero"];
 
 const destinations = [
   { href: "/shop", label: "Shop All", detail: "The full house" },
@@ -31,8 +34,14 @@ const destinations = [
   { href: "/collections", label: "Collections", detail: "Shop by line" },
 ];
 
-export function HomeHero() {
-  const slides = demoHero.slides;
+export function HomeHero({ content }: { content?: HeroContent }) {
+  const hero = content ?? {
+    eyebrow: demoHero.eyebrow,
+    title: demoHero.title,
+    subtitle: demoHero.subtitle,
+    slides: demoHero.slides,
+  };
+  const slides = hero.slides;
   const reduce = useReducedMotion();
   const [index, setIndex] = useState(0);
   const [tick, setTick] = useState(0);
@@ -127,10 +136,10 @@ export function HomeHero() {
           <div className="max-w-[18rem] sm:max-w-sm md:max-w-[22rem] lg:max-w-md">
             <FadeIn>
               <p className="text-[10px] uppercase tracking-[0.32em] text-wine md:text-[11px]">
-                {demoHero.eyebrow}
+                {hero.eyebrow}
               </p>
             </FadeIn>
-            <h1 className="sr-only">FEELINGS — {demoHero.title}</h1>
+            <h1 className="sr-only">FEELINGS — {hero.title}</h1>
             <FadeIn delay={0.08}>
               <div className="mt-5 max-w-[13rem] sm:max-w-[15rem] md:mt-7 md:max-w-[17rem]">
                 <BrandLogo variant="hero" priority />
@@ -138,10 +147,10 @@ export function HomeHero() {
             </FadeIn>
             <FadeIn delay={0.16}>
               <p className="mt-6 font-display text-3xl leading-tight tracking-tight text-ink sm:text-4xl md:mt-8 md:text-[2.65rem]">
-                {demoHero.title}
+                {hero.title}
               </p>
               <p className="mt-4 text-sm leading-relaxed text-ink/75 md:text-base">
-                {demoHero.subtitle}
+                {hero.subtitle}
               </p>
             </FadeIn>
             <FadeIn delay={0.24}>

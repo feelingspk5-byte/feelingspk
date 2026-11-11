@@ -59,3 +59,27 @@ export function searchProducts(query: string): FabricProduct[] {
     return hay.includes(q);
   });
 }
+
+export function getCms() {
+  return readStore().cms;
+}
+
+export function getOffers() {
+  return readStore().offers;
+}
+
+export function getShippingZones() {
+  return readStore().shippingZones;
+}
+
+export function getCustomers() {
+  return readStore().customers;
+}
+
+export function getReturns() {
+  return readStore().returns;
+}
+
+export function getAuditLog() {
+  return readStore().auditLog;
+}

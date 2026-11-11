@@ -2,47 +2,40 @@
 
 **FEELINGS — Elite Men’s Collection**: unstitched fabric with colour selection and metre lengths (1m · 2m · 4m · 6m). Stitched shalwar kameez and dress shirts — coming soon.
 
-Design source of truth: [`docs/feelings-design-language.pdf`](./docs/feelings-design-language.pdf)
-
 ## Stack
 
-- **Next.js** (App Router) + TypeScript + Tailwind CSS
-- Catalogue seed in `src/data/catalog.ts`; live inventory in `data/runtime-store.json` (created on first boot)
-- Local cart + account (browser storage); checkout places **Cash on Delivery** order requests
-- **Admin panel** at `/admin` for products, collections, media, and COD orders
+- Next.js (App Router) + TypeScript + Tailwind CSS
+- Live catalogue / CMS / offers in `data/runtime-store.json` (seeded from `src/data/catalog.ts`)
+- Cash on Delivery checkout + WhatsApp confirmation
+- Full admin at `/admin` (Phases 1–3)
 
-## Run locally
+## Run
 
 ```bash
 npm install
 npm run build && npm run start
 ```
 
-Server defaults to port **3847** (`http://localhost:3847`).
+Port **3847** (`http://localhost:3847`).
 
-Dev mode:
+## Admin (`/admin`)
 
-```bash
-npm run dev
-```
+First visit creates the admin password.
 
-## Admin panel
+| Section | What you control |
+| --- | --- |
+| Products / Collections / Media | Catalogue, colours, metres, images |
+| Orders | COD pipeline, tracking, WhatsApp |
+| Customers | Buyers, tags, spend |
+| Offers | Coupons, %/fixed, free shipping, badges |
+| Website | Hero, About, Contact, FAQ, footer |
+| Shipping | City zones + free-shipping thresholds |
+| Settings | Announcement, phone, WhatsApp, Instagram, COD |
+| Returns | Return / exchange log |
+| Analytics | Revenue, top products/colours |
+| Audit | Who changed what |
 
-1. Open `/admin` — first visit creates the admin password (8+ characters).
-2. Manage **Products** (colours, metres/sizes, stock, images), **Collections**, **Media** uploads, and **COD Orders**.
-3. Changes save to the runtime store and show on the shop immediately.
-
-Optional env (published hosting):
-
-- `ADMIN_SESSION_SECRET` — long random string for signing admin cookies
-
-## What’s built
-
-- Homepage with brand photography and slideshow hero
-- Collections + shop with colour / category filters
-- Product pages: swatches, metre lengths, custom-length WhatsApp note
-- Sign in / account, cart, premium COD checkout
-- Admin Phase 1: inventory, media, collections, COD order pipeline
+Optional env: `ADMIN_SESSION_SECRET` for signed admin cookies in production.
 
 ## Brand colours
 

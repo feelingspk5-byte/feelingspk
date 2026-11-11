@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { BrandLogo } from "@/components/brand/logo";
 import { Container } from "@/components/layout/container";
-import { getSiteConfig } from "@/lib/catalog";
+import { getCms, getSiteConfig } from "@/lib/catalog";
 
 const shopLinks = [
   { href: "/shop", label: "Shop All" },
@@ -25,6 +25,7 @@ const legalLinks = [
 
 export function Footer() {
   const config = getSiteConfig();
+  const cms = getCms();
 
   return (
     <footer className="mt-auto border-t border-ink/15 bg-ink text-ivory">
@@ -34,8 +35,8 @@ export function Footer() {
             <BrandLogo variant="footer" />
           </Link>
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-ivory/70">
-            Quiet luxury for the modern gentleman — fabric, shalwar kameez, and
-            dress shirts under one house.
+            {cms.footerNote ||
+              "Quiet luxury for the modern gentleman — fabric, shalwar kameez, and dress shirts under one house."}
           </p>
         </div>
 

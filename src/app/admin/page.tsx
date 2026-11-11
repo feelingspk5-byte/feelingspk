@@ -1,9 +1,18 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { AdminShell } from "@/components/admin/admin-shell";
+import { formatPrice } from "@/lib/format";
 import { getAdminSession } from "@/lib/store/admin-auth";
 import { readStore } from "@/lib/store/file-store";
-import { formatPrice } from "@/lib/catalog";
+
+const QUICK = [
+  { href: "/admin/products/new", label: "Add product" },
+  { href: "/admin/offers", label: "Create offer" },
+  { href: "/admin/cms", label: "Edit website" },
+  { href: "/admin/settings", label: "Store settings" },
+  { href: "/admin/orders", label: "COD orders" },
+  { href: "/admin/analytics", label: "Analytics" },
+];
 
 export default async function AdminHomePage() {
   const session = await getAdminSession();
@@ -13,6 +22,7 @@ export default async function AdminHomePage() {
   const pending = store.orders.filter((o) => o.status === "pending").length;
   const inStock = store.products.filter((p) => p.availability === "in_stock")
     .length;
+  const activeOffers = store.offers.filter((o) => o.active).length;
   const recent = [...store.orders]
     .sort((a, b) => b.createdAt.localeCompare(a.createdAt))
     .slice(0, 5);
@@ -25,8 +35,8 @@ export default async function AdminHomePage() {
             Overview
           </h1>
           <p className="mt-2 max-w-2xl text-sm text-ink/60">
-            Manage inventory, media, and Cash on Delivery orders. Changes here
-            update the live storefront.
+            Full control of catalogue, website content, offers, shipping,
+            customers, returns, and COD orders — without opening code.
           </p>
         </div>
 
@@ -48,9 +58,33 @@ export default async function AdminHomePage() {
               href: "/admin/orders",
             },
             {
-              label: "Media assets",
+              label: "Active offers",
+              value: String(activeOffers),
+              href: "/admin/offers",
+            },
+            {
+              label: "Customers",
+              value: String(store.customers.length),
+              href: "/admin/customers",
+            },
+            {
+              label: "Returns open",
+              value: String(
+                store.returns.filter(
+                  (r) => r.status !== "refunded" && r.status !== "rejected",
+                ).length,
+              ),
+              href: "/admin/returns",
+            },
+            {
+              label: "Media",
               value: String(store.media.length),
               href: "/admin/media",
+            },
+            {
+              label: "Shipping zones",
+              value: String(store.shippingZones.length),
+              href: "/admin/shipping",
             },
           ].map((card) => (
             <Link
@@ -62,6 +96,18 @@ export default async function AdminHomePage() {
                 {card.label}
               </p>
               <p className="mt-3 font-display text-3xl text-ink">{card.value}</p>
+            </Link>
+          ))}
+        </div>
+
+        <div className="flex flex-wrap gap-3">
+          {QUICK.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="inline-flex h-11 items-center rounded-sm border border-ink px-5 text-sm text-ink hover:bg-ink hover:text-ivory"
+            >
+              {item.label}
             </Link>
           ))}
         </div>
@@ -83,7 +129,10 @@ export default async function AdminHomePage() {
           ) : (
             <ul className="mt-6 divide-y divide-ink/10">
               {recent.map((order) => (
-                <li key={order.id} className="flex flex-wrap items-center justify-between gap-3 py-4">
+                <li
+                  key={order.id}
+                  className="flex flex-wrap items-center justify-between gap-3 py-4"
+                >
                   <div>
                     <Link
                       href={`/admin/orders/${order.id}`}
@@ -107,21 +156,6 @@ export default async function AdminHomePage() {
             </ul>
           )}
         </section>
-
-        <div className="flex flex-wrap gap-3">
-          <Link
-            href="/admin/products/new"
-            className="inline-flex h-11 items-center rounded-sm bg-ink px-5 text-sm text-ivory"
-          >
-            Add product
-          </Link>
-          <Link
-            href="/admin/media"
-            className="inline-flex h-11 items-center rounded-sm border border-ink px-5 text-sm text-ink"
-          >
-            Upload media
-          </Link>
-        </div>
       </div>
     </AdminShell>
   );

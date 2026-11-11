@@ -46,3 +46,44 @@ CREATE TABLE IF NOT EXISTS orders (
 
 CREATE INDEX IF NOT EXISTS orders_created_at_idx ON orders (created_at DESC);
 CREATE INDEX IF NOT EXISTS products_availability_idx ON products (availability);
+
+CREATE TABLE IF NOT EXISTS offers (
+  id TEXT PRIMARY KEY,
+  data JSONB NOT NULL,
+  active BOOLEAN DEFAULT TRUE,
+  created_at TIMESTAMPTZ
+);
+
+CREATE TABLE IF NOT EXISTS cms_content (
+  id INTEGER PRIMARY KEY CHECK (id = 1),
+  data JSONB NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS shipping_zones (
+  id TEXT PRIMARY KEY,
+  data JSONB NOT NULL,
+  active BOOLEAN DEFAULT TRUE
+);
+
+CREATE TABLE IF NOT EXISTS customers (
+  id TEXT PRIMARY KEY,
+  email TEXT UNIQUE NOT NULL,
+  data JSONB NOT NULL,
+  updated_at TIMESTAMPTZ
+);
+
+CREATE TABLE IF NOT EXISTS returns (
+  id TEXT PRIMARY KEY,
+  order_id TEXT,
+  status TEXT NOT NULL,
+  data JSONB NOT NULL,
+  created_at TIMESTAMPTZ
+);
+
+CREATE TABLE IF NOT EXISTS audit_log (
+  id TEXT PRIMARY KEY,
+  at TIMESTAMPTZ NOT NULL,
+  actor TEXT,
+  action TEXT,
+  detail TEXT
+);

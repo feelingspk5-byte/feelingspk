@@ -2,7 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { ContactForm } from "@/components/home/contact-form";
 import { Container } from "@/components/layout/container";
-import { getSiteConfig } from "@/lib/catalog";
+import { getCms, getSiteConfig } from "@/lib/catalog";
+
+export const dynamic = "force-dynamic";
 
 export const metadata = {
   title: "Contact",
@@ -18,6 +20,7 @@ function whatsappHref(number: string) {
 
 export default function ContactPage() {
   const config = getSiteConfig();
+  const contactCms = getCms().contact;
   const instagram = config.social.instagram;
   const wa = config.whatsapp ? whatsappHref(config.whatsapp) : null;
 
@@ -83,11 +86,11 @@ export default function ContactPage() {
             Elite Men&apos;s Collection
           </p>
           <h1 className="mt-4 max-w-xl font-display text-4xl leading-[1.08] tracking-tight text-ink sm:text-5xl md:text-6xl">
-            Contact FEELINGS
+            {contactCms.title || "Contact FEELINGS"}
           </h1>
           <p className="mt-5 max-w-md text-sm leading-relaxed text-ink/75 md:text-base">
-            Fabric advice, custom lengths, orders, and support — reach the house
-            the way that suits you.
+            {contactCms.body ||
+              "Fabric advice, custom lengths, orders, and support — reach the house the way that suits you."}
           </p>
           {wa ? (
             <div className="mt-8">

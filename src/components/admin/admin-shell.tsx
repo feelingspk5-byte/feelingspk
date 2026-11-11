@@ -7,6 +7,14 @@ const NAV = [
   { href: "/admin/collections", label: "Collections" },
   { href: "/admin/media", label: "Media" },
   { href: "/admin/orders", label: "Orders" },
+  { href: "/admin/customers", label: "Customers" },
+  { href: "/admin/offers", label: "Offers" },
+  { href: "/admin/cms", label: "Website" },
+  { href: "/admin/shipping", label: "Shipping" },
+  { href: "/admin/settings", label: "Settings" },
+  { href: "/admin/returns", label: "Returns" },
+  { href: "/admin/analytics", label: "Analytics" },
+  { href: "/admin/audit", label: "Audit" },
 ];
 
 export function AdminShell({

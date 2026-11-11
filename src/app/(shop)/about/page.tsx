@@ -1,7 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/layout/container";
-import { getSiteConfig } from "@/lib/catalog";
+import { getCms, getSiteConfig } from "@/lib/catalog";
+
+export const dynamic = "force-dynamic";
 
 export const metadata = {
   title: "About Us",
@@ -54,6 +56,7 @@ const values = [
 
 export default function AboutPage() {
   const config = getSiteConfig();
+  const about = getCms().about;
 
   return (
     <>
@@ -74,11 +77,11 @@ export default function AboutPage() {
             Elite Men&apos;s Collection
           </p>
           <h1 className="mt-4 max-w-xl font-display text-4xl leading-[1.08] tracking-tight text-ink sm:text-5xl md:text-6xl">
-            About FEELINGS
+            {about.title || "About FEELINGS"}
           </h1>
           <p className="mt-5 max-w-md text-sm leading-relaxed text-ink/75 md:text-base">
-            A house built for the modern Pakistani gentleman — tradition held
-            with clarity, confidence worn without excess.
+            {about.body ||
+              "A house built for the modern Pakistani gentleman — tradition held with clarity, confidence worn without excess."}
           </p>
         </Container>
       </section>

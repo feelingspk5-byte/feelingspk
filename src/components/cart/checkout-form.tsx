@@ -84,6 +84,7 @@ export function CheckoutForm() {
             notes: String(data.get("notes") ?? ""),
           },
           paymentMethod: "Cash on Delivery",
+          couponCode: String(data.get("coupon") ?? ""),
           lines: lines.map((line) => ({
             key: line.key,
             productId: line.productId,
@@ -265,9 +266,30 @@ export function CheckoutForm() {
             </label>
           </div>
           <p className="mt-5 text-sm text-ink/55">
-            Delivery charges are confirmed with your order on WhatsApp before
-            dispatch.
+            Shipping is calculated from your city using FEELINGS delivery zones.
+            Final confirmation stays on WhatsApp before dispatch.
           </p>
+        </section>
+
+        <section className="border border-ink/10 bg-ivory p-6 md:p-8">
+          <div className="flex items-baseline justify-between gap-4 border-b border-ink/10 pb-4">
+            <h2 className="font-display text-2xl text-ink md:text-3xl">
+              Offer code
+            </h2>
+            <span className="text-[11px] uppercase tracking-[0.16em] text-ink/40">
+              03
+            </span>
+          </div>
+          <label className="mt-6 block text-sm">
+            <span className="mb-1.5 block text-[11px] uppercase tracking-[0.14em] text-ink/55">
+              Coupon (optional)
+            </span>
+            <Input
+              name="coupon"
+              placeholder="Enter code from FEELINGS"
+              autoComplete="off"
+            />
+          </label>
         </section>
 
         <section className="border border-ink/10 bg-ivory p-6 md:p-8">
@@ -276,7 +298,7 @@ export function CheckoutForm() {
               Payment
             </h2>
             <span className="text-[11px] uppercase tracking-[0.16em] text-ink/40">
-              03
+              04
             </span>
           </div>
 
