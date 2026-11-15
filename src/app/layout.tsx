@@ -23,7 +23,12 @@ export const metadata: Metadata = {
   },
   description:
     "FEELINGS Elite Men's Collection — premium unstitched fabric, stitched shalwar kameez, and dress shirts.",
-  metadataBase: new URL("https://feelings.local"),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ??
+      (process.env.VERCEL_URL
+        ? `https://${process.env.VERCEL_URL}`
+        : "https://feelingspk.com"),
+  ),
   openGraph: {
     title: "FEELINGS | Elite Men's Collection",
     description:
