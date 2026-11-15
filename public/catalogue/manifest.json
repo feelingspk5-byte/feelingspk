@@ -1,295 +1,64 @@
 [
   {
-    "slug": "buraq",
-    "name": "Buraq Signature Fabric",
-    "sku": "FL-BRQ-01",
-    "description": "A considered palette. A timeless expression. Four distinct shades of unstitched signature fabric.",
-    "cover": "/catalogue/buraq/cover.jpg",
+    "slug": "tropical-signature",
+    "name": "Tropical Signature",
+    "sku": "FL-TS-01",
+    "description": "Four considered neutrals from the FEELINGS catalogue.",
+    "sourcePdf": "feelings_1.pdf",
     "colours": [
       {
-        "id": "fl-brq-01-01",
-        "name": "Sahara Taupe",
-        "shade": "Warm Neutral",
-        "images": {
-          "studio": "/catalogue/buraq/fl-brq-01-01-studio.jpg",
-          "fill": "/catalogue/buraq/fl-brq-01-01-fill.jpg",
-          "detail": "/catalogue/buraq/fl-brq-01-01-detail.jpg"
-        }
+        "id": "ts-01",
+        "name": "Mocha Taupe",
+        "image": "/catalogue/tropical-signature/ts-01-mocha-taupe.jpg"
       },
       {
-        "id": "fl-brq-01-02",
-        "name": "Heritage Olive",
-        "shade": "Muted Olive",
-        "images": {
-          "studio": "/catalogue/buraq/fl-brq-01-02-studio.jpg",
-          "fill": "/catalogue/buraq/fl-brq-01-02-fill.jpg",
-          "detail": "/catalogue/buraq/fl-brq-01-02-detail.jpg"
-        }
+        "id": "ts-02",
+        "name": "Sandstone Beige",
+        "image": "/catalogue/tropical-signature/ts-02-sandstone-beige.jpg"
       },
       {
-        "id": "fl-brq-01-03",
-        "name": "Obsidian Black",
-        "shade": "Classic Black",
-        "images": {
-          "studio": "/catalogue/buraq/fl-brq-01-03-studio.jpg",
-          "fill": "/catalogue/buraq/fl-brq-01-03-fill.jpg",
-          "detail": "/catalogue/buraq/fl-brq-01-03-detail.jpg"
-        }
+        "id": "ts-03",
+        "name": "Dark Espresso",
+        "image": "/catalogue/tropical-signature/ts-03-dark-espresso.jpg"
       },
       {
-        "id": "fl-brq-01-04",
-        "name": "Ivory Dune",
-        "shade": "Warm Ivory",
-        "images": {
-          "studio": "/catalogue/buraq/fl-brq-01-04-studio.jpg",
-          "fill": "/catalogue/buraq/fl-brq-01-04-fill.jpg",
-          "detail": "/catalogue/buraq/fl-brq-01-04-detail.jpg"
-        }
-      }
-    ]
-  },
-  {
-    "slug": "signature-midnight",
-    "name": "Signature Midnight",
-    "sku": "FEA-02",
-    "description": "Three deep shades for formal presence \u2014 espresso brown, midnight navy, and classic black.",
-    "cover": "/catalogue/signature-midnight/cover.jpg",
-    "colours": [
-      {
-        "id": "fea-02-01",
-        "name": "Qahwa",
-        "shade": "Espresso Brown",
-        "images": {
-          "studio": "/catalogue/signature-midnight/fea-02-01-studio.jpg",
-          "fill": "/catalogue/signature-midnight/fea-02-01-fill.jpg",
-          "detail": "/catalogue/signature-midnight/fea-02-01-detail.jpg"
-        }
-      },
-      {
-        "id": "fea-02-02",
-        "name": "Neel",
-        "shade": "Midnight Navy",
-        "images": {
-          "studio": "/catalogue/signature-midnight/fea-02-02-studio.jpg",
-          "fill": "/catalogue/signature-midnight/fea-02-02-fill.jpg",
-          "detail": "/catalogue/signature-midnight/fea-02-02-detail.jpg"
-        }
-      },
-      {
-        "id": "fea-02-03",
-        "name": "Layl",
-        "shade": "Classic Black",
-        "images": {
-          "studio": "/catalogue/signature-midnight/fea-02-03-studio.jpg",
-          "fill": "/catalogue/signature-midnight/fea-02-03-fill.jpg",
-          "detail": "/catalogue/signature-midnight/fea-02-03-detail.jpg"
-        }
-      }
-    ]
-  },
-  {
-    "slug": "article-03",
-    "name": "Signature Earth",
-    "sku": "FEA-03",
-    "description": "Four unstitched shades from soft ivory to deep olive \u2014 a calm, natural palette.",
-    "cover": "/catalogue/article-03/cover.jpg",
-    "colours": [
-      {
-        "id": "fea-03-01",
-        "name": "Earthen Olive",
-        "shade": "Olive Khaki",
-        "images": {
-          "studio": "/catalogue/article-03/fea-03-01-studio.jpg",
-          "fill": "/catalogue/article-03/fea-03-01-fill.jpg",
-          "detail": "/catalogue/article-03/fea-03-01-detail.jpg"
-        }
-      },
-      {
-        "id": "fea-03-02",
-        "name": "Warm Ivory",
-        "shade": "Soft Ivory",
-        "images": {
-          "studio": "/catalogue/article-03/fea-03-02-studio.jpg",
-          "fill": "/catalogue/article-03/fea-03-02-fill.jpg",
-          "detail": "/catalogue/article-03/fea-03-02-detail.jpg"
-        }
-      },
-      {
-        "id": "fea-03-03",
-        "name": "Sage",
-        "shade": "Muted Sage Green",
-        "images": {
-          "studio": "/catalogue/article-03/fea-03-03-studio.jpg",
-          "fill": "/catalogue/article-03/fea-03-03-fill.jpg",
-          "detail": "/catalogue/article-03/fea-03-03-detail.jpg"
-        }
-      },
-      {
-        "id": "fea-03-04",
-        "name": "Deep Olive",
-        "shade": "Dark Olive",
-        "images": {
-          "studio": "/catalogue/article-03/fea-03-04-studio.jpg",
-          "fill": "/catalogue/article-03/fea-03-04-fill.jpg",
-          "detail": "/catalogue/article-03/fea-03-04-detail.jpg"
-        }
-      }
-    ]
-  },
-  {
-    "slug": "noir",
-    "name": "The Noir",
-    "sku": "FEA-04",
-    "description": "Four dark shades for sharp formal silhouettes \u2014 jet black, ink black, deep charcoal, and midnight navy.",
-    "cover": "/catalogue/noir/cover.jpg",
-    "colours": [
-      {
-        "id": "fea-04-01",
-        "name": "Aswad",
-        "shade": "Jet Black",
-        "images": {
-          "studio": "/catalogue/noir/fea-04-01-studio.jpg",
-          "fill": "/catalogue/noir/fea-04-01-fill.jpg",
-          "detail": "/catalogue/noir/fea-04-01-detail.jpg"
-        }
-      },
-      {
-        "id": "fea-04-02",
-        "name": "Layl",
-        "shade": "Ink Black",
-        "images": {
-          "studio": "/catalogue/noir/fea-04-02-studio.jpg",
-          "fill": "/catalogue/noir/fea-04-02-fill.jpg",
-          "detail": "/catalogue/noir/fea-04-02-detail.jpg"
-        }
-      },
-      {
-        "id": "fea-04-03",
-        "name": "Zulmat",
-        "shade": "Deep Charcoal",
-        "images": {
-          "studio": "/catalogue/noir/fea-04-03-studio.jpg",
-          "fill": "/catalogue/noir/fea-04-03-fill.jpg",
-          "detail": "/catalogue/noir/fea-04-03-detail.jpg"
-        }
-      },
-      {
-        "id": "fea-04-04",
-        "name": "Neel",
-        "shade": "Midnight Navy",
-        "images": {
-          "studio": "/catalogue/noir/fea-04-04-studio.jpg",
-          "fill": "/catalogue/noir/fea-04-04-fill.jpg",
-          "detail": "/catalogue/noir/fea-04-04-detail.jpg"
-        }
+        "id": "ts-04",
+        "name": "Soft Ivory",
+        "image": "/catalogue/tropical-signature/ts-04-soft-ivory.jpg"
       }
     ]
   },
   {
     "slug": "heritage-depth",
     "name": "Heritage Depth",
-    "sku": "FEA-05",
-    "description": "Graphite charcoal, dark olive, deep burgundy, and midnight navy \u2014 richer unstitched colours.",
-    "cover": "/catalogue/heritage-depth/cover.jpg",
+    "sku": "FL-HD-01",
+    "description": "Five enduring shades from the FEELINGS catalogue (cover page omitted).",
+    "sourcePdf": "feelings_2.pdf",
     "colours": [
       {
-        "id": "fea-05-01",
-        "name": "Raad",
-        "shade": "Graphite Charcoal",
-        "images": {
-          "studio": "/catalogue/heritage-depth/fea-05-01-studio.jpg",
-          "fill": "/catalogue/heritage-depth/fea-05-01-fill.jpg",
-          "detail": "/catalogue/heritage-depth/fea-05-01-detail.jpg"
-        }
+        "id": "hd-01",
+        "name": "Mist Stone",
+        "image": "/catalogue/heritage-depth/hd-01-mist-stone.jpg"
       },
       {
-        "id": "fea-05-02",
-        "name": "Zarrar",
-        "shade": "Dark Olive",
-        "images": {
-          "studio": "/catalogue/heritage-depth/fea-05-02-studio.jpg",
-          "fill": "/catalogue/heritage-depth/fea-05-02-fill.jpg",
-          "detail": "/catalogue/heritage-depth/fea-05-02-detail.jpg"
-        }
+        "id": "hd-02",
+        "name": "Dark Espresso",
+        "image": "/catalogue/heritage-depth/hd-02-dark-espresso.jpg"
       },
       {
-        "id": "fea-05-03",
-        "name": "Shahbaz",
-        "shade": "Deep Burgundy",
-        "images": {
-          "studio": "/catalogue/heritage-depth/fea-05-03-studio.jpg",
-          "fill": "/catalogue/heritage-depth/fea-05-03-fill.jpg",
-          "detail": "/catalogue/heritage-depth/fea-05-03-detail.jpg"
-        }
+        "id": "hd-03",
+        "name": "Oxblood Burgundy",
+        "image": "/catalogue/heritage-depth/hd-03-oxblood-burgundy.jpg"
       },
       {
-        "id": "fea-05-04",
-        "name": "Sultan",
-        "shade": "Midnight Navy",
-        "images": {
-          "studio": "/catalogue/heritage-depth/fea-05-04-studio.jpg",
-          "fill": "/catalogue/heritage-depth/fea-05-04-fill.jpg",
-          "detail": "/catalogue/heritage-depth/fea-05-04-detail.jpg"
-        }
-      }
-    ]
-  },
-  {
-    "slug": "tropical-signature",
-    "name": "Tropical Signature",
-    "sku": "FEA-06",
-    "description": "Unstitched tropical fabrics in graphite charcoal, ivory, deep burgundy, dark olive, and midnight navy.",
-    "cover": "/catalogue/tropical-signature/cover.jpg",
-    "colours": [
-      {
-        "id": "fea-06-01",
-        "name": "Graphite Charcoal",
-        "shade": "Tropical",
-        "images": {
-          "studio": "/catalogue/tropical-signature/fea-06-01-studio.jpg",
-          "fill": "/catalogue/tropical-signature/fea-06-01-fill.jpg",
-          "detail": "/catalogue/tropical-signature/fea-06-01-detail.jpg"
-        }
-      },
-      {
-        "id": "fea-06-02",
-        "name": "Ivory",
-        "shade": "Tropical",
-        "images": {
-          "studio": "/catalogue/tropical-signature/fea-06-02-studio.jpg",
-          "fill": "/catalogue/tropical-signature/fea-06-02-fill.jpg",
-          "detail": "/catalogue/tropical-signature/fea-06-02-detail.jpg"
-        }
-      },
-      {
-        "id": "fea-06-03",
-        "name": "Deep Burgundy",
-        "shade": "Tropical",
-        "images": {
-          "studio": "/catalogue/tropical-signature/fea-06-03-studio.jpg",
-          "fill": "/catalogue/tropical-signature/fea-06-03-fill.jpg",
-          "detail": "/catalogue/tropical-signature/fea-06-03-detail.jpg"
-        }
-      },
-      {
-        "id": "fea-06-04",
-        "name": "Dark Olive",
-        "shade": "Tropical",
-        "images": {
-          "studio": "/catalogue/tropical-signature/fea-06-04-studio.jpg",
-          "fill": "/catalogue/tropical-signature/fea-06-04-fill.jpg",
-          "detail": "/catalogue/tropical-signature/fea-06-04-detail.jpg"
-        }
-      },
-      {
-        "id": "fea-06-05",
+        "id": "hd-04",
         "name": "Midnight Navy",
-        "shade": "Tropical",
-        "images": {
-          "studio": "/catalogue/tropical-signature/fea-06-05-studio.jpg",
-          "fill": "/catalogue/tropical-signature/fea-06-05-fill.jpg",
-          "detail": "/catalogue/tropical-signature/fea-06-05-detail.jpg"
-        }
+        "image": "/catalogue/heritage-depth/hd-04-midnight-navy.jpg"
+      },
+      {
+        "id": "hd-05",
+        "name": "Signature Black",
+        "image": "/catalogue/heritage-depth/hd-05-signature-black.jpg"
       }
     ]
   }

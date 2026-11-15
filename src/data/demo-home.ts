@@ -1,112 +1,82 @@
 /**
- * Homepage marketing content — Elite Men's Collection across three lines.
+ * Homepage marketing — brand hero imagery restored; collections = Tropical + Heritage only.
  */
 export const demoHero = {
   eyebrow: "Elite Men's Collection",
   title: "Quiet luxury for the modern gentleman",
   subtitle:
     "FEELINGS brings together unstitched cloth, stitched shalwar kameez, and dress shirts — considered fabrics and silhouettes for every occasion.",
-  /** Full-bleed slides — rotate every 5s */
+  /** Full-bleed brand photography — rotate every 5s */
   slides: [
     {
       src: "/brand/hero/shalwar-kameez-wide.jpg",
       alt: "Gentleman in ivory stitched shalwar kameez",
       label: "Stitched Shalwar Kameez",
-      // Mobile: keep the figure centred; desktop: full scene
       position: "object-[center_22%] md:object-center",
     },
     {
       src: "/brand/hero/fabric-atelier-right.jpg",
       alt: "Three folded fabrics on a right-side table — cream, camel, and navy — with open wall on the left",
       label: "Unstitched Fabric",
-      // Mobile: frame the cloth stack; desktop: wall left + table right
       position: "object-[78%_62%] md:object-[70%_55%]",
     },
     {
       src: "/brand/hero/dress-shirt-formal.jpg",
       alt: "Crisp white formal dress shirt on wooden hanger",
       label: "Dress Shirts",
-      // Mobile: show full shirt; desktop: hanger in right half
       position: "object-[55%_30%] md:object-[62%_34%]",
     },
   ],
 };
 
+/** Homepage category / collection tiles — Tropical Signature + Heritage Depth only */
 export const demoCategories = [
   {
-    slug: "unstitched-fabric",
-    name: "Unstitched Fabric",
-    detail: "Signature cloth for bespoke and made-to-measure.",
-    image: "/catalogue/buraq/fl-brq-01-04-studio.jpg",
-    href: "/shop?category=unstitched_fabric",
+    slug: "tropical-signature",
+    name: "Tropical Signature",
+    detail: "Mocha taupe, sandstone beige, dark espresso, soft ivory.",
+    image: "/catalogue/tropical-signature/ts-01-mocha-taupe.jpg",
+    href: "/collections/tropical-signature",
     badge: null as string | null,
   },
   {
-    slug: "stitched-shalwar-kameez",
-    name: "Stitched Shalwar Kameez",
-    detail: "Ready silhouettes cut for presence and ease.",
-    image: "/catalogue/placeholders/cat-stitched-shalwar-kameez.jpg",
-    href: "/shop?category=stitched_shalwar_kameez",
-    badge: "Coming soon",
-  },
-  {
-    slug: "dress-shirts",
-    name: "Dress Shirts",
-    detail: "Refined shirts for work, evenings, and ceremony.",
-    image: "/catalogue/placeholders/dress-shirt-white.jpg",
-    href: "/shop?category=dress_shirt",
-    badge: "Coming soon",
+    slug: "heritage-depth",
+    name: "Heritage Depth",
+    detail: "Mist stone, espresso, oxblood, midnight navy, signature black.",
+    image: "/catalogue/heritage-depth/hd-01-mist-stone.jpg",
+    href: "/collections/heritage-depth",
+    badge: null as string | null,
   },
 ];
 
 export const demoCollections = [
   {
-    slug: "buraq",
-    name: "Buraq Signature Fabric",
-    detail: "Warm earths and ivory — grounded, formal calm.",
-    image: "/catalogue/buraq/fl-brq-01-01-studio.jpg",
+    slug: "tropical-signature",
+    name: "Tropical Signature",
+    detail: "Four considered neutrals for everyday formal calm.",
+    image: "/catalogue/tropical-signature/ts-02-sandstone-beige.jpg",
   },
   {
-    slug: "signature-midnight",
-    name: "Signature Midnight",
-    detail: "Espresso, navy, and black for evening depth.",
-    image: "/catalogue/signature-midnight/fea-02-01-studio.jpg",
-  },
-  {
-    slug: "noir",
-    name: "The Noir",
-    detail: "Jet through midnight navy — sharp formal silhouettes.",
-    image: "/catalogue/noir/fea-04-04-studio.jpg",
+    slug: "heritage-depth",
+    name: "Heritage Depth",
+    detail: "Five enduring shades for deeper formal presence.",
+    image: "/catalogue/heritage-depth/hd-03-oxblood-burgundy.jpg",
   },
 ];
 
 export const demoFabrics = [
   {
-    slug: "buraq",
-    name: "Buraq Signature Fabric",
-    detail: "Four considered signature shades.",
-    image: "/catalogue/buraq/fl-brq-01-01-studio.jpg",
-    tag: "Fabric",
-  },
-  {
-    slug: "article-03",
-    name: "Signature Earth",
-    detail: "Ivory through deep olive.",
-    image: "/catalogue/article-03/fea-03-02-studio.jpg",
+    slug: "tropical-signature",
+    name: "Tropical Signature",
+    detail: "Four exact catalogue shades.",
+    image: "/catalogue/tropical-signature/ts-01-mocha-taupe.jpg",
     tag: "Fabric",
   },
   {
     slug: "heritage-depth",
     name: "Heritage Depth",
-    detail: "Graphite, olive, burgundy, navy.",
-    image: "/catalogue/heritage-depth/fea-05-03-studio.jpg",
-    tag: "Fabric",
-  },
-  {
-    slug: "tropical-signature",
-    name: "Tropical Signature",
-    detail: "Breathable cloth in rich seasonal tones.",
-    image: "/catalogue/tropical-signature/fea-06-02-studio.jpg",
+    detail: "Five exact catalogue shades.",
+    image: "/catalogue/heritage-depth/hd-02-dark-espresso.jpg",
     tag: "Fabric",
   },
 ];

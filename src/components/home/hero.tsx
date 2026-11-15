@@ -17,21 +17,25 @@ type HeroContent = CmsContent["hero"];
 const destinations = [
   { href: "/shop", label: "Shop All", detail: "The full house" },
   {
-    href: "/shop?category=unstitched_fabric",
-    label: "Fabric",
-    detail: "Unstitched cloth",
+    href: "/collections/tropical-signature",
+    label: "Tropical Signature",
+    detail: "Four neutrals",
+  },
+  {
+    href: "/collections/heritage-depth",
+    label: "Heritage Depth",
+    detail: "Five deep shades",
   },
   {
     href: "/shop?category=stitched_shalwar_kameez",
     label: "Shalwar Kameez",
-    detail: "Stitched readywear",
+    detail: "Coming soon",
   },
   {
     href: "/shop?category=dress_shirt",
     label: "Dress Shirts",
-    detail: "Formal shirts",
+    detail: "Coming soon",
   },
-  { href: "/collections", label: "Collections", detail: "Shop by line" },
 ];
 
 function HeroSlides({
