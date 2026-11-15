@@ -12,19 +12,22 @@ export const demoHero = {
       src: "/brand/hero/shalwar-kameez-wide.jpg",
       alt: "Gentleman in ivory stitched shalwar kameez",
       label: "Stitched Shalwar Kameez",
-      position: "object-center",
+      // Mobile: keep the figure centred; desktop: full scene
+      position: "object-[center_22%] md:object-center",
     },
     {
       src: "/brand/hero/fabric-atelier-right.jpg",
       alt: "Three folded fabrics on a right-side table — cream, camel, and navy — with open wall on the left",
       label: "Unstitched Fabric",
-      position: "object-center",
+      // Mobile: frame the cloth stack; desktop: wall left + table right
+      position: "object-[78%_62%] md:object-[70%_55%]",
     },
     {
       src: "/brand/hero/dress-shirt-formal.jpg",
       alt: "Crisp white formal dress shirt on wooden hanger",
       label: "Dress Shirts",
-      position: "object-[68%_40%]",
+      // Mobile: show full shirt; desktop: hanger in right half
+      position: "object-[55%_30%] md:object-[62%_34%]",
     },
   ],
 };

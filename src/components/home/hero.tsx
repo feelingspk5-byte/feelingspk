@@ -56,7 +56,6 @@ export function HomeHero({ content }: { content?: HeroContent }) {
     [slides.length],
   );
 
-  // Preload every slide image into the browser cache before rotating
   useEffect(() => {
     let cancelled = false;
     const loaders = slides.map(
@@ -95,119 +94,158 @@ export function HomeHero({ content }: { content?: HeroContent }) {
     return () => document.removeEventListener("visibilitychange", onVisibility);
   }, []);
 
-  const active = slides[index];
+  const active = slides[index] ?? slides[0];
 
-  return (
-    <section className="relative overflow-hidden bg-stone text-ink">
-      <div className="relative min-h-[70vh] md:min-h-[78vh] lg:min-h-[82vh]">
-        {/* Keep ALL slides mounted — crossfade opacity only, no blank remount */}
-        <div className="absolute inset-0">
+  function SlideLayer({ className }: { className?: string }) {
+    return (
+      <div className={["absolute inset-0", className].filter(Boolean).join(" ")}>
+        {slides.map((slide, i) => {
+          const isActive = i === index;
+          return (
+            <div
+              key={slide.src}
+              aria-hidden={!isActive}
+              className={[
+                "absolute inset-0 transition-opacity ease-out",
+                reduce ? "duration-0" : "duration-700",
+                isActive ? "opacity-100" : "opacity-0",
+              ].join(" ")}
+            >
+              <Image
+                src={slide.src}
+                alt={slide.alt}
+                fill
+                priority
+                quality={75}
+                className={`object-cover ${slide.position ?? "object-center"}`}
+                sizes="100vw"
+              />
+            </div>
+          );
+        })}
+      </div>
+    );
+  }
+
+  function SlideControls({ align = "start" }: { align?: "start" | "end" }) {
+    return (
+      <div
+        className={[
+          "flex flex-col gap-3",
+          align === "end" ? "items-end text-right" : "items-start",
+        ].join(" ")}
+      >
+        <p className="text-[10px] uppercase tracking-[0.28em] text-ink/55">
+          {active?.label}
+        </p>
+        <div className="flex items-center gap-3">
           {slides.map((slide, i) => {
             const isActive = i === index;
             return (
-              <div
+              <button
                 key={slide.src}
-                aria-hidden={!isActive}
-                className={[
-                  "absolute inset-0 transition-opacity ease-out",
-                  reduce ? "duration-0" : "duration-700",
-                  isActive ? "opacity-100" : "opacity-0",
-                ].join(" ")}
+                type="button"
+                aria-label={`Show ${slide.label}`}
+                aria-current={isActive ? "true" : undefined}
+                onClick={() => goTo(i)}
+                className="group relative h-1.5 w-12 overflow-hidden rounded-sm bg-ink/20 md:w-16"
               >
-                <Image
-                  src={slide.src}
-                  alt={slide.alt}
-                  fill
-                  priority
-                  quality={75}
-                  className={`object-cover ${slide.position}`}
-                  sizes="100vw"
-                />
-              </div>
+                {isActive ? (
+                  <span
+                    key={`${index}-${tick}`}
+                    className={
+                      reduce || !ready
+                        ? "absolute inset-y-0 left-0 w-full bg-ink"
+                        : "absolute inset-y-0 left-0 animate-[heroProgress_5s_linear_forwards] bg-ink"
+                    }
+                  />
+                ) : null}
+              </button>
             );
           })}
-
-          {/* Soft cream wash — keeps black FEELINGS logo and copy crisp on the wall */}
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-stone/95 via-stone/60 to-transparent md:via-[38%] md:to-transparent" />
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-stone/35 via-transparent to-stone/20" />
         </div>
+      </div>
+    );
+  }
 
-        <Container className="relative flex min-h-[70vh] flex-col justify-center pb-16 pt-28 md:min-h-[78vh] md:pb-20 md:pt-24 lg:min-h-[82vh]">
-          <div className="max-w-[18rem] sm:max-w-sm md:max-w-[22rem] lg:max-w-md">
-            <FadeIn>
-              <p className="text-[10px] uppercase tracking-[0.32em] text-wine md:text-[11px]">
-                {hero.eyebrow}
-              </p>
-            </FadeIn>
-            <h1 className="sr-only">FEELINGS — {hero.title}</h1>
-            <FadeIn delay={0.08}>
-              <div className="mt-5 max-w-[13rem] sm:max-w-[15rem] md:mt-7 md:max-w-[17rem]">
-                <BrandLogo variant="hero" priority />
-              </div>
-            </FadeIn>
-            <FadeIn delay={0.16}>
-              <p className="mt-6 font-display text-3xl leading-tight tracking-tight text-ink sm:text-4xl md:mt-8 md:text-[2.65rem]">
-                {hero.title}
-              </p>
-              <p className="mt-4 text-sm leading-relaxed text-ink/75 md:text-base">
-                {hero.subtitle}
-              </p>
-            </FadeIn>
-            <FadeIn delay={0.24}>
-              <div className="mt-8 flex flex-wrap gap-3 md:mt-9">
-                <Link
-                  href="/shop"
-                  className="inline-flex h-12 min-w-[10rem] items-center justify-center rounded-sm bg-ink px-6 text-sm tracking-[0.08em] text-ivory transition-transform duration-feel hover:-translate-y-0.5"
-                >
-                  Explore the Collection
-                </Link>
-                <Link
-                  href="/collections"
-                  className="inline-flex h-12 min-w-[10rem] items-center justify-center rounded-sm border border-ink bg-ivory/70 px-6 text-sm tracking-[0.08em] text-ink backdrop-blur-sm transition-colors duration-feel hover:bg-ink hover:text-ivory"
-                >
-                  View Collections
-                </Link>
-              </div>
-            </FadeIn>
+  function HeroCopy() {
+    return (
+      <>
+        <FadeIn>
+          <p className="text-[10px] uppercase tracking-[0.32em] text-wine md:text-[11px]">
+            {hero.eyebrow}
+          </p>
+        </FadeIn>
+        <h1 className="sr-only">FEELINGS — {hero.title}</h1>
+        <FadeIn delay={0.08}>
+          <div className="mt-5 max-w-[13rem] sm:max-w-[15rem] md:mt-7 md:max-w-[17rem]">
+            <BrandLogo variant="hero" priority />
           </div>
+        </FadeIn>
+        <FadeIn delay={0.16}>
+          <p className="mt-6 font-display text-3xl leading-tight tracking-tight text-ink sm:text-4xl md:mt-8 md:text-[2.65rem]">
+            {hero.title}
+          </p>
+          <p className="mt-4 text-sm leading-relaxed text-ink/75 md:text-base">
+            {hero.subtitle}
+          </p>
+        </FadeIn>
+        <FadeIn delay={0.24}>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap md:mt-9">
+            <Link
+              href="/shop"
+              className="inline-flex h-12 min-w-[10rem] items-center justify-center rounded-sm bg-ink px-6 text-sm tracking-[0.08em] text-ivory transition-transform duration-feel hover:-translate-y-0.5"
+            >
+              Explore the Collection
+            </Link>
+            <Link
+              href="/collections"
+              className="inline-flex h-12 min-w-[10rem] items-center justify-center rounded-sm border border-ink bg-ivory/70 px-6 text-sm tracking-[0.08em] text-ink backdrop-blur-sm transition-colors duration-feel hover:bg-ink hover:text-ivory"
+            >
+              View Collections
+            </Link>
+          </div>
+        </FadeIn>
+      </>
+    );
+  }
 
-          {/* Slide controls */}
-          <div className="mt-12 flex flex-col gap-4 md:mt-16 md:absolute md:bottom-10 md:right-8 md:mt-0 lg:right-12">
-            <p className="text-[10px] uppercase tracking-[0.28em] text-ink/55 md:text-right">
-              {active.label}
-            </p>
-            <div className="flex items-center gap-3 md:justify-end">
-              {slides.map((slide, i) => {
-                const isActive = i === index;
-                return (
-                  <button
-                    key={slide.src}
-                    type="button"
-                    aria-label={`Show ${slide.label}`}
-                    aria-current={isActive ? "true" : undefined}
-                    onClick={() => goTo(i)}
-                    className="group relative h-1.5 w-12 overflow-hidden rounded-sm bg-ink/20 md:w-16"
-                  >
-                    {isActive ? (
-                      <span
-                        key={`${index}-${tick}`}
-                        className={
-                          reduce || !ready
-                            ? "absolute inset-y-0 left-0 w-full bg-ink"
-                            : "absolute inset-y-0 left-0 animate-[heroProgress_5s_linear_forwards] bg-ink"
-                        }
-                      />
-                    ) : null}
-                  </button>
-                );
-              })}
-            </div>
+  return (
+    <section className="relative overflow-hidden bg-stone text-ink">
+      {/* —— Mobile: full-width product image, then copy (no side crop) —— */}
+      <div className="md:hidden">
+        <div className="relative h-[52vh] min-h-[280px] max-h-[420px] w-full overflow-hidden">
+          <SlideLayer />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-stone to-transparent" />
+          <div className="absolute bottom-4 left-4 right-4 z-10">
+            <SlideControls />
+          </div>
+        </div>
+        <Container className="pb-10 pt-6">
+          <div className="max-w-md">
+            <HeroCopy />
+          </div>
+        </Container>
+      </div>
+
+      {/* —— Desktop: left copy over cream wash, product in the right plane —— */}
+      <div className="relative hidden min-h-[78vh] md:block lg:min-h-[82vh]">
+        <SlideLayer />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-stone/95 via-stone/60 to-transparent via-[38%]" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-stone/35 via-transparent to-stone/20" />
+
+        <Container className="relative flex min-h-[78vh] flex-col justify-center pb-20 pt-24 lg:min-h-[82vh]">
+          <div className="max-w-[22rem] lg:max-w-md">
+            <HeroCopy />
+          </div>
+          <div className="absolute bottom-10 right-8 lg:right-12">
+            <SlideControls align="end" />
           </div>
         </Container>
       </div>
 
       <div className="bg-stone text-ink">
-        <Container className="relative pb-10 pt-8 md:pb-14 md:pt-10">
+        <Container className="relative pb-10 pt-2 md:pb-14 md:pt-10">
           <div className="mb-3 flex items-center gap-4">
             <p className="text-[11px] uppercase tracking-[0.22em] text-ink/45">
               Explore
