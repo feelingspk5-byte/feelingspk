@@ -73,6 +73,11 @@ export function OffersManager({ initial }: { initial: Offer[] }) {
     <div className="space-y-8">
       <form onSubmit={create} className="space-y-4 border border-ink/10 bg-ivory p-6">
         <h2 className="font-display text-2xl">Create offer</h2>
+        <p className="text-sm text-ink/60">
+          For sale prices on the shop (strikethrough old price + Save %), use
+          Percent or Fixed and leave the coupon code blank. Add a code only for
+          checkout coupons.
+        </p>
         <div className="grid gap-4 md:grid-cols-2">
           <Input required placeholder="Name (Eid Sale)" value={name} onChange={(e) => setName(e.target.value)} />
           <select
@@ -86,8 +91,8 @@ export function OffersManager({ initial }: { initial: Offer[] }) {
             <option value="sale_badge">Sale badge only</option>
           </select>
           <Input type="number" placeholder="Value (% or PKR)" value={value} onChange={(e) => setValue(e.target.value)} />
-          <Input placeholder="Coupon code (optional)" value={code} onChange={(e) => setCode(e.target.value)} />
-          <Input placeholder="Badge text (Eid sale)" value={badgeText} onChange={(e) => setBadgeText(e.target.value)} />
+          <Input placeholder="Coupon code (blank = auto sale price)" value={code} onChange={(e) => setCode(e.target.value)} />
+          <Input placeholder="Badge text (Sale)" value={badgeText} onChange={(e) => setBadgeText(e.target.value)} />
           <Input type="number" placeholder="Min order PKR (optional)" value={minOrder} onChange={(e) => setMinOrder(e.target.value)} />
         </div>
         {error ? <p className="text-sm text-wine">{error}</p> : null}

@@ -2,11 +2,15 @@
 
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
+import { SalePrice } from "@/components/catalog/sale-price";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/lib/auth-context";
 import { useCart } from "@/lib/cart-context";
-import { formatPrice } from "@/lib/format";
 import { cn } from "@/lib/cn";
+import {
+  applyCatalogueDiscount,
+  type CatalogueDiscount,
+} from "@/lib/store/commerce";
 import {
   DEFAULT_DRESS_SHIRT_SIZES,
   DEFAULT_SHALWAR_KAMEEZ_SIZES,
@@ -31,10 +35,12 @@ export function ProductPurchase({
   product,
   colourId,
   onColourChange,
+  catalogueDiscount = null,
 }: {
   product: Product;
   colourId?: string;
   onColourChange?: (id: string) => void;
+  catalogueDiscount?: CatalogueDiscount | null;
 }) {
   const { addLine } = useCart();
   const { user } = useAuth();
@@ -69,10 +75,17 @@ export function ProductPurchase({
   const selectedCut = cuts.find((c) => c.id === cutId);
   const selectedSize = sizes.find((s) => s.id === sizeId);
 
-  const unitPrice = useMemo(() => {
+  const listPrice = useMemo(() => {
     if (selectedCut?.price !== undefined) return selectedCut.price;
     return product.price;
   }, [product.price, selectedCut]);
+
+  const sale = useMemo(
+    () => applyCatalogueDiscount(listPrice, catalogueDiscount),
+    [listPrice, catalogueDiscount],
+  );
+
+  const unitPrice = sale?.sale ?? listPrice;
 
   const colourImage =
     selectedColour?.imageIds
@@ -133,9 +146,14 @@ export function ProductPurchase({
         <p className="text-[11px] uppercase tracking-[0.16em] text-wine">
           {PRODUCT_CATEGORY_LABELS[product.category]}
         </p>
-        <p className="mt-2 text-2xl text-ink">
-          {formatPrice(unitPrice, product.currency)}
-        </p>
+        <div className="mt-2">
+          <SalePrice
+            price={listPrice}
+            currency={product.currency}
+            sale={sale}
+            size="lg"
+          />
+        </div>
         <p className="mt-1 text-sm text-ink/60">{categoryHint(product)}</p>
       </div>
 

@@ -15,6 +15,8 @@ export default async function AdminOffersPage() {
           <h1 className="font-display text-3xl tracking-tight">Offers</h1>
           <p className="mt-2 text-sm text-ink/60">
             Coupons, percent/fixed discounts, free shipping, and sale badges.
+            Leave the coupon code blank on percent/fixed offers to show
+            strikethrough prices and Save % on the shop.
           </p>
         </div>
         <OffersManager initial={readStore().offers} />

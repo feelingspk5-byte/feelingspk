@@ -9,6 +9,7 @@ import {
   getProductBySlug,
   getProducts,
 } from "@/lib/catalog";
+import { getCatalogueDiscount } from "@/lib/store/commerce";
 
 export const dynamic = "force-dynamic";
 
@@ -43,6 +44,7 @@ export default async function ProductPage({
   const related = getProducts()
     .filter((p) => p.id !== product.id)
     .slice(0, 4);
+  const catalogueDiscount = getCatalogueDiscount(product);
 
   const specs = [
     ["SKU", product.sku],
@@ -69,7 +71,11 @@ export default async function ProductPage({
         <span className="text-ink/70">{product.name}</span>
       </nav>
 
-      <ProductView product={product} initialColourId={colour} />
+      <ProductView
+        product={product}
+        initialColourId={colour}
+        catalogueDiscount={catalogueDiscount}
+      />
 
       <p className="mt-4 text-sm text-ink/55">
         {availabilityLabel(product.availability)}
