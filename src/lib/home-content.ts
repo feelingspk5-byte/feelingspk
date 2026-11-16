@@ -50,6 +50,13 @@ const CATEGORY_DETAILS: Record<ProductCategory, string> = {
   dress_shirt: "Crisp shirts that finish the look for formal and daily wear.",
 };
 
+/** Dedicated category imagery — never fall back to another category’s photo. */
+const CATEGORY_IMAGES: Record<ProductCategory, string> = {
+  unstitched_fabric: "/brand/hero/fabric-atelier-right.jpg",
+  stitched_shalwar_kameez: "/brand/hero/shalwar-kameez-wide.jpg",
+  dress_shirt: "/brand/hero/dress-shirt-formal.jpg",
+};
+
 export function getHomeCategories(): HomeCategoryCard[] {
   const products = getProducts();
   const order: ProductCategory[] = [
@@ -60,10 +67,9 @@ export function getHomeCategories(): HomeCategoryCard[] {
 
   return order.map((category) => {
     const match = products.find((p) => p.category === category);
-    const image =
-      match?.images[0]?.src ||
-      getCollections()[0]?.imageSrc ||
-      "/brand/editorial-one-house.jpg";
+    // Only use a live product photo when that category actually has products.
+    // Coming-soon categories keep their own brand images.
+    const image = match?.images[0]?.src || CATEGORY_IMAGES[category];
     return {
       slug: category,
       name: PRODUCT_CATEGORY_LABELS[category],
