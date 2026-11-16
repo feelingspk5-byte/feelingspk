@@ -21,7 +21,7 @@ export function CollectionTile({
       prefetch
       className="group flex h-full flex-col overflow-hidden bg-ivory transition-transform duration-feel hover:-translate-y-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wine"
     >
-      <div className="relative aspect-[3/4] w-full overflow-hidden bg-stone/30">
+      <div className="relative aspect-[3/4] w-full overflow-hidden bg-stone/25">
         {collection.imageSrc ? (
           <Image
             src={collection.imageSrc}
@@ -37,31 +37,28 @@ export function CollectionTile({
             className="rounded-none border-0"
           />
         )}
-        {/* Soft fade only — fabric stays visible, no solid grey slab */}
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-ink/50 to-transparent" />
-
         {number ? (
-          <span className="absolute left-4 top-4 z-10 text-[11px] uppercase tracking-[0.22em] text-ivory drop-shadow-sm">
+          <span className="absolute left-4 top-4 z-10 rounded-sm bg-ivory/85 px-2 py-1 text-[11px] uppercase tracking-[0.22em] text-ink">
             {number}
           </span>
         ) : null}
+      </div>
 
-        <div className="absolute inset-x-0 bottom-0 z-10 p-5 md:p-6">
-          <p className="text-[10px] uppercase tracking-[0.22em] text-ivory/85 drop-shadow-sm">
-            Fabric line
+      <div className="flex flex-1 flex-col border-t border-ink/10 bg-ivory px-5 py-5 md:px-6 md:py-6">
+        <p className="text-[10px] uppercase tracking-[0.22em] text-ink/45">
+          Fabric line
+        </p>
+        <h3 className="mt-2 font-display text-2xl leading-tight tracking-tight text-ink md:text-[1.75rem]">
+          {collection.name}
+        </h3>
+        {collection.description ? (
+          <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-ink/65">
+            {collection.description}
           </p>
-          <h3 className="mt-2 font-display text-2xl leading-tight tracking-tight text-ivory drop-shadow-sm md:text-[1.75rem]">
-            {collection.name}
-          </h3>
-          {collection.description ? (
-            <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-ivory/90 drop-shadow-sm">
-              {collection.description}
-            </p>
-          ) : null}
-          <span className="mt-4 inline-flex text-[11px] uppercase tracking-[0.18em] text-ivory drop-shadow-sm transition-transform duration-feel group-hover:translate-x-1">
-            Explore line →
-          </span>
-        </div>
+        ) : null}
+        <span className="mt-4 inline-flex text-[11px] uppercase tracking-[0.18em] text-wine transition-transform duration-feel group-hover:translate-x-1">
+          Explore line →
+        </span>
       </div>
 
       {shades.length > 0 ? (

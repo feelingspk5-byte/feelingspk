@@ -40,7 +40,7 @@ export function ShopCategories() {
                 href={item.href}
                 className="group relative block overflow-hidden rounded-sm bg-ivory"
               >
-                <div className="relative aspect-[3/4] overflow-hidden">
+                <div className="relative aspect-[3/4] overflow-hidden bg-stone/25">
                   <Image
                     src={item.image}
                     alt={item.name}
@@ -49,21 +49,15 @@ export function ShopCategories() {
                     sizes="(max-width:768px) 100vw, 33vw"
                     priority={index === 0}
                   />
-                  {/* Soft bottom fade only — no solid grey panel over the cloth */}
-                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-ink/45 to-transparent" />
                   {"badge" in item && item.badge ? (
                     <span className="absolute left-4 top-4 rounded-sm bg-ivory/95 px-2.5 py-1 text-[10px] uppercase tracking-[0.16em] text-ink">
                       {item.badge}
                     </span>
                   ) : null}
-                  <div className="absolute inset-x-0 bottom-0 p-5 text-ivory">
-                    <p className="font-display text-2xl drop-shadow-sm">
-                      {item.name}
-                    </p>
-                    <p className="mt-1 text-sm text-ivory/90 drop-shadow-sm">
-                      {item.detail}
-                    </p>
-                  </div>
+                </div>
+                <div className="border-t border-ink/10 px-5 py-5">
+                  <p className="font-display text-2xl text-ink">{item.name}</p>
+                  <p className="mt-1 text-sm text-ink/65">{item.detail}</p>
                 </div>
               </Link>
             </StaggerItem>
@@ -106,9 +100,9 @@ export function FeaturedCollections() {
             <StaggerItem key={item.slug}>
               <Link
                 href={`/collections/${item.slug}`}
-                className="group relative block overflow-hidden rounded-sm bg-stone/30"
+                className="group relative block overflow-hidden rounded-sm bg-ivory"
               >
-                <div className="relative aspect-[3/4] overflow-hidden">
+                <div className="relative aspect-[3/4] overflow-hidden bg-stone/25">
                   <Image
                     src={item.image}
                     alt={item.name}
@@ -117,15 +111,10 @@ export function FeaturedCollections() {
                     sizes="(max-width:768px) 100vw, 33vw"
                     priority={index === 0}
                   />
-                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-ink/45 to-transparent" />
-                  <div className="absolute inset-x-0 bottom-0 p-5 text-ivory">
-                    <p className="font-display text-2xl drop-shadow-sm">
-                      {item.name}
-                    </p>
-                    <p className="mt-1 text-sm text-ivory/90 drop-shadow-sm">
-                      {item.detail}
-                    </p>
-                  </div>
+                </div>
+                <div className="border-t border-ink/10 px-5 py-5">
+                  <p className="font-display text-2xl text-ink">{item.name}</p>
+                  <p className="mt-1 text-sm text-ink/65">{item.detail}</p>
                 </div>
               </Link>
             </StaggerItem>
