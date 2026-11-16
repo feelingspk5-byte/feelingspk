@@ -12,7 +12,7 @@ export function CollectionTile({
 }) {
   return (
     <Link
-      href={`/products/${collection.slug}`}
+      href={`/collections/${collection.slug}`}
       prefetch
       className="group flex h-full flex-col overflow-hidden bg-ivory transition-transform duration-feel hover:-translate-y-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wine"
     >

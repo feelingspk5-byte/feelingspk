@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/lib/auth-context";
@@ -146,11 +145,7 @@ export function ProductPurchase({
             Colour
           </legend>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-2">
-            {colours.map((colour) => {
-              const preview = colour.imageIds
-                ?.map((id) => product.images.find((img) => img.id === id))
-                .find(Boolean);
-              return (
+            {colours.map((colour) => (
               <button
                 key={colour.id}
                 type="button"
@@ -164,37 +159,16 @@ export function ProductPurchase({
                   colour.available === false && "opacity-40",
                 )}
               >
-                {preview?.src ? (
-                  <span className="relative block aspect-[4/5] w-full overflow-hidden bg-stone/20">
-                    <Image
-                      src={preview.src}
-                      alt=""
-                      fill
-                      sizes="160px"
-                      quality={90}
-                      className="object-cover object-center"
-                    />
-                  </span>
-                ) : (
-                  <span
-                    className="block h-14 w-full border-b border-ink/10 sm:h-16"
-                    style={{ backgroundColor: colour.hex ?? "#d8d1c6" }}
-                    aria-hidden
-                  />
-                )}
-                <span className="flex items-center gap-2 border-t border-ink/10 px-3 py-2.5">
-                  <span
-                    className="h-3.5 w-3.5 shrink-0 rounded-sm border border-ink/10"
-                    style={{ backgroundColor: colour.hex ?? "#d8d1c6" }}
-                    aria-hidden
-                  />
-                  <span className="text-sm leading-snug text-ink">
-                    {colour.name}
-                  </span>
+                <span
+                  className="block h-14 w-full border-b border-ink/10 sm:h-16"
+                  style={{ backgroundColor: colour.hex ?? "#d8d1c6" }}
+                  aria-hidden
+                />
+                <span className="block px-3 py-2.5 text-sm leading-snug text-ink">
+                  {colour.name}
                 </span>
               </button>
-              );
-            })}
+            ))}
           </div>
           {selectedColour ? (
             <p className="mt-3 text-sm text-ink/65">

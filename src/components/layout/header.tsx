@@ -96,6 +96,7 @@ export function Header({ collections }: { collections: Collection[] }) {
     ];
     routes.forEach((route) => router.prefetch(route));
     collections.forEach((c) => {
+      router.prefetch(`/collections/${c.slug}`);
       router.prefetch(`/products/${c.slug}`);
       router.prefetch(`/shop?category=unstitched_fabric`);
     });
@@ -259,7 +260,7 @@ export function Header({ collections }: { collections: Collection[] }) {
                   {collections.slice(0, 6).map((c) => (
                     <Link
                       key={c.id}
-                      href={`/products/${c.slug}`}
+                      href={`/collections/${c.slug}`}
                       className="text-xs uppercase tracking-[0.14em] text-ink/65 hover:text-wine"
                       onClick={() => setShopOpen(false)}
                     >

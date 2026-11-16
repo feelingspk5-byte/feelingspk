@@ -62,11 +62,22 @@ export default async function ProductPage({
   return (
     <Container className="py-10 md:py-14">
       <nav className="mb-6 text-xs uppercase tracking-[0.14em] text-ink/50">
-        <Link href="/collections" className="hover:text-ink">
-          Collections
+        <Link href="/shop" className="hover:text-ink">
+          Shop
         </Link>
         <span className="mx-2">/</span>
-        <span className="text-ink/70">{product.name}</span>
+        {product.collectionSlugs[0] ? (
+          <>
+            <Link
+              href={`/collections/${product.collectionSlugs[0]}`}
+              className="hover:text-ink"
+            >
+              {product.name}
+            </Link>
+            <span className="mx-2">/</span>
+          </>
+        ) : null}
+        <span className="text-ink/70">Buy</span>
       </nav>
 
       <ProductView product={product} initialColourId={colour} />
