@@ -1,4 +1,5 @@
 import { HomeHero } from "@/components/home/hero";
+import { LaunchOfferPopup } from "@/components/home/launch-offer-popup";
 import { NewsletterSignup } from "@/components/home/newsletter";
 import {
   AssuranceRow,
@@ -23,6 +24,7 @@ export default function HomePage() {
       <EditorialBand />
       <AssuranceRow />
       <NewsletterSignup />
+      <LaunchOfferPopup />
     </>
   );
 }

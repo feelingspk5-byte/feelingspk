@@ -15,7 +15,10 @@ import {
 
 export function ShopCategories() {
   return (
-    <section className="relative overflow-hidden border-t border-ink/10 bg-stone py-16 md:py-24">
+    <section
+      id="home-second-section"
+      className="relative overflow-hidden border-t border-ink/10 bg-stone py-16 md:py-24"
+    >
       <VectorBackdrop className="opacity-50" />
       <Container className="relative">
         <FadeIn>
