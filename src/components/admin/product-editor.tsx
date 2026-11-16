@@ -155,7 +155,7 @@ export function ProductEditor({
           }))
         : initial?.cutOptions;
 
-    const payload: Partial<Product> & { price: number | null } = {
+    const payload: Omit<Partial<Product>, "price"> & { price: number | null } = {
       name,
       slug: slug || undefined,
       sku: sku || undefined,
