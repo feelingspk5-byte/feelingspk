@@ -1,6 +1,5 @@
 import { HomeHero } from "@/components/home/hero";
 import { LaunchOfferPopup } from "@/components/home/launch-offer-popup";
-import { NewsletterSignup } from "@/components/home/newsletter";
 import {
   AssuranceRow,
   EditorialBand,
@@ -37,7 +36,6 @@ export default function HomePage() {
       <FeaturedFabrics items={fabrics} />
       <EditorialBand content={editorial} />
       <AssuranceRow items={assurances} />
-      <NewsletterSignup />
       <LaunchOfferPopup offer={launchOffer} />
     </>
   );
