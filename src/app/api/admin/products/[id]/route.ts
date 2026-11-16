@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { getAdminSession } from "@/lib/store/admin-auth";
 import { ensureStore, readStore, updateStore } from "@/lib/store/file-store";
 import { slugify } from "@/lib/store/ids";
+import { parsePrice, resolvePriceUpdate } from "@/lib/store/price";
 import type { Product } from "@/lib/types";
 
 function revalidateShop(slug: string) {
@@ -37,7 +38,9 @@ export async function PUT(request: Request, ctx: Ctx) {
   }
   await ensureStore();
   const { id } = await ctx.params;
-  const body = (await request.json()) as Partial<Product>;
+  const body = (await request.json()) as Partial<Product> & {
+    price?: number | null;
+  };
   const existing = readStore().products.find((p) => p.id === id);
   if (!existing) {
     return NextResponse.json({ error: "Not found" }, { status: 404 });
@@ -49,11 +52,16 @@ export async function PUT(request: Request, ctx: Ctx) {
     slug = `${slug}-${id.slice(-4)}`;
   }
 
-  const nextPrice =
-    body.price !== undefined ? body.price : existing.price;
+  const priceKeyPresent = Object.prototype.hasOwnProperty.call(body, "price");
+  const nextPrice = resolvePriceUpdate(body.price, existing.price, priceKeyPresent);
   const cutOptions = (body.cutOptions ?? existing.cutOptions)?.map((cut) => ({
     ...cut,
-    price: nextPrice !== undefined ? nextPrice : cut.price,
+    price:
+      nextPrice !== undefined
+        ? nextPrice
+        : priceKeyPresent
+          ? undefined
+          : parsePrice(cut.price) ?? cut.price,
   }));
 
   const product: Product = {

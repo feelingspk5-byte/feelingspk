@@ -139,22 +139,29 @@ export function ProductEditor({
           ]
         : initial?.images ?? [];
 
-    const priceValue = price.trim() ? Number(price) : undefined;
+    const trimmedPrice = price.trim();
+    const priceValue = trimmedPrice ? Number(trimmedPrice) : null;
+    if (trimmedPrice && !Number.isFinite(priceValue)) {
+      setBusy(false);
+      setError("Enter a valid price in PKR, or leave it blank.");
+      return;
+    }
     const fabricCuts =
       category === "unstitched_fabric"
         ? cutOptions.map((cut) => ({
             ...cut,
             // Keep metre options in sync with the catalogue price so the shop PDP shows it.
-            price: priceValue,
+            price: priceValue === null ? undefined : priceValue,
           }))
         : initial?.cutOptions;
 
-    const payload: Partial<Product> = {
+    const payload: Partial<Product> & { price: number | null } = {
       name,
       slug: slug || undefined,
       sku: sku || undefined,
       category,
       description: description || undefined,
+      // Always send price (number or null) so the API persists or clears it.
       price: priceValue,
       currency: "PKR",
       availability,

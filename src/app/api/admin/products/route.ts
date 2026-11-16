@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { getAdminSession } from "@/lib/store/admin-auth";
 import { ensureStore, readStore, updateStore } from "@/lib/store/file-store";
 import { newId, slugify } from "@/lib/store/ids";
+import { parsePrice } from "@/lib/store/price";
 import type { Product } from "@/lib/types";
 
 export async function GET() {
@@ -35,10 +36,10 @@ export async function POST(request: Request) {
     slug = `${slugBase}-${n++}`;
   }
 
-  const price = body.price;
+  const price = parsePrice(body.price);
   const cutOptions = (body.cutOptions ?? []).map((cut) => ({
     ...cut,
-    price: price !== undefined ? price : cut.price,
+    price: price !== undefined ? price : parsePrice(cut.price),
   }));
 
   const product: Product = {

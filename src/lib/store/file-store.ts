@@ -165,19 +165,23 @@ export async function ensureStore(): Promise<StoreState> {
 }
 
 export function readStore(): StoreState {
-  if (memory) return memory;
-  // Sync path for local/file when ensureStore has not run yet.
+  // File backend: always re-read disk. Next.js can keep separate module
+  // instances (RSC vs route handlers); an in-memory-only cache then serves
+  // a stale seed without prices after admin saves in another instance.
   if (!hasBlobBackend()) {
     const fromDisk = readFromDisk();
     if (fromDisk) {
       memory = fromDisk;
       return fromDisk;
     }
+    if (memory) return memory;
     const seeded = seedStore();
     memory = seeded;
     writeToDisk(seeded);
     return seeded;
   }
+
+  if (memory) return memory;
   // Blob mode without ensureStore — temporary seed until async load finishes.
   const seeded = seedStore();
   memory = seeded;
