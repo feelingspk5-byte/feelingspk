@@ -17,14 +17,9 @@ type HeroContent = CmsContent["hero"];
 const destinations = [
   { href: "/shop", label: "Shop All", detail: "The full house" },
   {
-    href: "/collections/tropical-signature",
-    label: "Tropical Signature",
-    detail: "Four neutrals",
-  },
-  {
-    href: "/collections/heritage-depth",
-    label: "Heritage Depth",
-    detail: "Five deep shades",
+    href: "/collections",
+    label: "Collections",
+    detail: "Six fabric lines",
   },
   {
     href: "/shop?category=stitched_shalwar_kameez",
