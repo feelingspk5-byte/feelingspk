@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import { ProductGallery } from "@/components/catalog/product-gallery";
 import { ProductPurchase } from "@/components/catalog/product-purchase";
-import type { CatalogueDiscount } from "@/lib/store/commerce";
+import type { CatalogueDiscount } from "@/lib/store/sale-pricing";
 import type { Product } from "@/lib/types";
 
 export function ProductView({

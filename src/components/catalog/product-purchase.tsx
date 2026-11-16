@@ -10,7 +10,7 @@ import { cn } from "@/lib/cn";
 import {
   applyCatalogueDiscount,
   type CatalogueDiscount,
-} from "@/lib/store/commerce";
+} from "@/lib/store/sale-pricing";
 import {
   DEFAULT_DRESS_SHIRT_SIZES,
   DEFAULT_SHALWAR_KAMEEZ_SIZES,

@@ -1,6 +1,6 @@
 import { formatPrice } from "@/lib/format";
 import { cn } from "@/lib/cn";
-import type { SalePricing } from "@/lib/store/commerce";
+import type { SalePricing } from "@/lib/store/sale-pricing";
 
 export function SalePrice({
   price,
