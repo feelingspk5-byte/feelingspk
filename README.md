@@ -35,7 +35,14 @@ First visit creates the admin password.
 | Analytics | Revenue, top products/colours |
 | Audit | Who changed what |
 
-Optional env: `ADMIN_SESSION_SECRET` for signed admin cookies in production.
+### Env (production / Vercel)
+
+| Variable | Purpose |
+| --- | --- |
+| `ADMIN_SESSION_SECRET` | Signed admin cookies (16+ chars) |
+| `BLOB_READ_WRITE_TOKEN` | **Required for live admin → shop sync.** Create a Blob store in the Vercel project (Storage → Blob). Without it, prices/orders only live in ephemeral `/tmp` and will not stick on the website. |
+
+Locally, admin edits write to `data/runtime-store.json` and show on the shop immediately.
 
 ## Brand colours
 

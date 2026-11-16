@@ -3,6 +3,7 @@ import { AdminLogoutButton } from "@/components/admin/admin-logout-button";
 import { AdminNav } from "@/components/admin/admin-nav";
 import { AdminSearch } from "@/components/admin/admin-search";
 import { AdminShortcuts } from "@/components/admin/admin-shortcuts";
+import { StoreBackendBanner } from "@/components/admin/store-backend-banner";
 
 export function AdminShell({
   children,
@@ -36,6 +37,7 @@ export function AdminShell({
         </aside>
 
         <div className="flex min-w-0 flex-1 flex-col">
+          <StoreBackendBanner />
           <header className="sticky top-0 z-30 border-b border-ink/10 bg-[#f7f3eb]/95 backdrop-blur-md">
             <div className="flex items-center justify-between gap-4 px-4 py-3 md:px-6 lg:px-8">
               <div className="min-w-0 lg:hidden">

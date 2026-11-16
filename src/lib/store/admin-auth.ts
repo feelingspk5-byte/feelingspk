@@ -1,7 +1,7 @@
 import { createHmac, timingSafeEqual } from "crypto";
 import { cookies } from "next/headers";
 import bcrypt from "bcryptjs";
-import { readStore, updateStore } from "@/lib/store/file-store";
+import { ensureStore, readStore, updateStore } from "@/lib/store/file-store";
 
 const COOKIE = "feelings_admin_session";
 const MAX_AGE_SEC = 60 * 60 * 12; // 12 hours
@@ -49,7 +49,8 @@ function decodeSession(
   }
 }
 
-export function adminIsConfigured(): boolean {
+export async function adminIsConfigured(): Promise<boolean> {
+  await ensureStore();
   return Boolean(readStore().admin.passwordHash);
 }
 
@@ -65,6 +66,7 @@ export async function setAdminPassword(password: string): Promise<void> {
 }
 
 export async function verifyAdminPassword(password: string): Promise<boolean> {
+  await ensureStore();
   const hash = readStore().admin.passwordHash;
   if (!hash) return false;
   return bcrypt.compare(password, hash);
@@ -88,6 +90,7 @@ export async function clearAdminSession(): Promise<void> {
 }
 
 export async function getAdminSession(): Promise<{ email: string } | null> {
+  await ensureStore();
   const jar = await cookies();
   const parsed = decodeSession(jar.get(COOKIE)?.value);
   if (!parsed) return null;

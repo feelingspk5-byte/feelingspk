@@ -4,7 +4,7 @@ import {
   findOfferByCode,
   resolveShipping,
 } from "@/lib/store/commerce";
-import { readStore, updateStore } from "@/lib/store/file-store";
+import { ensureStore, readStore, updateStore } from "@/lib/store/file-store";
 import { newId } from "@/lib/store/ids";
 import type { CustomerRecord, Order, OrderLine } from "@/lib/store/types";
 
@@ -47,6 +47,8 @@ function upsertCustomer(
 }
 
 export async function POST(request: Request) {
+  await ensureStore();
+
   const body = (await request.json()) as {
     customer?: { name?: string; email?: string; phone?: string };
     delivery?: {

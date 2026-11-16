@@ -1,6 +1,7 @@
+import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 import { getAdminSession } from "@/lib/store/admin-auth";
-import { readStore, updateStore } from "@/lib/store/file-store";
+import { ensureStore, readStore, updateStore } from "@/lib/store/file-store";
 import { newId, slugify } from "@/lib/store/ids";
 import type { Product } from "@/lib/types";
 
@@ -9,6 +10,7 @@ export async function GET() {
   if (!session) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
+  await ensureStore();
   return NextResponse.json({ products: readStore().products });
 }
 
@@ -18,6 +20,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
+  await ensureStore();
   const body = (await request.json()) as Partial<Product>;
   if (!body.name?.trim()) {
     return NextResponse.json({ error: "Name is required." }, { status: 400 });
@@ -32,6 +35,12 @@ export async function POST(request: Request) {
     slug = `${slugBase}-${n++}`;
   }
 
+  const price = body.price;
+  const cutOptions = (body.cutOptions ?? []).map((cut) => ({
+    ...cut,
+    price: price !== undefined ? price : cut.price,
+  }));
+
   const product: Product = {
     id,
     slug,
@@ -39,8 +48,8 @@ export async function POST(request: Request) {
     category: body.category ?? "unstitched_fabric",
     sku: body.sku?.trim() || undefined,
     description: body.description?.trim() || undefined,
-    price: body.price,
-    currency: body.currency ?? store.siteConfig.currencyPlaceholder,
+    price,
+    currency: body.currency ?? store.siteConfig.currencyPlaceholder ?? "PKR",
     collectionSlugs: body.collectionSlugs ?? [],
     fabricType: body.fabricType,
     composition: body.composition,
@@ -50,7 +59,7 @@ export async function POST(request: Request) {
     care: body.care,
     width: body.width,
     sellingMethod: body.sellingMethod ?? "fixed_cut",
-    cutOptions: body.cutOptions ?? [],
+    cutOptions,
     sizeOptions: body.sizeOptions ?? [],
     colourVariants: body.colourVariants ?? [],
     images: body.images ?? [],
@@ -68,6 +77,11 @@ export async function POST(request: Request) {
   await updateStore((draft) => {
     draft.products.unshift(product);
   });
+
+  revalidatePath("/");
+  revalidatePath("/shop");
+  revalidatePath(`/products/${product.slug}`);
+  revalidatePath("/admin/products");
 
   return NextResponse.json({ product }, { status: 201 });
 }

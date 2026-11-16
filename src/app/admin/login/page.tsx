@@ -9,7 +9,7 @@ export default async function AdminLoginPage() {
   const session = await getAdminSession();
   if (session) redirect("/admin");
 
-  const setup = !adminIsConfigured();
+  const setup = !(await adminIsConfigured());
 
   return (
     <div className="admin-workspace flex min-h-screen items-center px-4 py-16">

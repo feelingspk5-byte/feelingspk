@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, DM_Sans } from "next/font/google";
+import { ensureStore } from "@/lib/store/file-store";
 import "./globals.css";
 
 const display = Cormorant_Garamond({
@@ -49,11 +50,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Load shared catalogue/CMS store (Blob on Vercel, file locally) before pages render.
+  await ensureStore();
+
   return (
     <html lang="en">
       <body className={`${display.variable} ${sans.variable} antialiased`}>

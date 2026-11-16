@@ -139,13 +139,24 @@ export function ProductEditor({
           ]
         : initial?.images ?? [];
 
+    const priceValue = price.trim() ? Number(price) : undefined;
+    const fabricCuts =
+      category === "unstitched_fabric"
+        ? cutOptions.map((cut) => ({
+            ...cut,
+            // Keep metre options in sync with the catalogue price so the shop PDP shows it.
+            price: priceValue,
+          }))
+        : initial?.cutOptions;
+
     const payload: Partial<Product> = {
       name,
       slug: slug || undefined,
       sku: sku || undefined,
       category,
       description: description || undefined,
-      price: price.trim() ? Number(price) : undefined,
+      price: priceValue,
+      currency: "PKR",
       availability,
       publishStatus,
       stockQty: stockQty.trim() ? Number(stockQty) : undefined,
@@ -162,8 +173,7 @@ export function ProductEditor({
       bestSeller,
       collectionSlugs,
       colourVariants: colours.filter((c) => c.name.trim()),
-      cutOptions:
-        category === "unstitched_fabric" ? cutOptions : initial?.cutOptions,
+      cutOptions: fabricCuts,
       sizeOptions:
         category !== "unstitched_fabric" ? sizeOptions : initial?.sizeOptions,
       images,

@@ -6,7 +6,7 @@ import {
 } from "@/lib/store/admin-auth";
 
 export async function POST(request: Request) {
-  if (adminIsConfigured()) {
+  if (await adminIsConfigured()) {
     return NextResponse.json(
       { error: "Admin already configured." },
       { status: 400 },
