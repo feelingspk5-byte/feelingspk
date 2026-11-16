@@ -101,7 +101,7 @@ export function FeaturedCollections() {
           {demoCollections.map((item, index) => (
             <StaggerItem key={item.slug} className="h-full">
               <Link
-                href={`/collections/${item.slug}`}
+                href={`/products/${item.slug}`}
                 className="group relative flex h-full flex-col overflow-hidden rounded-sm bg-ivory"
               >
                 <div className="relative aspect-[3/4] shrink-0 overflow-hidden bg-stone/25">
@@ -152,7 +152,7 @@ export function FeaturedFabrics() {
           {demoFabrics.map((fabric) => (
             <StaggerItem key={fabric.slug}>
               <Link
-                href={`/collections/${fabric.slug}`}
+                href={`/products/${fabric.slug}`}
                 className="group block overflow-hidden rounded-sm bg-ivory transition-transform duration-feel hover:-translate-y-1"
               >
                 <div className="relative aspect-[3/4] overflow-hidden">
