@@ -10,7 +10,7 @@ export function SalePrice({
   size = "md",
   align = "start",
 }: {
-  price: number | undefined;
+  price: number | undefined | null;
   currency?: string;
   sale?: SalePricing | null;
   className?: string;
@@ -19,51 +19,57 @@ export function SalePrice({
 }) {
   if (sale) {
     return (
-      <p
+      <div
         className={cn(
-          "flex flex-wrap items-baseline gap-x-2 gap-y-0.5 text-ink",
+          "flex flex-wrap items-baseline gap-x-2.5 gap-y-1 text-ink",
           align === "center" && "justify-center text-center",
-          size === "sm" && "text-sm",
-          size === "md" && "text-sm",
-          size === "lg" && "text-2xl",
           className,
         )}
       >
         <span
           className={cn(
-            "text-ink/45 line-through decoration-ink/50",
-            size === "lg" ? "text-base font-normal" : "text-xs font-normal",
+            "font-semibold text-ink",
+            size === "sm" && "text-base",
+            size === "md" && "text-lg",
+            size === "lg" && "text-2xl md:text-3xl",
           )}
         >
-          {formatPrice(sale.original, currency)}
-        </span>
-        <span className={cn("font-semibold text-ink", size === "lg" && "text-2xl")}>
           {formatPrice(sale.sale, currency)}
         </span>
         <span
           className={cn(
-            "font-normal text-ink/55",
-            size === "lg" ? "text-sm" : "text-xs",
+            "text-ink/45 line-through decoration-ink/45",
+            size === "lg" ? "text-sm md:text-base" : "text-xs",
+          )}
+        >
+          {formatPrice(sale.original, currency)}
+        </span>
+        <span
+          className={cn(
+            "rounded-sm bg-wine/10 px-1.5 py-0.5 font-medium text-wine",
+            size === "lg" ? "text-xs md:text-sm" : "text-[11px]",
           )}
         >
           Save {sale.savePercent}%
         </span>
-      </p>
+      </div>
     );
   }
+
+  const hasPrice = typeof price === "number" && Number.isFinite(price);
 
   return (
     <p
       className={cn(
-        "text-ink",
-        size === "sm" && "text-sm",
-        size === "md" && "text-sm",
-        size === "lg" && "text-2xl",
+        hasPrice ? "font-semibold text-ink" : "font-medium text-ink/70",
+        size === "sm" && "text-base",
+        size === "md" && "text-lg",
+        size === "lg" && "text-2xl md:text-3xl",
         align === "center" && "text-center",
         className,
       )}
     >
-      {formatPrice(price, currency)}
+      {formatPrice(price ?? undefined, currency)}
     </p>
   );
 }

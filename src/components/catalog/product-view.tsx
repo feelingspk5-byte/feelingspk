@@ -3,7 +3,12 @@
 import { useMemo, useState } from "react";
 import { ProductGallery } from "@/components/catalog/product-gallery";
 import { ProductPurchase } from "@/components/catalog/product-purchase";
-import type { CatalogueDiscount } from "@/lib/store/sale-pricing";
+import { SalePrice } from "@/components/catalog/sale-price";
+import { resolveListPrice } from "@/lib/format";
+import {
+  applyCatalogueDiscount,
+  type CatalogueDiscount,
+} from "@/lib/store/sale-pricing";
 import type { Product } from "@/lib/types";
 
 export function ProductView({
@@ -30,8 +35,11 @@ export function ProductView({
     return mapped.length ? (mapped as typeof product.images) : product.images;
   }, [colourId, colours, product]);
 
+  const listPrice = resolveListPrice(product, product.cutOptions?.[0]);
+  const sale = applyCatalogueDiscount(listPrice, catalogueDiscount);
+
   return (
-    <div className="grid gap-10 lg:grid-cols-2">
+    <div className="grid gap-8 lg:grid-cols-2 lg:gap-10">
       <ProductGallery images={images} productName={product.name} />
       <div>
         <p className="text-[11px] uppercase tracking-[0.18em] text-wine">
@@ -40,8 +48,25 @@ export function ProductView({
         <h1 className="mt-2 font-display text-4xl tracking-tight text-ink md:text-5xl">
           {product.name}
         </h1>
+        <div className="mt-4 border-b border-ink/10 pb-5">
+          <SalePrice
+            price={listPrice}
+            currency={product.currency}
+            sale={sale}
+            size="lg"
+          />
+          {listPrice !== undefined ? (
+            <p className="mt-1.5 text-xs text-ink/50">
+              Price for 4.5 metres · Cash on Delivery available
+            </p>
+          ) : (
+            <p className="mt-1.5 text-xs text-ink/55">
+              WhatsApp us for the current rate on this fabric.
+            </p>
+          )}
+        </div>
         {product.description ? (
-          <p className="mt-4 text-sm leading-relaxed text-ink/75">
+          <p className="mt-5 text-sm leading-relaxed text-ink/75">
             {product.description}
           </p>
         ) : null}
@@ -56,6 +81,7 @@ export function ProductView({
             colourId={colourId}
             onColourChange={setColourId}
             catalogueDiscount={catalogueDiscount}
+            showPrice={false}
           />
         </div>
       </div>

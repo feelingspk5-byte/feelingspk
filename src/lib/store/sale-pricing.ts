@@ -37,11 +37,12 @@ export function offerAppliesToProduct(
 }
 
 export function applyCatalogueDiscount(
-  original: number | undefined,
+  original: number | undefined | null,
   discount: CatalogueDiscount | null | undefined,
 ): SalePricing | null {
   if (
     original === undefined ||
+    original === null ||
     !Number.isFinite(original) ||
     original <= 0 ||
     !discount

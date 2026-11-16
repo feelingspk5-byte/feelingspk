@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { useAuth } from "@/lib/auth-context";
 import { useCart } from "@/lib/cart-context";
 import { cn } from "@/lib/cn";
+import { resolveListPrice } from "@/lib/format";
 import {
   applyCatalogueDiscount,
   type CatalogueDiscount,
@@ -36,11 +37,13 @@ export function ProductPurchase({
   colourId,
   onColourChange,
   catalogueDiscount = null,
+  showPrice = true,
 }: {
   product: Product;
   colourId?: string;
   onColourChange?: (id: string) => void;
   catalogueDiscount?: CatalogueDiscount | null;
+  showPrice?: boolean;
 }) {
   const { addLine } = useCart();
   const { user } = useAuth();
@@ -75,10 +78,10 @@ export function ProductPurchase({
   const selectedCut = cuts.find((c) => c.id === cutId);
   const selectedSize = sizes.find((s) => s.id === sizeId);
 
-  const listPrice = useMemo(() => {
-    if (selectedCut?.price !== undefined) return selectedCut.price;
-    return product.price;
-  }, [product.price, selectedCut]);
+  const listPrice = useMemo(
+    () => resolveListPrice(product, selectedCut),
+    [product, selectedCut],
+  );
 
   const sale = useMemo(
     () => applyCatalogueDiscount(listPrice, catalogueDiscount),
@@ -146,14 +149,16 @@ export function ProductPurchase({
         <p className="text-[11px] uppercase tracking-[0.16em] text-wine">
           {PRODUCT_CATEGORY_LABELS[product.category]}
         </p>
-        <div className="mt-2">
-          <SalePrice
-            price={listPrice}
-            currency={product.currency}
-            sale={sale}
-            size="lg"
-          />
-        </div>
+        {showPrice ? (
+          <div className="mt-2">
+            <SalePrice
+              price={listPrice}
+              currency={product.currency}
+              sale={sale}
+              size="lg"
+            />
+          </div>
+        ) : null}
         <p className="mt-1 text-sm text-ink/60">{categoryHint(product)}</p>
       </div>
 
@@ -258,9 +263,6 @@ export function ProductPurchase({
               +92 3155551507
             </a>{" "}
             for assistance.
-          </p>
-          <p className="mt-2 text-xs text-ink/50">
-            Price appears once FEELINGS confirms rates for your selection.
           </p>
         </fieldset>
       ) : null}

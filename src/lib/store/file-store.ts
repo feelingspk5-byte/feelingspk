@@ -125,7 +125,11 @@ async function getSupabaseAdmin() {
   });
 }
 
-async function readFromSupabase(): Promise<StoreState | null> {
+type RemoteRead =
+  | { ok: true; store: StoreState | null }
+  | { ok: false; store: null };
+
+async function readFromSupabase(): Promise<RemoteRead> {
   try {
     const supabase = await getSupabaseAdmin();
     const { data, error } = await supabase
@@ -135,13 +139,13 @@ async function readFromSupabase(): Promise<StoreState | null> {
       .maybeSingle();
     if (error) {
       console.error("[store] supabase read failed", error.message);
-      return null;
+      return { ok: false, store: null };
     }
-    if (!data?.data) return null;
-    return migrateStore(data.data);
+    if (!data?.data) return { ok: true, store: null };
+    return { ok: true, store: migrateStore(data.data) };
   } catch (error) {
     console.error("[store] supabase read error", error);
-    return null;
+    return { ok: false, store: null };
   }
 }
 
@@ -160,19 +164,22 @@ async function writeToSupabase(store: StoreState) {
   }
 }
 
-async function readFromBlob(): Promise<StoreState | null> {
+async function readFromBlob(): Promise<RemoteRead> {
   try {
     const { get } = await import("@vercel/blob");
     const result = await get(BLOB_PATH, {
       access: "private",
       useCache: false,
     });
-    if (!result || result.statusCode !== 200 || !result.stream) return null;
+    if (!result || result.statusCode !== 200 || !result.stream) {
+      return { ok: true, store: null };
+    }
     const text = await new Response(result.stream).text();
-    if (!text.trim()) return null;
-    return migrateStore(JSON.parse(text));
-  } catch {
-    return null;
+    if (!text.trim()) return { ok: true, store: null };
+    return { ok: true, store: migrateStore(JSON.parse(text)) };
+  } catch (error) {
+    console.error("[store] blob read error", error);
+    return { ok: false, store: null };
   }
 }
 
@@ -189,11 +196,19 @@ async function writeToBlob(store: StoreState) {
 
 async function loadStore(): Promise<StoreState> {
   if (hasSupabaseBackend()) {
-    const fromSupabase = await readFromSupabase();
-    if (fromSupabase) {
-      memory = fromSupabase;
-      return fromSupabase;
+    const result = await readFromSupabase();
+    if (result.ok && result.store) {
+      memory = result.store;
+      return result.store;
     }
+    // Read failed — never overwrite durable admin prices with a fresh seed.
+    if (!result.ok) {
+      if (memory) return memory;
+      const fallback = seedStore();
+      memory = fallback;
+      return fallback;
+    }
+    // Genuinely empty remote row — seed once.
     const seeded = seedStore();
     memory = seeded;
     try {
@@ -205,10 +220,16 @@ async function loadStore(): Promise<StoreState> {
   }
 
   if (hasBlobBackend()) {
-    const fromBlob = await readFromBlob();
-    if (fromBlob) {
-      memory = fromBlob;
-      return fromBlob;
+    const result = await readFromBlob();
+    if (result.ok && result.store) {
+      memory = result.store;
+      return result.store;
+    }
+    if (!result.ok) {
+      if (memory) return memory;
+      const fallback = seedStore();
+      memory = fallback;
+      return fallback;
     }
     const seeded = seedStore();
     memory = seeded;

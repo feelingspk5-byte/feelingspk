@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { SaleBadge, SalePrice } from "@/components/catalog/sale-price";
 import { FabricPlaceholder } from "@/components/ui/fabric-placeholder";
-import { availabilityLabel } from "@/lib/format";
+import { availabilityLabel, resolveListPrice } from "@/lib/format";
 import {
   getCatalogueDiscount,
   getProductSaleBadge,
@@ -14,7 +14,8 @@ export function ProductCard({ product }: { product: FabricProduct }) {
   const image = product.images[0];
   const colourCount = product.colourVariants?.length ?? 0;
   const discount = getCatalogueDiscount(product);
-  const sale = resolveProductSale(product, product.price);
+  const listPrice = resolveListPrice(product, product.cutOptions?.[0]);
+  const sale = resolveProductSale(product, listPrice);
   const badge = getProductSaleBadge(product) ?? discount?.badgeText;
 
   return (
@@ -49,7 +50,7 @@ export function ProductCard({ product }: { product: FabricProduct }) {
         )}
         <div className="flex items-baseline justify-between gap-2 pt-1">
           <SalePrice
-            price={product.price}
+            price={listPrice}
             currency={product.currency}
             sale={sale}
             size="sm"
