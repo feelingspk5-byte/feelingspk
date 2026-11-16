@@ -8,11 +8,13 @@ import type { StoreState } from "@/lib/store/types";
  * Catalogue / CMS / COD store.
  *
  * - Local: `data/runtime-store.json`
- * - Production: private Vercel Blob when `BLOB_READ_WRITE_TOKEN` is set
- *   (shared across all serverless instances — admin edits reach the shop)
- * - Vercel without Blob token: `/tmp` fallback (ephemeral — not for live control)
+ * - Production (preferred): Supabase `runtime_store` table when
+ *   `SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY` are set
+ * - Production (alt): Vercel Blob when `BLOB_READ_WRITE_TOKEN` is set
+ * - Vercel with neither: `/tmp` fallback (ephemeral — prices will not stick)
  */
 const BLOB_PATH = "feelings/runtime-store.json";
+const SUPABASE_ROW_ID = "default";
 const DATA_DIR = process.env.VERCEL
   ? path.join("/tmp", "feelings-data")
   : path.join(process.cwd(), "data");
@@ -28,20 +30,38 @@ function isBuildPhase() {
   return process.env.NEXT_PHASE === "phase-production-build";
 }
 
+function hasSupabaseBackend() {
+  if (isBuildPhase()) return false;
+  return Boolean(
+    process.env.SUPABASE_URL?.trim() &&
+      process.env.SUPABASE_SERVICE_ROLE_KEY?.trim(),
+  );
+}
+
 function hasBlobBackend() {
-  // Skip Blob during `next build` — use seed/disk so installs stay offline-safe.
   if (isBuildPhase()) return false;
   return Boolean(process.env.BLOB_READ_WRITE_TOKEN);
 }
 
-export function getStoreBackend(): "blob" | "file" | "ephemeral" {
+function hasRemoteBackend() {
+  return hasSupabaseBackend() || hasBlobBackend();
+}
+
+export function getStoreBackend():
+  | "supabase"
+  | "blob"
+  | "file"
+  | "ephemeral" {
+  if (hasSupabaseBackend()) return "supabase";
   if (hasBlobBackend()) return "blob";
   if (process.env.VERCEL) return "ephemeral";
   return "file";
 }
 
 export function getStorePath() {
-  return hasBlobBackend() ? `blob:${BLOB_PATH}` : STORE_PATH;
+  if (hasSupabaseBackend()) return "supabase:runtime_store";
+  if (hasBlobBackend()) return `blob:${BLOB_PATH}`;
+  return STORE_PATH;
 }
 
 function ensureDir() {
@@ -96,6 +116,50 @@ function writeToDisk(store: StoreState) {
   }
 }
 
+async function getSupabaseAdmin() {
+  const url = process.env.SUPABASE_URL!.trim();
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY!.trim();
+  const { createClient } = await import("@supabase/supabase-js");
+  return createClient(url, key, {
+    auth: { persistSession: false, autoRefreshToken: false },
+  });
+}
+
+async function readFromSupabase(): Promise<StoreState | null> {
+  try {
+    const supabase = await getSupabaseAdmin();
+    const { data, error } = await supabase
+      .from("runtime_store")
+      .select("data")
+      .eq("id", SUPABASE_ROW_ID)
+      .maybeSingle();
+    if (error) {
+      console.error("[store] supabase read failed", error.message);
+      return null;
+    }
+    if (!data?.data) return null;
+    return migrateStore(data.data);
+  } catch (error) {
+    console.error("[store] supabase read error", error);
+    return null;
+  }
+}
+
+async function writeToSupabase(store: StoreState) {
+  const supabase = await getSupabaseAdmin();
+  const { error } = await supabase.from("runtime_store").upsert(
+    {
+      id: SUPABASE_ROW_ID,
+      data: store,
+      updated_at: new Date().toISOString(),
+    },
+    { onConflict: "id" },
+  );
+  if (error) {
+    throw new Error(`Supabase store write failed: ${error.message}`);
+  }
+}
+
 async function readFromBlob(): Promise<StoreState | null> {
   try {
     const { get } = await import("@vercel/blob");
@@ -119,12 +183,27 @@ async function writeToBlob(store: StoreState) {
     addRandomSuffix: false,
     allowOverwrite: true,
     contentType: "application/json",
-    // Minimum allowed by Blob; reads use useCache: false for freshness.
     cacheControlMaxAge: 60,
   });
 }
 
 async function loadStore(): Promise<StoreState> {
+  if (hasSupabaseBackend()) {
+    const fromSupabase = await readFromSupabase();
+    if (fromSupabase) {
+      memory = fromSupabase;
+      return fromSupabase;
+    }
+    const seeded = seedStore();
+    memory = seeded;
+    try {
+      await writeToSupabase(seeded);
+    } catch (error) {
+      console.error("[store] supabase seed write failed", error);
+    }
+    return seeded;
+  }
+
   if (hasBlobBackend()) {
     const fromBlob = await readFromBlob();
     if (fromBlob) {
@@ -155,6 +234,16 @@ async function loadStore(): Promise<StoreState> {
 
 /** Load shared store into memory (call once per request on server entry). */
 export async function ensureStore(): Promise<StoreState> {
+  // On remote backends, always reload so serverless instances see admin saves.
+  if (hasRemoteBackend()) {
+    if (!loadPromise) {
+      loadPromise = loadStore().finally(() => {
+        loadPromise = null;
+      });
+    }
+    return loadPromise;
+  }
+
   if (memory) return memory;
   if (!loadPromise) {
     loadPromise = loadStore().finally(() => {
@@ -165,10 +254,8 @@ export async function ensureStore(): Promise<StoreState> {
 }
 
 export function readStore(): StoreState {
-  // File backend: always re-read disk. Next.js can keep separate module
-  // instances (RSC vs route handlers); an in-memory-only cache then serves
-  // a stale seed without prices after admin saves in another instance.
-  if (!hasBlobBackend()) {
+  // File backend: always re-read disk (source of truth across Next bundles).
+  if (!hasRemoteBackend()) {
     const fromDisk = readFromDisk();
     if (fromDisk) {
       memory = fromDisk;
@@ -182,7 +269,7 @@ export function readStore(): StoreState {
   }
 
   if (memory) return memory;
-  // Blob mode without ensureStore — temporary seed until async load finishes.
+  // Remote mode without ensureStore — temporary seed until async load finishes.
   const seeded = seedStore();
   memory = seeded;
   return seeded;
@@ -197,7 +284,9 @@ export async function updateStore(
     mutator(current);
     current.updatedAt = new Date().toISOString();
     memory = current;
-    if (hasBlobBackend()) {
+    if (hasSupabaseBackend()) {
+      await writeToSupabase(current);
+    } else if (hasBlobBackend()) {
       await writeToBlob(current);
     } else {
       writeToDisk(current);

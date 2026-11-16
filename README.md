@@ -40,7 +40,18 @@ First visit creates the admin password.
 | Variable | Purpose |
 | --- | --- |
 | `ADMIN_SESSION_SECRET` | Signed admin cookies (16+ chars) |
-| `BLOB_READ_WRITE_TOKEN` | **Required for live admin → shop sync.** Create a Blob store in the Vercel project (Storage → Blob). Without it, prices/orders only live in ephemeral `/tmp` and will not stick on the website. |
+| `SUPABASE_URL` | **Required for live admin → shop sync.** Supabase project URL |
+| `SUPABASE_SERVICE_ROLE_KEY` | **Required for live admin → shop sync.** Service-role key (server only — never expose to the browser) |
+| `BLOB_READ_WRITE_TOKEN` | Optional fallback if Supabase is not set (Vercel Blob) |
+
+**Supabase setup (once):**
+1. Create a project at [supabase.com](https://supabase.com)
+2. SQL editor → run `migrations/002_runtime_store.sql`
+3. Project Settings → API → copy **Project URL** and **service_role** key
+4. Vercel → Project → Settings → Environment Variables → add `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` (Production)
+5. Redeploy
+
+Without Supabase (or Blob), prices/orders only live in ephemeral `/tmp` on Vercel and will not stick after refresh.
 
 Locally, admin edits write to `data/runtime-store.json` and show on the shop immediately.
 
