@@ -15,10 +15,7 @@ export default function CartPage() {
 
   return (
     <>
-      <PageHeader
-        title="Cart"
-        description="Line items show fabric name, colour/variant, cut or quantity, and pricing when available."
-      />
+      <PageHeader title="Cart" />
       <Container className="py-10 md:py-14">
         <CartView
           siteConfig={{
