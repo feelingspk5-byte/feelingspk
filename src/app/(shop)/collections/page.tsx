@@ -79,7 +79,7 @@ export default function CollectionsPage() {
               </div>
             </div>
 
-            <div className="mx-auto grid max-w-4xl grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-7">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-7">
               {enriched.map(({ collection, shades }, index) => (
                 <CollectionTile
                   key={collection.id}

@@ -50,7 +50,7 @@ export function ProductGallery({
 
   return (
     <div className="space-y-3">
-      <div className="relative aspect-square overflow-hidden rounded-sm bg-ivory">
+      <div className="relative aspect-[3/4] overflow-hidden rounded-sm bg-stone/25 sm:aspect-[4/5]">
         <Image
           key={current.src}
           src={current.src}
@@ -58,18 +58,18 @@ export function ProductGallery({
           fill
           priority
           sizes="(max-width:1024px) 100vw, 50vw"
-          className="object-cover"
+          className="object-cover object-center"
         />
       </div>
       {usable.length > 1 ? (
-        <div className="grid grid-cols-4 gap-2">
+        <div className="grid grid-cols-4 gap-2 sm:grid-cols-5">
           {usable.map((img, index) => (
             <button
               key={img.id}
               type="button"
               onClick={() => setActive(index)}
               className={cn(
-                "relative aspect-square overflow-hidden rounded-sm border",
+                "relative aspect-[3/4] overflow-hidden rounded-sm border bg-stone/20",
                 active === index ? "border-wine" : "border-transparent",
               )}
               aria-label={`View image ${index + 1}`}
@@ -79,7 +79,7 @@ export function ProductGallery({
                 alt=""
                 fill
                 sizes="120px"
-                className="object-cover"
+                className="object-cover object-center"
               />
             </button>
           ))}
