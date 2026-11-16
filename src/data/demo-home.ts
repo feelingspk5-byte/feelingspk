@@ -36,7 +36,7 @@ export const demoCategories = [
     name: "Tropical Signature",
     detail: "Mocha taupe, sandstone beige, dark espresso, soft ivory.",
     image: "/catalogue/tropical-signature/ts-01-mocha-taupe-clean.jpg",
-    href: "/collections/tropical-signature",
+    href: "/products/tropical-signature",
     badge: null as string | null,
   },
   {
@@ -44,7 +44,7 @@ export const demoCategories = [
     name: "Heritage Depth",
     detail: "Mist stone, espresso, oxblood, midnight navy, signature black.",
     image: "/catalogue/heritage-depth/hd-01-mist-stone-clean.jpg",
-    href: "/collections/heritage-depth",
+    href: "/products/heritage-depth",
     badge: null as string | null,
   },
   {
@@ -52,7 +52,7 @@ export const demoCategories = [
     name: "Midnight Noir",
     detail: "Midnight navy, deep ink, graphite black, olive noir.",
     image: "/catalogue/midnight-noir/mn-01-midnight-navy-clean.jpg",
-    href: "/collections/midnight-noir",
+    href: "/products/midnight-noir",
     badge: null as string | null,
   },
   {
@@ -60,7 +60,7 @@ export const demoCategories = [
     name: "Dark Shades",
     detail: "Charcoal black, midnight navy, forest olive, espresso brown.",
     image: "/catalogue/dark-shades/ds-01-charcoal-black-v2.jpg",
-    href: "/collections/dark-shades",
+    href: "/products/dark-shades",
     badge: null as string | null,
   },
   {
@@ -68,7 +68,7 @@ export const demoCategories = [
     name: "Walnut Pearl",
     detail: "Walnut taupe, pearl ivory, midnight charcoal.",
     image: "/catalogue/walnut-pearl/wp-01-walnut-taupe-clean.jpg",
-    href: "/collections/walnut-pearl",
+    href: "/products/walnut-pearl",
     badge: null as string | null,
   },
   {
@@ -76,7 +76,7 @@ export const demoCategories = [
     name: "Walnut Onyx",
     detail: "Walnut brown, onyx black, espresso brown, charcoal grey.",
     image: "/catalogue/walnut-onyx/wo-01-walnut-brown-clean.jpg",
-    href: "/collections/walnut-onyx",
+    href: "/products/walnut-onyx",
     badge: null as string | null,
   }
 ];
