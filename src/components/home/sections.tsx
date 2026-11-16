@@ -33,7 +33,7 @@ export function ShopCategories() {
             </p>
           </div>
         </FadeIn>
-        <Stagger className="grid gap-4 md:grid-cols-3">
+        <Stagger className="mx-auto grid max-w-4xl gap-4 sm:grid-cols-2">
           {demoCategories.map((item, index) => (
             <StaggerItem key={item.slug}>
               <Link
@@ -45,8 +45,8 @@ export function ShopCategories() {
                     src={item.image}
                     alt={item.name}
                     fill
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-                    sizes="(max-width:768px) 100vw, 33vw"
+                    className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                    sizes="(max-width:768px) 100vw, 50vw"
                     priority={index === 0}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-ink/10 to-transparent" />
@@ -96,7 +96,7 @@ export function FeaturedCollections() {
           </div>
         </FadeIn>
 
-        <Stagger className="grid gap-4 md:grid-cols-3">
+        <Stagger className="mx-auto grid max-w-4xl gap-4 sm:grid-cols-2">
           {demoCollections.map((item, index) => (
             <StaggerItem key={item.slug}>
               <Link
@@ -108,8 +108,8 @@ export function FeaturedCollections() {
                     src={item.image}
                     alt={item.name}
                     fill
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-                    sizes="(max-width:768px) 100vw, 33vw"
+                    className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                    sizes="(max-width:768px) 100vw, 50vw"
                     priority={index === 0}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-ink/55 via-ink/5 to-transparent" />
@@ -146,7 +146,7 @@ export function FeaturedFabrics() {
           </div>
         </FadeIn>
 
-        <Stagger className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-5">
+        <Stagger className="mx-auto grid max-w-4xl grid-cols-2 gap-3 md:gap-5">
           {demoFabrics.map((fabric) => (
             <StaggerItem key={fabric.slug}>
               <Link
@@ -158,8 +158,8 @@ export function FeaturedFabrics() {
                     src={fabric.image}
                     alt={fabric.name}
                     fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-[1.05]"
-                    sizes="(max-width:768px) 50vw, 25vw"
+                    className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.05]"
+                    sizes="(max-width:768px) 50vw, 40vw"
                   />
                   <span className="absolute left-3 top-3 rounded-sm bg-ivory/90 px-2 py-1 text-[10px] uppercase tracking-[0.14em] text-ink/70">
                     {fabric.tag}

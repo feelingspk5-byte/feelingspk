@@ -19,16 +19,16 @@ export function CollectionTile({
     <Link
       href={`/collections/${collection.slug}`}
       prefetch
-      className="group relative flex flex-col overflow-hidden bg-ivory transition-transform duration-feel hover:-translate-y-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wine"
+      className="group flex h-full flex-col overflow-hidden border border-ink/10 bg-ivory transition-transform duration-feel hover:-translate-y-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wine"
     >
-      <div className="relative aspect-[4/5] w-full overflow-hidden bg-stone/40">
+      <div className="relative aspect-[3/4] w-full shrink-0 overflow-hidden bg-stone/40">
         {collection.imageSrc ? (
           <Image
             src={collection.imageSrc}
             alt=""
             fill
-            sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 33vw"
-            className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+            sizes="(max-width:640px) 100vw, 50vw"
+            className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.03]"
           />
         ) : (
           <FabricPlaceholder
@@ -37,15 +37,15 @@ export function CollectionTile({
             className="rounded-none border-0"
           />
         )}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/55 via-ink/10 to-transparent opacity-80 transition-opacity duration-feel group-hover:opacity-95" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/25 to-transparent" />
 
         {number ? (
-          <span className="absolute left-4 top-4 text-[11px] uppercase tracking-[0.22em] text-ivory/85">
+          <span className="absolute left-4 top-4 z-10 text-[11px] uppercase tracking-[0.22em] text-ivory/90">
             {number}
           </span>
         ) : null}
 
-        <div className="absolute inset-x-0 bottom-0 p-5 md:p-6">
+        <div className="absolute inset-x-0 bottom-0 z-10 p-5 md:p-6">
           <p className="text-[10px] uppercase tracking-[0.22em] text-ivory/70">
             Fabric line
           </p>
@@ -64,12 +64,12 @@ export function CollectionTile({
       </div>
 
       {shades.length > 0 ? (
-        <div className="flex border-t border-ink/10">
+        <div className="flex w-full border-t border-ink/10">
           {shades.map((shade) => (
             <span
               key={shade.name}
               title={shade.name}
-              className="h-3 flex-1 border-r border-ivory/30 last:border-r-0"
+              className="h-3.5 min-w-0 flex-1 border-r border-ivory/40 last:border-r-0"
               style={{ backgroundColor: shade.hex }}
               aria-label={shade.name}
             />

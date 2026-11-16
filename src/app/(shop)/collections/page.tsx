@@ -45,7 +45,7 @@ export default function CollectionsPage() {
           </h1>
           <p className="mt-5 max-w-xl text-sm leading-relaxed text-ink/70 md:text-base">
             Signature fabric lines for the modern gentleman — open any edit to
-            explore its shades, then choose the length that suits your tailor.
+            explore its shades. Each cut is sold as 4.5 metres.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3 text-[11px] uppercase tracking-[0.18em] text-ink/45">
             <span>{collections.length} fabric lines</span>
@@ -79,7 +79,7 @@ export default function CollectionsPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-7">
+            <div className="mx-auto grid max-w-4xl grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-7">
               {enriched.map(({ collection, shades }, index) => (
                 <CollectionTile
                   key={collection.id}
