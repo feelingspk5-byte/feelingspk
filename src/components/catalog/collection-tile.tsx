@@ -5,23 +5,18 @@ import type { Collection } from "@/lib/types";
 
 export function CollectionTile({
   collection,
-  index,
   shades = [],
 }: {
   collection: Collection;
-  index?: number;
   shades?: { name: string; hex: string }[];
 }) {
-  const number =
-    typeof index === "number" ? String(index + 1).padStart(2, "0") : null;
-
   return (
     <Link
       href={`/collections/${collection.slug}`}
       prefetch
       className="group flex h-full flex-col overflow-hidden bg-ivory transition-transform duration-feel hover:-translate-y-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wine"
     >
-      <div className="relative aspect-[3/4] w-full overflow-hidden bg-stone/25">
+      <div className="relative aspect-[3/4] w-full shrink-0 overflow-hidden bg-stone/25">
         {collection.imageSrc ? (
           <Image
             src={collection.imageSrc}
@@ -37,14 +32,9 @@ export function CollectionTile({
             className="rounded-none border-0"
           />
         )}
-        {number ? (
-          <span className="absolute left-4 top-4 z-10 rounded-sm bg-ivory/85 px-2 py-1 text-[11px] uppercase tracking-[0.22em] text-ink">
-            {number}
-          </span>
-        ) : null}
       </div>
 
-      <div className="flex flex-1 flex-col border-t border-ink/10 bg-ivory px-5 py-5 md:px-6 md:py-6">
+      <div className="flex min-h-[9.5rem] flex-1 flex-col border-t border-ink/10 bg-ivory px-5 py-5 md:min-h-[10.25rem] md:px-6 md:py-6">
         <p className="text-[10px] uppercase tracking-[0.22em] text-ink/45">
           Fabric line
         </p>
@@ -52,11 +42,13 @@ export function CollectionTile({
           {collection.name}
         </h3>
         {collection.description ? (
-          <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-ink/65">
+          <p className="mt-2 line-clamp-2 min-h-[2.75rem] text-sm leading-relaxed text-ink/65">
             {collection.description}
           </p>
-        ) : null}
-        <span className="mt-4 inline-flex text-[11px] uppercase tracking-[0.18em] text-wine transition-transform duration-feel group-hover:translate-x-1">
+        ) : (
+          <div className="mt-2 min-h-[2.75rem]" aria-hidden />
+        )}
+        <span className="mt-auto inline-flex pt-4 text-[11px] uppercase tracking-[0.18em] text-wine transition-transform duration-feel group-hover:translate-x-1">
           Explore line →
         </span>
       </div>

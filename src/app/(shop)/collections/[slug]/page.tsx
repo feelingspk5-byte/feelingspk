@@ -4,7 +4,6 @@ import { notFound } from "next/navigation";
 import { Container } from "@/components/layout/container";
 import {
   getCollectionBySlug,
-  getCollections,
   getProductsByCollection,
 } from "@/lib/catalog";
 
@@ -35,12 +34,9 @@ export default async function CollectionDetailPage({
   const collection = getCollectionBySlug(slug);
   if (!collection) notFound();
 
-  const all = getCollections();
-  const index = all.findIndex((c) => c.slug === slug);
   const products = getProductsByCollection(slug);
   const product = products[0];
   const colours = product?.colourVariants ?? [];
-  const number = String(index + 1).padStart(2, "0");
 
   return (
     <>
@@ -62,7 +58,7 @@ export default async function CollectionDetailPage({
             <span className="text-ink/70">{collection.name}</span>
           </div>
           <p className="mt-6 text-[11px] uppercase tracking-[0.28em] text-wine">
-            Line {number}
+            Fabric line
           </p>
           <h1 className="mt-3 max-w-3xl font-display text-4xl tracking-tight text-ink md:text-5xl lg:text-6xl">
             {collection.name}

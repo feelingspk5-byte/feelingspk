@@ -33,14 +33,14 @@ export function ShopCategories() {
             </p>
           </div>
         </FadeIn>
-        <Stagger className="grid gap-4 md:grid-cols-3">
+        <Stagger className="grid items-stretch gap-4 md:grid-cols-3">
           {demoCategories.map((item, index) => (
-            <StaggerItem key={item.slug}>
+            <StaggerItem key={item.slug} className="h-full">
               <Link
                 href={item.href}
-                className="group relative block overflow-hidden rounded-sm bg-ivory"
+                className="group relative flex h-full flex-col overflow-hidden rounded-sm bg-ivory"
               >
-                <div className="relative aspect-[3/4] overflow-hidden bg-stone/25">
+                <div className="relative aspect-[3/4] shrink-0 overflow-hidden bg-stone/25">
                   <Image
                     src={item.image}
                     alt={item.name}
@@ -55,9 +55,11 @@ export function ShopCategories() {
                     </span>
                   ) : null}
                 </div>
-                <div className="border-t border-ink/10 px-5 py-5">
+                <div className="flex min-h-[6.75rem] flex-1 flex-col border-t border-ink/10 px-5 py-5">
                   <p className="font-display text-2xl text-ink">{item.name}</p>
-                  <p className="mt-1 text-sm text-ink/65">{item.detail}</p>
+                  <p className="mt-1 line-clamp-2 min-h-[2.75rem] text-sm leading-relaxed text-ink/65">
+                    {item.detail}
+                  </p>
                 </div>
               </Link>
             </StaggerItem>
@@ -95,14 +97,14 @@ export function FeaturedCollections() {
           </div>
         </FadeIn>
 
-        <Stagger className="grid gap-4 md:grid-cols-3">
+        <Stagger className="grid items-stretch gap-4 md:grid-cols-3">
           {demoCollections.map((item, index) => (
-            <StaggerItem key={item.slug}>
+            <StaggerItem key={item.slug} className="h-full">
               <Link
                 href={`/collections/${item.slug}`}
-                className="group relative block overflow-hidden rounded-sm bg-ivory"
+                className="group relative flex h-full flex-col overflow-hidden rounded-sm bg-ivory"
               >
-                <div className="relative aspect-[3/4] overflow-hidden bg-stone/25">
+                <div className="relative aspect-[3/4] shrink-0 overflow-hidden bg-stone/25">
                   <Image
                     src={item.image}
                     alt={item.name}
@@ -112,9 +114,11 @@ export function FeaturedCollections() {
                     priority={index === 0}
                   />
                 </div>
-                <div className="border-t border-ink/10 px-5 py-5">
+                <div className="flex min-h-[6.75rem] flex-1 flex-col border-t border-ink/10 px-5 py-5">
                   <p className="font-display text-2xl text-ink">{item.name}</p>
-                  <p className="mt-1 text-sm text-ink/65">{item.detail}</p>
+                  <p className="mt-1 line-clamp-2 min-h-[2.75rem] text-sm leading-relaxed text-ink/65">
+                    {item.detail}
+                  </p>
                 </div>
               </Link>
             </StaggerItem>
