@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { pushAudit } from "@/lib/store/audit";
 import { getAdminSession } from "@/lib/store/admin-auth";
 import { updateStore } from "@/lib/store/file-store";
+import { revalidateStorefront } from "@/lib/store/revalidate-storefront";
 import type { Availability, PublishStatus } from "@/lib/types";
 
 export async function POST(request: Request) {
@@ -46,6 +47,7 @@ export async function POST(request: Request) {
     }
     pushAudit(draft, session.email, `products.bulk_${body.action}`, `${ids.length} items`);
   });
+  revalidateStorefront();
 
   return NextResponse.json({ ok: true, count: ids.length });
 }

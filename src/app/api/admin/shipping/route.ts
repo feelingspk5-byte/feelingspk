@@ -1,13 +1,15 @@
 import { NextResponse } from "next/server";
 import { pushAudit } from "@/lib/store/audit";
 import { getAdminSession } from "@/lib/store/admin-auth";
-import { readStore, updateStore } from "@/lib/store/file-store";
+import { ensureStore, readStore, updateStore } from "@/lib/store/file-store";
+import { revalidateStorefront } from "@/lib/store/revalidate-storefront";
 import { newId } from "@/lib/store/ids";
 import type { ShippingZone } from "@/lib/store/types";
 
 export async function GET() {
   const session = await getAdminSession();
   if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  await ensureStore();
   return NextResponse.json({ zones: readStore().shippingZones });
 }
 
@@ -33,6 +35,7 @@ export async function POST(request: Request) {
     draft.shippingZones.push(zone);
     pushAudit(draft, session.email, "shipping.create", zone.name);
   });
+  revalidateStorefront(["/shipping"]);
   return NextResponse.json({ zone }, { status: 201 });
 }
 
@@ -50,6 +53,7 @@ export async function PUT(request: Request) {
       pushAudit(draft, session.email, "shipping.update", body.name);
     }
   });
+  revalidateStorefront(["/shipping"]);
   return NextResponse.json({ ok: true });
 }
 
@@ -63,5 +67,6 @@ export async function DELETE(request: Request) {
     draft.shippingZones = draft.shippingZones.filter((z) => z.id !== id);
     pushAudit(draft, session.email, "shipping.delete", zone?.name);
   });
+  revalidateStorefront(["/shipping"]);
   return NextResponse.json({ ok: true });
 }

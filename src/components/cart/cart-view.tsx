@@ -4,10 +4,14 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { EmptyState } from "@/components/ui/empty-state";
 import { useCart } from "@/lib/cart-context";
-import { siteConfig } from "@/data/catalog";
 import { formatPrice } from "@/lib/format";
+import type { SiteConfig } from "@/lib/types";
 
-export function CartView() {
+export function CartView({
+  siteConfig,
+}: {
+  siteConfig: Pick<SiteConfig, "currencyPlaceholder">;
+}) {
   const { lines, updateQuantity, removeLine, subtotal } = useCart();
   const config = siteConfig;
 

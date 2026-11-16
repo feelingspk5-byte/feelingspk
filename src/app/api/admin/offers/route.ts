@@ -1,13 +1,15 @@
 import { NextResponse } from "next/server";
 import { pushAudit } from "@/lib/store/audit";
 import { getAdminSession } from "@/lib/store/admin-auth";
-import { readStore, updateStore } from "@/lib/store/file-store";
+import { ensureStore, readStore, updateStore } from "@/lib/store/file-store";
+import { revalidateStorefront } from "@/lib/store/revalidate-storefront";
 import { newId } from "@/lib/store/ids";
 import type { Offer } from "@/lib/store/types";
 
 export async function GET() {
   const session = await getAdminSession();
   if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  await ensureStore();
   return NextResponse.json({ offers: readStore().offers });
 }
 
@@ -42,6 +44,7 @@ export async function POST(request: Request) {
     draft.offers.unshift(offer);
     pushAudit(draft, session.email, "offer.create", offer.name);
   });
+  revalidateStorefront();
 
   return NextResponse.json({ offer }, { status: 201 });
 }
@@ -65,6 +68,7 @@ export async function PUT(request: Request) {
       pushAudit(draft, session.email, "offer.update", body.name);
     }
   });
+  revalidateStorefront();
   return NextResponse.json({ ok: true });
 }
 
@@ -78,5 +82,6 @@ export async function DELETE(request: Request) {
     draft.offers = draft.offers.filter((o) => o.id !== id);
     pushAudit(draft, session.email, "offer.delete", offer?.name);
   });
+  revalidateStorefront();
   return NextResponse.json({ ok: true });
 }

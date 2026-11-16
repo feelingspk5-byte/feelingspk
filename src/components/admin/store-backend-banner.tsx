@@ -2,8 +2,19 @@ import { getStoreBackend } from "@/lib/store/file-store";
 
 export function StoreBackendBanner() {
   const backend = getStoreBackend();
+
   if (backend === "supabase" || backend === "blob" || backend === "file") {
-    return null;
+    return (
+      <div className="border-b border-ink/10 bg-stone/60 px-4 py-2.5 text-sm text-ink/70">
+        <p>
+          <span className="font-medium text-ink">Shop sync is live</span>
+          {" — "}
+          products, prices, offers, CMS, collections, shipping, and settings
+          save to durable storage ({backend}) and show on the website after you
+          save.
+        </p>
+      </div>
+    );
   }
 
   return (

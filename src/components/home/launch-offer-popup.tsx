@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useId, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/cn";
+import type { LaunchOfferContent } from "@/lib/home-types";
 
 const STORAGE_KEY = "feelings-launch-offer-seen";
 
@@ -26,13 +27,14 @@ function markSeen() {
 function triggerReached(el: HTMLElement): boolean {
   const rect = el.getBoundingClientRect();
   const vh = window.innerHeight || 0;
-  // Show once the section enters the lower ~70% of the viewport
   return rect.top < vh * 0.72 && rect.bottom > 0;
 }
 
 export function LaunchOfferPopup({
+  offer,
   triggerId = "home-second-section",
 }: {
+  offer: LaunchOfferContent;
   triggerId?: string;
 }) {
   const titleId = useId();
@@ -40,6 +42,7 @@ export function LaunchOfferPopup({
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
+    if (!offer) return;
     if (typeof window === "undefined") return;
     if (alreadySeen()) return;
 
@@ -59,7 +62,6 @@ export function LaunchOfferPopup({
       if (triggerReached(trigger)) show();
     };
 
-    // Scroll/resize fallback — WhatsApp in-app browsers often break IntersectionObserver
     const onScroll = () => check();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
@@ -74,10 +76,9 @@ export function LaunchOfferPopup({
       );
       observer.observe(trigger);
     } catch {
-      /* ignore — scroll fallback still runs */
+      /* ignore */
     }
 
-    // Initial + delayed checks (WebView may report layout late)
     check();
     const t1 = window.setTimeout(check, 400);
     const t2 = window.setTimeout(check, 1200);
@@ -91,7 +92,7 @@ export function LaunchOfferPopup({
     }
 
     return cleanup;
-  }, [triggerId]);
+  }, [offer, triggerId]);
 
   useEffect(() => {
     if (!open) return;
@@ -111,7 +112,7 @@ export function LaunchOfferPopup({
     };
   }, [open]);
 
-  if (!open) return null;
+  if (!offer || !open) return null;
 
   return (
     <div
@@ -160,28 +161,33 @@ export function LaunchOfferPopup({
             id={titleId}
             className="mt-3 font-display text-3xl tracking-tight text-ink sm:text-4xl"
           >
-            25% off every article
+            {offer.title}
           </h2>
-          <p className="mt-3 text-sm leading-relaxed text-ink/70">
-            Opening the Elite Men&apos;s Collection with a house-wide welcome —
-            twenty-five percent off every fabric line, with free delivery on
-            your first order.
-          </p>
+          <p className="mt-3 text-sm leading-relaxed text-ink/70">{offer.body}</p>
 
           <ul className="mt-5 space-y-2 border-y border-ink/10 py-4 text-sm text-ink/75">
             <li className="flex gap-3">
               <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-wine" />
-              <span>25% off every article across all collections</span>
+              <span>
+                {offer.percent}% off every article across all collections
+              </span>
             </li>
-            <li className="flex gap-3">
-              <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-wine" />
-              <span>Free delivery on your first order</span>
-            </li>
+            {offer.freeDelivery ? (
+              <li className="flex gap-3">
+                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-wine" />
+                <span>Free delivery on your first order</span>
+              </li>
+            ) : (
+              <li className="flex gap-3">
+                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-wine" />
+                <span>Cash on Delivery nationwide</span>
+              </li>
+            )}
           </ul>
 
           <div className="mt-6 flex flex-col gap-3 sm:flex-row">
             <Link
-              href="/collections"
+              href={offer.shopHref}
               onClick={() => setOpen(false)}
               className={cn(
                 "inline-flex h-12 w-full items-center justify-center rounded-sm bg-wine px-6 text-sm font-medium tracking-wide text-ivory transition-colors duration-feel hover:bg-wine/90 sm:flex-1",

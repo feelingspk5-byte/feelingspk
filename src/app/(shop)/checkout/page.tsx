@@ -1,5 +1,8 @@
 import { CheckoutForm } from "@/components/cart/checkout-form";
 import { Container } from "@/components/layout/container";
+import { getSiteConfig } from "@/lib/catalog";
+
+export const dynamic = "force-dynamic";
 
 export const metadata = {
   title: "Checkout",
@@ -8,6 +11,8 @@ export const metadata = {
 };
 
 export default function CheckoutPage() {
+  const siteConfig = getSiteConfig();
+
   return (
     <>
       <section className="relative overflow-hidden border-b border-ink/10 bg-stone">
@@ -41,7 +46,14 @@ export default function CheckoutPage() {
       </section>
 
       <Container className="py-10 md:py-14">
-        <CheckoutForm />
+        <CheckoutForm
+          siteConfig={{
+            currencyPlaceholder: siteConfig.currencyPlaceholder,
+            whatsapp: siteConfig.whatsapp,
+            contactPhone: siteConfig.contactPhone,
+            brandName: siteConfig.brandName,
+          }}
+        />
       </Container>
     </>
   );

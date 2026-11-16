@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getAdminSession } from "@/lib/store/admin-auth";
-import { readStore, updateStore } from "@/lib/store/file-store";
+import { ensureStore, readStore, updateStore } from "@/lib/store/file-store";
+import { revalidateStorefront } from "@/lib/store/revalidate-storefront";
 import { newId, slugify } from "@/lib/store/ids";
 import type { Collection } from "@/lib/types";
 
@@ -9,6 +10,7 @@ export async function GET() {
   if (!session) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
+  await ensureStore();
   return NextResponse.json({ collections: readStore().collections });
 }
 
@@ -44,6 +46,7 @@ export async function POST(request: Request) {
   await updateStore((draft) => {
     draft.collections.push(collection);
   });
+  revalidateStorefront([`/collections/${collection.slug}`]);
 
   return NextResponse.json({ collection }, { status: 201 });
 }
@@ -70,6 +73,7 @@ export async function PUT(request: Request) {
       };
     }
   });
+  revalidateStorefront([`/collections/${slugify(body.slug || body.name)}`]);
 
   return NextResponse.json({ ok: true });
 }
@@ -87,5 +91,6 @@ export async function DELETE(request: Request) {
   await updateStore((draft) => {
     draft.collections = draft.collections.filter((c) => c.id !== id);
   });
+  revalidateStorefront();
   return NextResponse.json({ ok: true });
 }

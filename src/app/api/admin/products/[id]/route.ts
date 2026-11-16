@@ -1,18 +1,16 @@
-import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 import { getAdminSession } from "@/lib/store/admin-auth";
 import { ensureStore, readStore, updateStore } from "@/lib/store/file-store";
 import { slugify } from "@/lib/store/ids";
 import { parsePrice, resolvePriceUpdate } from "@/lib/store/price";
+import { revalidateStorefront } from "@/lib/store/revalidate-storefront";
 import type { Product } from "@/lib/types";
 
 function revalidateShop(slug: string) {
-  revalidatePath("/");
-  revalidatePath("/shop");
-  revalidatePath("/collections");
-  revalidatePath(`/collections/${slug}`);
-  revalidatePath(`/products/${slug}`);
-  revalidatePath("/admin/products");
+  revalidateStorefront([
+    `/collections/${slug}`,
+    `/products/${slug}`,
+  ]);
 }
 
 type Ctx = { params: Promise<{ id: string }> };

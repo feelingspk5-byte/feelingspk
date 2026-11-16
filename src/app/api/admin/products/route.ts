@@ -1,9 +1,9 @@
-import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 import { getAdminSession } from "@/lib/store/admin-auth";
 import { ensureStore, readStore, updateStore } from "@/lib/store/file-store";
 import { newId, slugify } from "@/lib/store/ids";
 import { parsePrice } from "@/lib/store/price";
+import { revalidateStorefront } from "@/lib/store/revalidate-storefront";
 import type { Product } from "@/lib/types";
 
 export async function GET() {
@@ -79,10 +79,7 @@ export async function POST(request: Request) {
     draft.products.unshift(product);
   });
 
-  revalidatePath("/");
-  revalidatePath("/shop");
-  revalidatePath(`/products/${product.slug}`);
-  revalidatePath("/admin/products");
+  revalidateStorefront([`/products/${product.slug}`]);
 
   return NextResponse.json({ product }, { status: 201 });
 }

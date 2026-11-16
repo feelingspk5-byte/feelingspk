@@ -14,8 +14,8 @@ import {
   saveCheckoutProfile,
   type CheckoutProfile,
 } from "@/lib/checkout-profile";
-import { siteConfig } from "@/data/catalog";
 import { formatPrice } from "@/lib/format";
+import type { SiteConfig } from "@/lib/types";
 
 type FormFields = {
   name: string;
@@ -39,7 +39,14 @@ const emptyFields = (seed?: { name?: string; email?: string }): FormFields => ({
   coupon: "",
 });
 
-export function CheckoutForm() {
+export function CheckoutForm({
+  siteConfig,
+}: {
+  siteConfig: Pick<
+    SiteConfig,
+    "currencyPlaceholder" | "whatsapp" | "contactPhone" | "brandName"
+  >;
+}) {
   const { lines, subtotal, clearCart } = useCart();
   const { user, ready } = useAuth();
   const config = siteConfig;

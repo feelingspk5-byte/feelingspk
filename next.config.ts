@@ -7,6 +7,17 @@ const nextConfig: NextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     // Short TTL so fabric asset fixes (corrupt CDN frames) refresh quickly
     minimumCacheTTL: 60,
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "qzyimpzblmklstrzilry.supabase.co",
+        pathname: "/storage/v1/object/public/**",
+      },
+      {
+        protocol: "https",
+        hostname: "**.public.blob.vercel-storage.com",
+      },
+    ],
   },
   experimental: {
     optimizePackageImports: ["framer-motion"],

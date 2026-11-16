@@ -3,6 +3,7 @@ import { CollectionTile } from "@/components/catalog/collection-tile";
 import { Container } from "@/components/layout/container";
 import { EmptyState } from "@/components/ui/empty-state";
 import { getCollections, getProductsByCollection } from "@/lib/catalog";
+import { getCollectionProductHref } from "@/lib/home-content";
 
 export const dynamic = "force-dynamic";
 
@@ -85,6 +86,7 @@ export default function CollectionsPage() {
                   key={collection.id}
                   collection={collection}
                   shades={shades}
+                  href={getCollectionProductHref(collection.slug)}
                 />
               ))}
             </div>

@@ -6,13 +6,15 @@ import type { Collection } from "@/lib/types";
 export function CollectionTile({
   collection,
   shades = [],
+  href,
 }: {
   collection: Collection;
   shades?: { name: string; hex: string }[];
+  href?: string;
 }) {
   return (
     <Link
-      href={`/products/${collection.slug}`}
+      href={href ?? `/products/${collection.slug}`}
       prefetch
       className="group flex h-full flex-col overflow-hidden bg-ivory transition-transform duration-feel hover:-translate-y-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wine"
     >

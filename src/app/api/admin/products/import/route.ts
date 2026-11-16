@@ -3,6 +3,7 @@ import { pushAudit } from "@/lib/store/audit";
 import { getAdminSession } from "@/lib/store/admin-auth";
 import { updateStore } from "@/lib/store/file-store";
 import { newId, slugify } from "@/lib/store/ids";
+import { revalidateStorefront } from "@/lib/store/revalidate-storefront";
 import type { Product, ProductCategory } from "@/lib/types";
 
 function parseCsv(text: string): string[][] {
@@ -130,6 +131,7 @@ export async function POST(request: Request) {
     }
     pushAudit(draft, session.email, "products.csv_import", `${created} rows`);
   });
+  revalidateStorefront();
 
   return NextResponse.json({ ok: true, created });
 }

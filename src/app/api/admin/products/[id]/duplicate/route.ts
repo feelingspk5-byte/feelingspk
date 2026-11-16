@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server";
 import { pushAudit } from "@/lib/store/audit";
 import { getAdminSession } from "@/lib/store/admin-auth";
-import { readStore, updateStore } from "@/lib/store/file-store";
+import { ensureStore, readStore, updateStore } from "@/lib/store/file-store";
 import { newId, slugify } from "@/lib/store/ids";
+import { revalidateStorefront } from "@/lib/store/revalidate-storefront";
 import type { Product } from "@/lib/types";
 
 type Ctx = { params: Promise<{ id: string }> };
@@ -13,6 +14,7 @@ export async function POST(_request: Request, ctx: Ctx) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
   const { id } = await ctx.params;
+  await ensureStore();
   const source = readStore().products.find((p) => p.id === id);
   if (!source) {
     return NextResponse.json({ error: "Not found" }, { status: 404 });
@@ -50,6 +52,7 @@ export async function POST(_request: Request, ctx: Ctx) {
     draft.products.unshift(clone);
     pushAudit(draft, session.email, "product.duplicate", source.name);
   });
+  revalidateStorefront([`/products/${clone.slug}`]);
 
   return NextResponse.json({ product: clone }, { status: 201 });
 }

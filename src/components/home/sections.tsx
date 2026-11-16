@@ -5,15 +5,13 @@ import Link from "next/link";
 import { FadeIn, Stagger, StaggerItem } from "@/components/home/motion";
 import { Container } from "@/components/layout/container";
 import { VectorBackdrop } from "@/components/ui/vector-backdrop";
-import {
-  demoAssurances,
-  demoCategories,
-  demoCollections,
-  demoEditorial,
-  demoFabrics,
-} from "@/data/demo-home";
+import type {
+  HomeCategoryCard,
+  HomeCollectionCard,
+  HomeFabricCard,
+} from "@/lib/home-types";
 
-export function ShopCategories() {
+export function ShopCategories({ items }: { items: HomeCategoryCard[] }) {
   return (
     <section
       id="home-second-section"
@@ -37,7 +35,7 @@ export function ShopCategories() {
           </div>
         </FadeIn>
         <Stagger className="grid items-stretch gap-4 md:grid-cols-3">
-          {demoCategories.map((item, index) => (
+          {items.map((item, index) => (
             <StaggerItem key={item.slug} className="h-full">
               <Link
                 href={item.href}
@@ -52,7 +50,7 @@ export function ShopCategories() {
                     sizes="(max-width:768px) 100vw, 33vw"
                     priority={index === 0}
                   />
-                  {"badge" in item && item.badge ? (
+                  {item.badge ? (
                     <span className="absolute left-4 top-4 rounded-sm bg-ivory/95 px-2.5 py-1 text-[10px] uppercase tracking-[0.16em] text-ink">
                       {item.badge}
                     </span>
@@ -73,7 +71,13 @@ export function ShopCategories() {
   );
 }
 
-export function FeaturedCollections() {
+export function FeaturedCollections({
+  items,
+}: {
+  items: HomeCollectionCard[];
+}) {
+  if (!items.length) return null;
+
   return (
     <section className="relative overflow-hidden border-t border-ink/10 bg-ivory py-16 md:py-24">
       <Container className="relative">
@@ -101,10 +105,10 @@ export function FeaturedCollections() {
         </FadeIn>
 
         <Stagger className="grid items-stretch gap-4 md:grid-cols-3">
-          {demoCollections.map((item, index) => (
+          {items.map((item, index) => (
             <StaggerItem key={item.slug} className="h-full">
               <Link
-                href={`/products/${item.slug}`}
+                href={item.href}
                 className="group relative flex h-full flex-col overflow-hidden rounded-sm bg-ivory"
               >
                 <div className="relative aspect-[3/4] shrink-0 overflow-hidden bg-stone/25">
@@ -132,7 +136,9 @@ export function FeaturedCollections() {
   );
 }
 
-export function FeaturedFabrics() {
+export function FeaturedFabrics({ items }: { items: HomeFabricCard[] }) {
+  if (!items.length) return null;
+
   return (
     <section className="relative border-t border-ink/10 bg-stone py-16 md:py-24">
       <Container>
@@ -152,7 +158,7 @@ export function FeaturedFabrics() {
         </FadeIn>
 
         <Stagger className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-5">
-          {demoFabrics.map((fabric) => (
+          {items.map((fabric) => (
             <StaggerItem key={fabric.slug}>
               <Link
                 href={`/products/${fabric.slug}`}
@@ -188,13 +194,22 @@ export function FeaturedFabrics() {
   );
 }
 
-export function EditorialBand() {
+export function EditorialBand({
+  content,
+}: {
+  content: {
+    image: string;
+    eyebrow: string;
+    title: string;
+    body: string;
+  };
+}) {
   return (
     <section className="relative overflow-hidden border-t border-ink/10 bg-ink text-ivory">
       <div className="grid lg:grid-cols-2">
         <div className="relative min-h-[22rem] lg:min-h-[32rem]">
           <Image
-            src={demoEditorial.image}
+            src={content.image}
             alt="FEELINGS editorial presentation"
             fill
             className="object-cover"
@@ -205,13 +220,13 @@ export function EditorialBand() {
           <VectorBackdrop variant="ink" className="opacity-70" />
           <FadeIn className="relative max-w-md">
             <p className="text-[11px] uppercase tracking-[0.22em] text-stone">
-              {demoEditorial.eyebrow}
+              {content.eyebrow}
             </p>
             <h2 className="mt-4 font-display text-4xl tracking-tight md:text-5xl">
-              {demoEditorial.title}
+              {content.title}
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-ivory/70 md:text-base">
-              {demoEditorial.body}
+              {content.body}
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Link
@@ -234,12 +249,16 @@ export function EditorialBand() {
   );
 }
 
-export function AssuranceRow() {
+export function AssuranceRow({
+  items,
+}: {
+  items: { title: string; body: string }[];
+}) {
   return (
     <section className="border-t border-ink/10 bg-ivory py-14 md:py-16">
       <Container>
         <Stagger className="grid gap-4 md:grid-cols-3">
-          {demoAssurances.map((item) => (
+          {items.map((item) => (
             <StaggerItem key={item.title}>
               <div className="rounded-sm border border-ink/10 bg-stone/40 px-5 py-7">
                 <div className="mb-4 h-px w-10 bg-wine" />
