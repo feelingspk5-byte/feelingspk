@@ -9,22 +9,22 @@
       {
         "id": "ts-01",
         "name": "Mocha Taupe",
-        "image": "/catalogue/tropical-signature/ts-01-mocha-taupe.jpg"
+        "image": "/catalogue/tropical-signature/ts-01-mocha-taupe-clean.jpg"
       },
       {
         "id": "ts-02",
         "name": "Sandstone Beige",
-        "image": "/catalogue/tropical-signature/ts-02-sandstone-beige.jpg"
+        "image": "/catalogue/tropical-signature/ts-02-sandstone-beige-clean.jpg"
       },
       {
         "id": "ts-03",
         "name": "Dark Espresso",
-        "image": "/catalogue/tropical-signature/ts-03-dark-espresso.jpg"
+        "image": "/catalogue/tropical-signature/ts-03-dark-espresso-clean.jpg"
       },
       {
         "id": "ts-04",
         "name": "Soft Ivory",
-        "image": "/catalogue/tropical-signature/ts-04-soft-ivory.jpg"
+        "image": "/catalogue/tropical-signature/ts-04-soft-ivory-clean.jpg"
       }
     ]
   },
@@ -38,27 +38,27 @@
       {
         "id": "hd-01",
         "name": "Mist Stone",
-        "image": "/catalogue/heritage-depth/hd-01-mist-stone.jpg"
+        "image": "/catalogue/heritage-depth/hd-01-mist-stone-clean.jpg"
       },
       {
         "id": "hd-02",
         "name": "Dark Espresso",
-        "image": "/catalogue/heritage-depth/hd-02-dark-espresso.jpg"
+        "image": "/catalogue/heritage-depth/hd-02-dark-espresso-clean.jpg"
       },
       {
         "id": "hd-03",
         "name": "Oxblood Burgundy",
-        "image": "/catalogue/heritage-depth/hd-03-oxblood-burgundy.jpg"
+        "image": "/catalogue/heritage-depth/hd-03-oxblood-burgundy-clean.jpg"
       },
       {
         "id": "hd-04",
         "name": "Midnight Navy",
-        "image": "/catalogue/heritage-depth/hd-04-midnight-navy.jpg"
+        "image": "/catalogue/heritage-depth/hd-04-midnight-navy-clean.jpg"
       },
       {
         "id": "hd-05",
         "name": "Signature Black",
-        "image": "/catalogue/heritage-depth/hd-05-signature-black.jpg"
+        "image": "/catalogue/heritage-depth/hd-05-signature-black-clean.jpg"
       }
     ]
   }

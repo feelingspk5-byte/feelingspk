@@ -29,7 +29,7 @@ export const collections: Collection[] = [
     description:
       "Four considered neutrals — mocha taupe, sandstone beige, dark espresso, and soft ivory.",
     category: "unstitched_fabric",
-    imageSrc: "/catalogue/tropical-signature/ts-01-mocha-taupe.jpg",
+    imageSrc: "/catalogue/tropical-signature/ts-01-mocha-taupe-clean.jpg",
     sortOrder: 1,
   },
   {
@@ -39,7 +39,7 @@ export const collections: Collection[] = [
     description:
       "Five enduring shades — mist stone, dark espresso, oxblood burgundy, midnight navy, and signature black.",
     category: "unstitched_fabric",
-    imageSrc: "/catalogue/heritage-depth/hd-01-mist-stone.jpg",
+    imageSrc: "/catalogue/heritage-depth/hd-01-mist-stone-clean.jpg",
     sortOrder: 2,
   },
 ];
@@ -92,25 +92,25 @@ export const products: Product[] = [
     images: [
       {
         id: "ts-01-studio",
-        src: "/catalogue/tropical-signature/ts-01-mocha-taupe.jpg",
+        src: "/catalogue/tropical-signature/ts-01-mocha-taupe-clean.jpg",
         alt: "Tropical Signature — Mocha Taupe fabric",
         kind: "colour",
       },
       {
         id: "ts-02-studio",
-        src: "/catalogue/tropical-signature/ts-02-sandstone-beige.jpg",
+        src: "/catalogue/tropical-signature/ts-02-sandstone-beige-clean.jpg",
         alt: "Tropical Signature — Sandstone Beige fabric",
         kind: "colour",
       },
       {
         id: "ts-03-studio",
-        src: "/catalogue/tropical-signature/ts-03-dark-espresso.jpg",
+        src: "/catalogue/tropical-signature/ts-03-dark-espresso-clean.jpg",
         alt: "Tropical Signature — Dark Espresso fabric",
         kind: "colour",
       },
       {
         id: "ts-04-studio",
-        src: "/catalogue/tropical-signature/ts-04-soft-ivory.jpg",
+        src: "/catalogue/tropical-signature/ts-04-soft-ivory-clean.jpg",
         alt: "Tropical Signature — Soft Ivory fabric",
         kind: "colour",
       },
@@ -174,31 +174,31 @@ export const products: Product[] = [
     images: [
       {
         id: "hd-01-studio",
-        src: "/catalogue/heritage-depth/hd-01-mist-stone.jpg",
+        src: "/catalogue/heritage-depth/hd-01-mist-stone-clean.jpg",
         alt: "Heritage Depth — Mist Stone fabric",
         kind: "colour",
       },
       {
         id: "hd-02-studio",
-        src: "/catalogue/heritage-depth/hd-02-dark-espresso.jpg",
+        src: "/catalogue/heritage-depth/hd-02-dark-espresso-clean.jpg",
         alt: "Heritage Depth — Dark Espresso fabric",
         kind: "colour",
       },
       {
         id: "hd-03-studio",
-        src: "/catalogue/heritage-depth/hd-03-oxblood-burgundy.jpg",
+        src: "/catalogue/heritage-depth/hd-03-oxblood-burgundy-clean.jpg",
         alt: "Heritage Depth — Oxblood Burgundy fabric",
         kind: "colour",
       },
       {
         id: "hd-04-studio",
-        src: "/catalogue/heritage-depth/hd-04-midnight-navy.jpg",
+        src: "/catalogue/heritage-depth/hd-04-midnight-navy-clean.jpg",
         alt: "Heritage Depth — Midnight Navy fabric",
         kind: "colour",
       },
       {
         id: "hd-05-studio",
-        src: "/catalogue/heritage-depth/hd-05-signature-black.jpg",
+        src: "/catalogue/heritage-depth/hd-05-signature-black-clean.jpg",
         alt: "Heritage Depth — Signature Black fabric",
         kind: "colour",
       },
