@@ -1,5 +1,5 @@
 /**
- * Homepage marketing — brand hero imagery restored; collections = Tropical + Heritage only.
+ * Homepage marketing — brand hero imagery; all current fabric lines.
  */
 export const demoHero = {
   eyebrow: "Elite Men's Collection",
@@ -29,7 +29,7 @@ export const demoHero = {
   ],
 };
 
-/** Homepage category / collection tiles — Tropical Signature + Heritage Depth only */
+/** Homepage category tiles — all fabric lines */
 export const demoCategories = [
   {
     slug: "tropical-signature",
@@ -47,6 +47,38 @@ export const demoCategories = [
     href: "/collections/heritage-depth",
     badge: null as string | null,
   },
+  {
+    slug: "midnight-noir",
+    name: "Midnight Noir",
+    detail: "Midnight navy, deep ink, graphite black, olive noir.",
+    image: "/catalogue/midnight-noir/mn-01-midnight-navy-clean.jpg",
+    href: "/collections/midnight-noir",
+    badge: null as string | null,
+  },
+  {
+    slug: "dark-shades",
+    name: "Dark Shades",
+    detail: "Charcoal black, midnight navy, forest olive, espresso brown.",
+    image: "/catalogue/dark-shades/ds-01-charcoal-black-v2.jpg",
+    href: "/collections/dark-shades",
+    badge: null as string | null,
+  },
+  {
+    slug: "walnut-pearl",
+    name: "Walnut Pearl",
+    detail: "Walnut taupe, pearl ivory, midnight charcoal.",
+    image: "/catalogue/walnut-pearl/wp-01-walnut-taupe-clean.jpg",
+    href: "/collections/walnut-pearl",
+    badge: null as string | null,
+  },
+  {
+    slug: "walnut-onyx",
+    name: "Walnut Onyx",
+    detail: "Walnut brown, onyx black, espresso brown, charcoal grey.",
+    image: "/catalogue/walnut-onyx/wo-01-walnut-brown-clean.jpg",
+    href: "/collections/walnut-onyx",
+    badge: null as string | null,
+  }
 ];
 
 export const demoCollections = [
@@ -62,6 +94,30 @@ export const demoCollections = [
     detail: "Five enduring shades for deeper formal presence.",
     image: "/catalogue/heritage-depth/hd-03-oxblood-burgundy-clean.jpg",
   },
+  {
+    slug: "midnight-noir",
+    name: "Midnight Noir",
+    detail: "Four deep nocturnes.",
+    image: "/catalogue/midnight-noir/mn-02-deep-ink-clean.jpg",
+  },
+  {
+    slug: "dark-shades",
+    name: "Dark Shades",
+    detail: "Four distinct dark shades.",
+    image: "/catalogue/dark-shades/ds-02-midnight-navy-v2.jpg",
+  },
+  {
+    slug: "walnut-pearl",
+    name: "Walnut Pearl",
+    detail: "Three considered neutrals.",
+    image: "/catalogue/walnut-pearl/wp-02-pearl-ivory-clean.jpg",
+  },
+  {
+    slug: "walnut-onyx",
+    name: "Walnut Onyx",
+    detail: "Four enduring earth tones.",
+    image: "/catalogue/walnut-onyx/wo-02-onyx-black-clean.jpg",
+  }
 ];
 
 export const demoFabrics = [
@@ -79,6 +135,34 @@ export const demoFabrics = [
     image: "/catalogue/heritage-depth/hd-02-dark-espresso-clean.jpg",
     tag: "Fabric",
   },
+  {
+    slug: "midnight-noir",
+    name: "Midnight Noir",
+    detail: "4 exact catalogue shades.",
+    image: "/catalogue/midnight-noir/mn-01-midnight-navy-clean.jpg",
+    tag: "Fabric",
+  },
+  {
+    slug: "dark-shades",
+    name: "Dark Shades",
+    detail: "4 exact catalogue shades.",
+    image: "/catalogue/dark-shades/ds-01-charcoal-black-v2.jpg",
+    tag: "Fabric",
+  },
+  {
+    slug: "walnut-pearl",
+    name: "Walnut Pearl",
+    detail: "3 exact catalogue shades.",
+    image: "/catalogue/walnut-pearl/wp-01-walnut-taupe-clean.jpg",
+    tag: "Fabric",
+  },
+  {
+    slug: "walnut-onyx",
+    name: "Walnut Onyx",
+    detail: "4 exact catalogue shades.",
+    image: "/catalogue/walnut-onyx/wo-01-walnut-brown-clean.jpg",
+    tag: "Fabric",
+  }
 ];
 
 export const demoEditorial = {

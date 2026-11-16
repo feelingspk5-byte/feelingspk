@@ -61,5 +61,116 @@
         "image": "/catalogue/heritage-depth/hd-05-signature-black-clean.jpg"
       }
     ]
+  },
+  {
+    "slug": "midnight-noir",
+    "name": "Midnight Noir",
+    "sku": "FL-MN-01",
+    "description": "Four deep nocturnes \u2014 midnight navy, deep ink, graphite black, and olive noir.",
+    "sourcePdf": "feelings_3.pdf",
+    "colours": [
+      {
+        "id": "mn-01",
+        "name": "Midnight Navy",
+        "image": "/catalogue/midnight-noir/mn-01-midnight-navy-clean.jpg"
+      },
+      {
+        "id": "mn-02",
+        "name": "Deep Ink",
+        "image": "/catalogue/midnight-noir/mn-02-deep-ink-clean.jpg"
+      },
+      {
+        "id": "mn-03",
+        "name": "Graphite Black",
+        "image": "/catalogue/midnight-noir/mn-03-graphite-black-clean.jpg"
+      },
+      {
+        "id": "mn-04",
+        "name": "Olive Noir",
+        "image": "/catalogue/midnight-noir/mn-04-olive-noir-clean.jpg"
+      }
+    ]
+  },
+  {
+    "slug": "dark-shades",
+    "name": "Dark Shades",
+    "sku": "FL-DS-01",
+    "description": "Four distinct dark shades \u2014 charcoal black, midnight navy, forest olive, and espresso brown.",
+    "sourcePdf": "feelings_4.pdf",
+    "colours": [
+      {
+        "id": "ds-01",
+        "name": "Charcoal Black",
+        "image": "/catalogue/dark-shades/ds-01-charcoal-black-v2.jpg"
+      },
+      {
+        "id": "ds-02",
+        "name": "Midnight Navy",
+        "image": "/catalogue/dark-shades/ds-02-midnight-navy-v2.jpg"
+      },
+      {
+        "id": "ds-03",
+        "name": "Forest Olive",
+        "image": "/catalogue/dark-shades/ds-03-forest-olive-v2.jpg"
+      },
+      {
+        "id": "ds-04",
+        "name": "Espresso Brown",
+        "image": "/catalogue/dark-shades/ds-04-espresso-brown-v2.jpg"
+      }
+    ]
+  },
+  {
+    "slug": "walnut-pearl",
+    "name": "Walnut Pearl",
+    "sku": "FL-WP-01",
+    "description": "Three considered neutrals \u2014 walnut taupe, pearl ivory, and midnight charcoal.",
+    "sourcePdf": "feelings_5.pdf",
+    "colours": [
+      {
+        "id": "wp-01",
+        "name": "Walnut Taupe",
+        "image": "/catalogue/walnut-pearl/wp-01-walnut-taupe-clean.jpg"
+      },
+      {
+        "id": "wp-02",
+        "name": "Pearl Ivory",
+        "image": "/catalogue/walnut-pearl/wp-02-pearl-ivory-clean.jpg"
+      },
+      {
+        "id": "wp-03",
+        "name": "Midnight Charcoal",
+        "image": "/catalogue/walnut-pearl/wp-03-midnight-charcoal-clean.jpg"
+      }
+    ]
+  },
+  {
+    "slug": "walnut-onyx",
+    "name": "Walnut Onyx",
+    "sku": "FL-WO-01",
+    "description": "Four enduring earth tones \u2014 walnut brown, onyx black, espresso brown, and charcoal grey.",
+    "sourcePdf": "feelings_6.pdf",
+    "colours": [
+      {
+        "id": "wo-01",
+        "name": "Walnut Brown",
+        "image": "/catalogue/walnut-onyx/wo-01-walnut-brown-clean.jpg"
+      },
+      {
+        "id": "wo-02",
+        "name": "Onyx Black",
+        "image": "/catalogue/walnut-onyx/wo-02-onyx-black-clean.jpg"
+      },
+      {
+        "id": "wo-03",
+        "name": "Espresso Brown",
+        "image": "/catalogue/walnut-onyx/wo-03-espresso-brown-clean.jpg"
+      },
+      {
+        "id": "wo-04",
+        "name": "Charcoal Grey",
+        "image": "/catalogue/walnut-onyx/wo-04-charcoal-grey-clean.jpg"
+      }
+    ]
   }
 ]

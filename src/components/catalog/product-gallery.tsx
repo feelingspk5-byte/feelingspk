@@ -50,13 +50,14 @@ export function ProductGallery({
 
   return (
     <div className="space-y-3">
-      <div className="relative aspect-[3/4] overflow-hidden rounded-sm bg-stone/25 sm:aspect-[4/5]">
+      <div className="relative aspect-[3/4] overflow-hidden rounded-sm bg-ivory sm:aspect-[4/5]">
         <Image
           key={current.src}
           src={current.src}
           alt={current.alt || `${productName} fabric`}
           fill
           priority
+          quality={92}
           sizes="(max-width:1024px) 100vw, 50vw"
           className="object-cover object-center"
         />

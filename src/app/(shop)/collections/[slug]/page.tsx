@@ -92,7 +92,8 @@ export default async function CollectionDetailPage({
                 src={collection.imageSrc}
                 alt={collection.name}
                 fill
-                className="object-cover"
+                quality={92}
+                className="object-cover object-center"
                 sizes="(max-width:1024px) 100vw, 45vw"
                 priority
               />
@@ -122,12 +123,13 @@ export default async function CollectionDetailPage({
                       href={`/products/${product.slug}?colour=${colour.id}`}
                       className="group overflow-hidden border border-ink/10 bg-ivory transition-transform duration-feel hover:-translate-y-0.5 hover:border-wine/40"
                     >
-                      <div className="relative aspect-[4/5] overflow-hidden bg-stone/30">
+                      <div className="relative aspect-[4/5] overflow-hidden bg-ivory">
                         {image?.src ? (
                           <Image
                             src={image.src}
                             alt={colour.name}
                             fill
+                            quality={92}
                             sizes="(max-width:768px) 50vw, 20vw"
                             className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                           />

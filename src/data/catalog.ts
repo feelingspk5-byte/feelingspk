@@ -59,7 +59,7 @@ export const collections: Collection[] = [
     description:
       "Four distinct dark shades — charcoal black, midnight navy, forest olive, and espresso brown.",
     category: "unstitched_fabric",
-    imageSrc: "/catalogue/dark-shades/ds-01-charcoal-black-clean.jpg",
+    imageSrc: "/catalogue/dark-shades/ds-01-charcoal-black-v2.jpg",
     sortOrder: 4,
   },
   {
@@ -341,28 +341,28 @@ export const products: Product[] = [
       {
         id: "ds-01",
         name: "Charcoal Black",
-        hex: "#1f1c20",
+        hex: "#2a272c",
         available: true,
         imageIds: ["ds-01-studio"],
       },
       {
         id: "ds-02",
         name: "Midnight Navy",
-        hex: "#1a243d",
+        hex: "#1e2a4a",
         available: true,
         imageIds: ["ds-02-studio"],
       },
       {
         id: "ds-03",
         name: "Forest Olive",
-        hex: "#252a18",
+        hex: "#2f3520",
         available: true,
         imageIds: ["ds-03-studio"],
       },
       {
         id: "ds-04",
         name: "Espresso Brown",
-        hex: "#32201c",
+        hex: "#3d2824",
         available: true,
         imageIds: ["ds-04-studio"],
       }
@@ -370,25 +370,25 @@ export const products: Product[] = [
     images: [
       {
         id: "ds-01-studio",
-        src: "/catalogue/dark-shades/ds-01-charcoal-black-clean.jpg",
+        src: "/catalogue/dark-shades/ds-01-charcoal-black-v2.jpg",
         alt: "Dark Shades — Charcoal Black fabric",
         kind: "colour",
       },
       {
         id: "ds-02-studio",
-        src: "/catalogue/dark-shades/ds-02-midnight-navy-clean.jpg",
+        src: "/catalogue/dark-shades/ds-02-midnight-navy-v2.jpg",
         alt: "Dark Shades — Midnight Navy fabric",
         kind: "colour",
       },
       {
         id: "ds-03-studio",
-        src: "/catalogue/dark-shades/ds-03-forest-olive-clean.jpg",
+        src: "/catalogue/dark-shades/ds-03-forest-olive-v2.jpg",
         alt: "Dark Shades — Forest Olive fabric",
         kind: "colour",
       },
       {
         id: "ds-04-studio",
-        src: "/catalogue/dark-shades/ds-04-espresso-brown-clean.jpg",
+        src: "/catalogue/dark-shades/ds-04-espresso-brown-v2.jpg",
         alt: "Dark Shades — Espresso Brown fabric",
         kind: "colour",
       }
