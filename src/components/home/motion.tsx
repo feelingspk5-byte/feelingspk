@@ -1,7 +1,29 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import { useEffect, useState } from "react";
 import { cn } from "@/lib/cn";
+
+/** WhatsApp / in-app WebViews often break IntersectionObserver — never leave content at opacity 0. */
+const VIEWPORT_FAILSAFE_MS = 700;
+
+function useReveal(reduce: boolean | null) {
+  const [visible, setVisible] = useState(!!reduce);
+
+  useEffect(() => {
+    if (reduce) {
+      setVisible(true);
+      return;
+    }
+    const id = window.setTimeout(() => setVisible(true), VIEWPORT_FAILSAFE_MS);
+    return () => window.clearTimeout(id);
+  }, [reduce]);
+
+  return {
+    visible,
+    reveal: () => setVisible(true),
+  };
+}
 
 export function FadeIn({
   children,
@@ -15,13 +37,16 @@ export function FadeIn({
   y?: number;
 }) {
   const reduce = useReducedMotion();
+  const { visible, reveal } = useReveal(reduce);
 
   return (
     <motion.div
       className={cn(className)}
       initial={reduce ? false : { opacity: 0, y }}
-      whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
+      animate={visible ? { opacity: 1, y: 0 } : undefined}
+      whileInView={visible || reduce ? undefined : { opacity: 1, y: 0 }}
+      onViewportEnter={reveal}
+      viewport={{ once: true, amount: 0.05, margin: "80px 0px" }}
       transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1], delay }}
     >
       {children}
@@ -37,17 +62,20 @@ export function Stagger({
   className?: string;
 }) {
   const reduce = useReducedMotion();
+  const { visible, reveal } = useReveal(reduce);
 
   return (
     <motion.div
       className={cn(className)}
       initial={reduce ? false : "hidden"}
-      whileInView={reduce ? undefined : "show"}
-      viewport={{ once: true, amount: 0.2 }}
+      animate={visible ? "show" : undefined}
+      whileInView={visible || reduce ? undefined : "show"}
+      onViewportEnter={reveal}
+      viewport={{ once: true, amount: 0.05, margin: "80px 0px" }}
       variants={{
         hidden: {},
         show: {
-          transition: { staggerChildren: 0.1 },
+          transition: { staggerChildren: reduce ? 0 : 0.1 },
         },
       }}
     >

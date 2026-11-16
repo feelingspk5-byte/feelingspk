@@ -7,6 +7,29 @@ import { cn } from "@/lib/cn";
 
 const STORAGE_KEY = "feelings-launch-offer-seen";
 
+function alreadySeen(): boolean {
+  try {
+    return window.sessionStorage.getItem(STORAGE_KEY) === "1";
+  } catch {
+    return false;
+  }
+}
+
+function markSeen() {
+  try {
+    window.sessionStorage.setItem(STORAGE_KEY, "1");
+  } catch {
+    /* private / restricted WebViews */
+  }
+}
+
+function triggerReached(el: HTMLElement): boolean {
+  const rect = el.getBoundingClientRect();
+  const vh = window.innerHeight || 0;
+  // Show once the section enters the lower ~70% of the viewport
+  return rect.top < vh * 0.72 && rect.bottom > 0;
+}
+
 export function LaunchOfferPopup({
   triggerId = "home-second-section",
 }: {
@@ -18,33 +41,56 @@ export function LaunchOfferPopup({
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    try {
-      if (window.sessionStorage.getItem(STORAGE_KEY)) return;
-    } catch {
-      /* private mode — still allow once this mount */
-    }
+    if (alreadySeen()) return;
 
     const trigger = document.getElementById(triggerId);
     if (!trigger) return;
 
     let shown = false;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (!entries.some((entry) => entry.isIntersecting) || shown) return;
-        shown = true;
-        setOpen(true);
-        try {
-          window.sessionStorage.setItem(STORAGE_KEY, "1");
-        } catch {
-          /* ignore */
-        }
-        observer.disconnect();
-      },
-      { threshold: 0.28, rootMargin: "0px 0px -8% 0px" },
-    );
-    observer.observe(trigger);
+    const show = () => {
+      if (shown) return;
+      shown = true;
+      setOpen(true);
+      markSeen();
+      cleanup();
+    };
 
-    return () => observer.disconnect();
+    const check = () => {
+      if (triggerReached(trigger)) show();
+    };
+
+    // Scroll/resize fallback — WhatsApp in-app browsers often break IntersectionObserver
+    const onScroll = () => check();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+
+    let observer: IntersectionObserver | null = null;
+    try {
+      observer = new IntersectionObserver(
+        (entries) => {
+          if (entries.some((entry) => entry.isIntersecting)) show();
+        },
+        { threshold: [0, 0.1, 0.2], rootMargin: "0px 0px -10% 0px" },
+      );
+      observer.observe(trigger);
+    } catch {
+      /* ignore — scroll fallback still runs */
+    }
+
+    // Initial + delayed checks (WebView may report layout late)
+    check();
+    const t1 = window.setTimeout(check, 400);
+    const t2 = window.setTimeout(check, 1200);
+
+    function cleanup() {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      window.clearTimeout(t1);
+      window.clearTimeout(t2);
+      observer?.disconnect();
+    }
+
+    return cleanup;
   }, [triggerId]);
 
   useEffect(() => {
