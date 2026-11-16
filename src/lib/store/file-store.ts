@@ -1,6 +1,5 @@
 import { existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from "fs";
 import path from "path";
-import { get as blobGet, put as blobPut } from "@vercel/blob";
 import { migrateStore } from "@/lib/store/migrate";
 import { createSeedStore } from "@/lib/store/seed";
 import type { StoreState } from "@/lib/store/types";
@@ -25,7 +24,13 @@ let loadPromise: Promise<StoreState> | null = null;
 let writeChain: Promise<void> = Promise.resolve();
 let writable: boolean | null = null;
 
+function isBuildPhase() {
+  return process.env.NEXT_PHASE === "phase-production-build";
+}
+
 function hasBlobBackend() {
+  // Skip Blob during `next build` — use seed/disk so installs stay offline-safe.
+  if (isBuildPhase()) return false;
   return Boolean(process.env.BLOB_READ_WRITE_TOKEN);
 }
 
@@ -93,7 +98,8 @@ function writeToDisk(store: StoreState) {
 
 async function readFromBlob(): Promise<StoreState | null> {
   try {
-    const result = await blobGet(BLOB_PATH, {
+    const { get } = await import("@vercel/blob");
+    const result = await get(BLOB_PATH, {
       access: "private",
       useCache: false,
     });
@@ -107,7 +113,8 @@ async function readFromBlob(): Promise<StoreState | null> {
 }
 
 async function writeToBlob(store: StoreState) {
-  await blobPut(BLOB_PATH, JSON.stringify(store), {
+  const { put } = await import("@vercel/blob");
+  await put(BLOB_PATH, JSON.stringify(store), {
     access: "private",
     addRandomSuffix: false,
     allowOverwrite: true,
