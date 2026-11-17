@@ -4,6 +4,7 @@ import { Container } from "@/components/layout/container";
 import { EmptyState } from "@/components/ui/empty-state";
 import { getCollections, getProductsByCollection } from "@/lib/catalog";
 import { getCollectionProductHref } from "@/lib/home-content";
+import { ensureStore } from "@/lib/store/file-store";
 
 export const dynamic = "force-dynamic";
 
@@ -13,7 +14,8 @@ export const metadata = {
     "Signature FEELINGS fabric collections — open any line to explore its shades.",
 };
 
-export default function CollectionsPage() {
+export default async function CollectionsPage() {
+  await ensureStore();
   const collections = getCollections();
 
   const enriched = collections.map((collection) => {

@@ -16,10 +16,12 @@ import {
   getHomeFabrics,
   getLaunchOfferContent,
 } from "@/lib/home-content";
+import { ensureStore } from "@/lib/store/file-store";
 
 export const dynamic = "force-dynamic";
 
-export default function HomePage() {
+export default async function HomePage() {
+  await ensureStore();
   const cms = getCms();
   const categories = getHomeCategories();
   const collections = getHomeCollections();

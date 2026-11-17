@@ -1,9 +1,15 @@
 import "server-only";
 
-import { readStore } from "@/lib/store/file-store";
+import { ensureStore, readStore } from "@/lib/store/file-store";
 import type { Collection, FabricProduct } from "@/lib/types";
 
 export { availabilityLabel, formatPrice } from "@/lib/format";
+
+/** Prefer this in async server pages so prices never race ahead of Supabase. */
+export async function loadCatalog() {
+  await ensureStore();
+  return readStore();
+}
 
 export function getSiteConfig() {
   return readStore().siteConfig;

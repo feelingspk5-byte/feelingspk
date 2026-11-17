@@ -290,10 +290,13 @@ export function readStore(): StoreState {
   }
 
   if (memory) return memory;
-  // Remote mode without ensureStore — temporary seed until async load finishes.
-  const seeded = seedStore();
-  memory = seeded;
-  return seeded;
+  // Remote mode: never write a seed into `memory` here. Doing so races with
+  // ensureStore() (e.g. Suspense shop grids) and serves products with no
+  // admin prices — mobile/Instagram often hit that path first.
+  console.warn(
+    "[store] readStore() called before ensureStore(); waiting callers should await ensureStore()",
+  );
+  return seedStore();
 }
 
 export async function updateStore(

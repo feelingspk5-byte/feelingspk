@@ -8,6 +8,7 @@ import {
   getProducts,
   searchProducts,
 } from "@/lib/catalog";
+import { ensureStore } from "@/lib/store/file-store";
 import type { Product, ProductCategory } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
@@ -40,7 +41,7 @@ function sortProducts(list: Product[], sort: string) {
   }
 }
 
-function ShopContent({
+async function ShopContent({
   searchParams,
 }: {
   searchParams: {
@@ -51,6 +52,8 @@ function ShopContent({
     category?: string;
   };
 }) {
+  // Suspense can stream this before the layout finishes — load durable prices first.
+  await ensureStore();
   const collections = getCollections();
   let products = searchParams.q
     ? searchProducts(searchParams.q)

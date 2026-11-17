@@ -10,6 +10,7 @@ import {
   getProducts,
 } from "@/lib/catalog";
 import { getCatalogueDiscount } from "@/lib/store/commerce";
+import { ensureStore } from "@/lib/store/file-store";
 
 export const dynamic = "force-dynamic";
 
@@ -18,6 +19,7 @@ export async function generateMetadata({
 }: {
   params: Promise<{ slug: string }>;
 }) {
+  await ensureStore();
   const { slug } = await params;
   const product = getProductBySlug(slug);
   if (!product) return { title: "Fabric" };
@@ -36,6 +38,7 @@ export default async function ProductPage({
   params: Promise<{ slug: string }>;
   searchParams: Promise<{ colour?: string }>;
 }) {
+  await ensureStore();
   const { slug } = await params;
   const { colour } = await searchParams;
   const product = getProductBySlug(slug);
